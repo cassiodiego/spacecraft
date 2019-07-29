@@ -1,0 +1,15 @@
+
+/* Class = "UIButton"; normalTitle = "START"; ObjectID = "3dO-pr-ZNb"; */
+"3dO-pr-ZNb.normalTitle" = "START";
+
+/* Class = "UISegmentedControl"; 4YJ-cO-FhZ.segmentTitles[0] = "Armory"; ObjectID = "4YJ-cO-FhZ"; */
+"4YJ-cO-FhZ.segmentTitles[0]" = "Armory";
+
+/* Class = "UISegmentedControl"; 4YJ-cO-FhZ.segmentTitles[1] = "Rinzler"; ObjectID = "4YJ-cO-FhZ"; */
+"4YJ-cO-FhZ.segmentTitles[1]" = "Rinzler";
+
+/* Class = "UILabel"; text = "Music"; ObjectID = "BKf-nP-J0e"; */
+"BKf-nP-J0e.text" = "Music";
+
+/* Class = "UILabel"; text = "Sound"; ObjectID = "Svx-mV-lyq"; */
+"Svx-mV-lyq.text" = "Sound";

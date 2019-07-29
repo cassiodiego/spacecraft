@@ -1,0 +1,33 @@
+
+/* Class = "UIButton"; normalTitle = "START"; ObjectID = "3dO-pr-ZNb"; */
+"3dO-pr-ZNb.normalTitle" = "START";
+
+/* Class = "UITextView"; text = "A classic and simple spaceship game for iOS only, with quick reboot and totally free. Developed and produced by Cassio Diego."; ObjectID = "DL8-c9-vVF"; */
+"DL8-c9-vVF.text" = "A classic and simple spaceship game for iOS only, with quick reboot and totally free. Developed and produced by Cassio Diego.";
+
+/* Class = "UITextView"; text = "Just press start and then tap the screen to shoot, being careful not to touch the edges of the screen or even let the objects collide in the spaceship."; ObjectID = "EAO-5a-Ib2"; */
+"EAO-5a-Ib2.text" = "Just press start and then tap the screen to shoot, being careful not to touch the edges of the screen or even let the objects collide in the spaceship.";
+
+/* Class = "UILabel"; text = "spacecraft.com.br"; ObjectID = "cLy-y8-Txh"; */
+"cLy-y8-Txh.text" = "spacecraft.com.br";
+
+/* Class = "UILabel"; text = "contato@cassiodiego.com"; ObjectID = "esO-1o-mYh"; */
+"esO-1o-mYh.text" = "contato@cassiodiego.com";
+
+/* Class = "UILabel"; text = "Warning"; ObjectID = "gJS-9m-ny1"; */
+"gJS-9m-ny1.text" = "Warning";
+
+/* Class = "UILabel"; text = "Spacecraft"; ObjectID = "hut-Ev-bGt"; */
+"hut-Ev-bGt.text" = "Spacecraft";
+
+/* Class = "UILabel"; text = "How to play"; ObjectID = "r5R-D6-zxn"; */
+"r5R-D6-zxn.text" = "How to play";
+
+/* Class = "UITextView"; text = "We know that according to the laws of physics, sound does not propagate in the vacuum, or in space. However to add more excitement to the game, sounds and effects have been added."; ObjectID = "rcM-4l-BAh"; */
+"rcM-4l-BAh.text" = "We know that according to the laws of physics, sound does not propagate in the vacuum, or in space. However to add more excitement to the game, sounds and effects have been added.";
+
+/* Class = "UILabel"; text = "99999"; ObjectID = "sKd-4n-z9K"; */
+"sKd-4n-z9K.text" = "99999";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "yDc-Vj-IeT"; */
+"yDc-Vj-IeT.text" = "Label";

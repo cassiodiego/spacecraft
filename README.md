@@ -1,5 +1,5 @@
+![](https://github.com/cassiodiego/Spacecraft/workflows/Spacecraft/badge.svg)
 # Spacecraft
-![](https://github.com/actions/Spacecraft/workflows/Spacecraft/badge.svg)
 A classic and simple spaceship game only for iPhone. The project was started at Belém, Brazil in December 2016, licensed under the [GPL-3.0](LICENSE). Since then, Spacecraft has been downloaded close to thousands of times.
 
 ## An Interstellar Adventure

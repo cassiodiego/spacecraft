@@ -13,5 +13,5 @@ jobs:
       - name: Build
         run: xcodebuild clean test -project Spacecraft.xcodeproj -scheme "Spacecraft" -destination "name=iPhone X,OS=12.4"
       - name: Archive
-        run: xcodebuild -project Spacecraft.xcodeproj -scheme "Spacecraft" -destination generic/platform=iOS build
+       # run: xcodebuild -project Spacecraft.xcodeproj -scheme "Spacecraft" -destination generic/platform=iOS build
 

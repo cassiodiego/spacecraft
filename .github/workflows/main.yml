@@ -9,5 +9,5 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
       - name: Build
-        run: xcodebuild clean test -project Spacecraft.xcodeproj -scheme "Spacecraft" -destination "name=iPhone X,OS=13.0"
+        run: xcodebuild clean test -project Spacecraft.xcodeproj -scheme "Spacecraft" -destination "name=iPhone X,OS=12.4"
 

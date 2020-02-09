@@ -1,5 +1,5 @@
 on: [push, pull_request]
-name: Spacecraft
+name: ios-spacecraft-game
 jobs:
   build:
     name: Spacecraft

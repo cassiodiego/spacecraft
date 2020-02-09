@@ -10,5 +10,5 @@ jobs:
       - name: Device List
         run: xcrun instruments -s devices   
       - name: Build
-        run: xcodebuild clean test -project Spacecraft.xcodeproj -scheme "Spacecraft"
+        run: xcodebuild clean test -project Spacecraft.xcodeproj -scheme "Spacecraft" -destination "platform=iOS Simulator,name=iPhone 11 Pro Max,OS=latest"
 

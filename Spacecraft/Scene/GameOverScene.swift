@@ -220,12 +220,6 @@ class GameOverScene: SKScene {
     func highscoreAlreadyExist(key: String) -> Bool {
         
         return UserDefaults.standard.object(forKey: key) != nil}
-
-    //override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-    //    let touch = touches.first
-    //    let touchLocation = touch!.location(in: self)
-    //    if buttonHome.contains(touchLocation) { }
-    //}
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first

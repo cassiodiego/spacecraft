@@ -15,8 +15,6 @@
 		F11032CE1DFDE66800597BF6 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11032CD1DFDE66800597BF6 /* GameViewController.swift */; };
 		F11032D11DFDE66800597BF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F11032CF1DFDE66800597BF6 /* Main.storyboard */; };
 		F11032D61DFDE66800597BF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F11032D41DFDE66800597BF6 /* LaunchScreen.storyboard */; };
-		F11032E11DFDE66900597BF6 /* SpacecraftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11032E01DFDE66900597BF6 /* SpacecraftTests.swift */; };
-		F11032EC1DFDE66900597BF6 /* SpacecraftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11032EB1DFDE66900597BF6 /* SpacecraftUITests.swift */; };
 		F11032FA1DFDE6F800597BF6 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11032F91DFDE6F800597BF6 /* GameOverScene.swift */; };
 		F11CAF551E168CB900962CD2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11CAF541E168CB900962CD2 /* SettingsViewController.swift */; };
 		F140FC211E06501E0065C432 /* Shot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F140FC201E06501E0065C432 /* Shot.mp3 */; };
@@ -25,23 +23,6 @@
 		F19903A51ED0FC0100DCABAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F19903A41ED0FC0100DCABAF /* Assets.xcassets */; };
 		F19903AC1ED1FFD000DCABAF /* Spacecraft.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F19903AB1ED1FFD000DCABAF /* Spacecraft.mp3 */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		F11032DD1DFDE66900597BF6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F11032BA1DFDE66800597BF6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F11032C11DFDE66800597BF6;
-			remoteInfo = Spacecraft;
-		};
-		F11032E81DFDE66900597BF6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F11032BA1DFDE66800597BF6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F11032C11DFDE66800597BF6;
-			remoteInfo = Spacecraft;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		F10C60381E0ED293006517B9 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -53,12 +34,6 @@
 		F11032CD1DFDE66800597BF6 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		F11032D01DFDE66800597BF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F11032D51DFDE66800597BF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		F11032DC1DFDE66900597BF6 /* SpacecraftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpacecraftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F11032E01DFDE66900597BF6 /* SpacecraftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacecraftTests.swift; sourceTree = "<group>"; };
-		F11032E21DFDE66900597BF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F11032E71DFDE66900597BF6 /* SpacecraftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpacecraftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F11032EB1DFDE66900597BF6 /* SpacecraftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacecraftUITests.swift; sourceTree = "<group>"; };
-		F11032ED1DFDE66900597BF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F11032F91DFDE6F800597BF6 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		F11CAF541E168CB900962CD2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		F140FC201E06501E0065C432 /* Shot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Shot.mp3; sourceTree = "<group>"; };
@@ -81,20 +56,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F11032D91DFDE66900597BF6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F11032E41DFDE66900597BF6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -102,8 +63,6 @@
 			isa = PBXGroup;
 			children = (
 				F11032C41DFDE66800597BF6 /* Spacecraft */,
-				F11032DF1DFDE66900597BF6 /* SpacecraftTests */,
-				F11032EA1DFDE66900597BF6 /* SpacecraftUITests */,
 				F11032C31DFDE66800597BF6 /* Products */,
 				F16BA0121DFF0105002C4571 /* Frameworks */,
 			);
@@ -113,8 +72,6 @@
 			isa = PBXGroup;
 			children = (
 				F11032C21DFDE66800597BF6 /* Spacecraft.app */,
-				F11032DC1DFDE66900597BF6 /* SpacecraftTests.xctest */,
-				F11032E71DFDE66900597BF6 /* SpacecraftUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -133,24 +90,6 @@
 				F1E0D2001E04491900D56D1A /* Info.plist */,
 			);
 			path = Spacecraft;
-			sourceTree = "<group>";
-		};
-		F11032DF1DFDE66900597BF6 /* SpacecraftTests */ = {
-			isa = PBXGroup;
-			children = (
-				F11032E01DFDE66900597BF6 /* SpacecraftTests.swift */,
-				F11032E21DFDE66900597BF6 /* Info.plist */,
-			);
-			path = SpacecraftTests;
-			sourceTree = "<group>";
-		};
-		F11032EA1DFDE66900597BF6 /* SpacecraftUITests */ = {
-			isa = PBXGroup;
-			children = (
-				F11032EB1DFDE66900597BF6 /* SpacecraftUITests.swift */,
-				F11032ED1DFDE66900597BF6 /* Info.plist */,
-			);
-			path = SpacecraftUITests;
 			sourceTree = "<group>";
 		};
 		F12643A42247C62A0011866E /* Sound */ = {
@@ -219,42 +158,6 @@
 			productReference = F11032C21DFDE66800597BF6 /* Spacecraft.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F11032DB1DFDE66900597BF6 /* SpacecraftTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F11032F31DFDE66900597BF6 /* Build configuration list for PBXNativeTarget "SpacecraftTests" */;
-			buildPhases = (
-				F11032D81DFDE66900597BF6 /* Sources */,
-				F11032D91DFDE66900597BF6 /* Frameworks */,
-				F11032DA1DFDE66900597BF6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F11032DE1DFDE66900597BF6 /* PBXTargetDependency */,
-			);
-			name = SpacecraftTests;
-			productName = SpacecraftTests;
-			productReference = F11032DC1DFDE66900597BF6 /* SpacecraftTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		F11032E61DFDE66900597BF6 /* SpacecraftUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F11032F61DFDE66900597BF6 /* Build configuration list for PBXNativeTarget "SpacecraftUITests" */;
-			buildPhases = (
-				F11032E31DFDE66900597BF6 /* Sources */,
-				F11032E41DFDE66900597BF6 /* Frameworks */,
-				F11032E51DFDE66900597BF6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F11032E91DFDE66900597BF6 /* PBXTargetDependency */,
-			);
-			name = SpacecraftUITests;
-			productName = SpacecraftUITests;
-			productReference = F11032E71DFDE66900597BF6 /* SpacecraftUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -278,18 +181,6 @@
 							};
 						};
 					};
-					F11032DB1DFDE66900597BF6 = {
-						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 1020;
-						ProvisioningStyle = Automatic;
-						TestTargetID = F11032C11DFDE66800597BF6;
-					};
-					F11032E61DFDE66900597BF6 = {
-						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 1020;
-						ProvisioningStyle = Automatic;
-						TestTargetID = F11032C11DFDE66800597BF6;
-					};
 				};
 			};
 			buildConfigurationList = F11032BD1DFDE66800597BF6 /* Build configuration list for PBXProject "Spacecraft" */;
@@ -308,8 +199,6 @@
 			projectRoot = "";
 			targets = (
 				F11032C11DFDE66800597BF6 /* Spacecraft */,
-				F11032DB1DFDE66900597BF6 /* SpacecraftTests */,
-				F11032E61DFDE66900597BF6 /* SpacecraftUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -326,20 +215,6 @@
 				F19903A51ED0FC0100DCABAF /* Assets.xcassets in Resources */,
 				F11032D61DFDE66800597BF6 /* LaunchScreen.storyboard in Resources */,
 				F11032CA1DFDE66800597BF6 /* Actions.sks in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F11032DA1DFDE66900597BF6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F11032E51DFDE66900597BF6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,36 +235,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F11032D81DFDE66900597BF6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F11032E11DFDE66900597BF6 /* SpacecraftTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F11032E31DFDE66900597BF6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F11032EC1DFDE66900597BF6 /* SpacecraftUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F11032DE1DFDE66900597BF6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F11032C11DFDE66800597BF6 /* Spacecraft */;
-			targetProxy = F11032DD1DFDE66900597BF6 /* PBXContainerItemProxy */;
-		};
-		F11032E91DFDE66900597BF6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F11032C11DFDE66800597BF6 /* Spacecraft */;
-			targetProxy = F11032E81DFDE66900597BF6 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F11032CF1DFDE66800597BF6 /* Main.storyboard */ = {
@@ -582,64 +428,6 @@
 			};
 			name = Release;
 		};
-		F11032F41DFDE66900597BF6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = SpacecraftTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cassiodiego.SpacecraftTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Spacecraft.app/Spacecraft";
-			};
-			name = Debug;
-		};
-		F11032F51DFDE66900597BF6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = SpacecraftTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cassiodiego.SpacecraftTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Spacecraft.app/Spacecraft";
-			};
-			name = Release;
-		};
-		F11032F71DFDE66900597BF6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = SpacecraftUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cassiodiego.SpacecraftUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = Spacecraft;
-			};
-			name = Debug;
-		};
-		F11032F81DFDE66900597BF6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = SpacecraftUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cassiodiego.SpacecraftUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = Spacecraft;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -657,24 +445,6 @@
 			buildConfigurations = (
 				F11032F11DFDE66900597BF6 /* Debug */,
 				F11032F21DFDE66900597BF6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F11032F31DFDE66900597BF6 /* Build configuration list for PBXNativeTarget "SpacecraftTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F11032F41DFDE66900597BF6 /* Debug */,
-				F11032F51DFDE66900597BF6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F11032F61DFDE66900597BF6 /* Build configuration list for PBXNativeTarget "SpacecraftUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F11032F71DFDE66900597BF6 /* Debug */,
-				F11032F81DFDE66900597BF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

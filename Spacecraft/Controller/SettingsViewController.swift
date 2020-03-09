@@ -12,19 +12,14 @@ import AVFoundation
 class SettingsViewController : UIViewController {
     
     @IBOutlet weak var musicStatus: UISwitch!
-    
     @IBOutlet weak var soundStatus: UISwitch!
-    
     @IBOutlet weak var shipChoice: UISegmentedControl!
     
     override func viewDidLoad() {
         
         musicStatus.isOn = UserDefaults.standard.bool(forKey: "musicStatus")
-
         soundStatus.isOn = UserDefaults.standard.bool(forKey: "soundStatus")
-        
         shipChoice.selectedSegmentIndex = UserDefaults.standard.integer(forKey: "ship")
-        
 
     }
     
@@ -47,13 +42,11 @@ class SettingsViewController : UIViewController {
         if(shipChoice.selectedSegmentIndex == 0) {
             
             ship = 0
-            
             UserDefaults.standard.set(ship, forKey: "ship")
             
         } else if(shipChoice.selectedSegmentIndex == 1) {
             
             ship = 1
-            
             UserDefaults.standard.set(ship, forKey: "ship")
             
         }

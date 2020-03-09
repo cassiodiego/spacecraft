@@ -90,16 +90,9 @@ class MainViewController : UIViewController, GKGameCenterControllerDelegate {
         GKScore.report([sScore], withCompletionHandler: { (error: Error?) -> Void in
             
             if error != nil {
-                
-                //print(error!.localizedDescription)
-                
-            } else {
-                
-                //print("Score refreshed")
-                
+                debugPrint("[Spacecraft] Game Center Error: \(error!.localizedDescription)")
             }
         })
-        
     }
     
     override func didReceiveMemoryWarning() {

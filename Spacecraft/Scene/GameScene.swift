@@ -196,7 +196,7 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         let finalDestination:CGPoint = vecAdd(shotLength, b: shot.position)
         let velocity = 200/1
         let moveDuration:Float = Float(self.size.width) / Float(velocity)
-        let soundIsOn = UserDefaults.standard.bool(forKey: "soundStatus")
+        let soundIsOn = UserDefaults.standard.bool(forKey: keys.soundStatus)
         
         soundIsOn ? self.run(SKAction.playSoundFileNamed(assets.orangeShot, waitForCompletion: false)) : nil
         

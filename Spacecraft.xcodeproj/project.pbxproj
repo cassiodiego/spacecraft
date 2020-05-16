@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A3AA9FA52415D00000B7F032 /* SettingsEntryKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AA9FA42415D00000B7F032 /* SettingsEntryKeys.swift */; };
-		A3AA9FA72415D1C500B7F032 /* LanguageEntryKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AA9FA62415D1C500B7F032 /* LanguageEntryKeys.swift */; };
+		A3310CDB246F961000EBD947 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3310CDA246F961000EBD947 /* Constants.swift */; };
+		A3310CDD246F9DB700EBD947 /* GameSceneObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3310CDC246F9DB700EBD947 /* GameSceneObjects.swift */; };
 		A3CB7AA1240233CF00972F53 /* GameCenterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB7AA0240233CF00972F53 /* GameCenterController.swift */; };
 		F10C60391E0ED293006517B9 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F10C60381E0ED293006517B9 /* GameKit.framework */; };
 		F11032C61DFDE66800597BF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11032C51DFDE66800597BF6 /* AppDelegate.swift */; };
@@ -28,8 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A3AA9FA42415D00000B7F032 /* SettingsEntryKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEntryKeys.swift; sourceTree = "<group>"; };
-		A3AA9FA62415D1C500B7F032 /* LanguageEntryKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageEntryKeys.swift; sourceTree = "<group>"; };
+		A3310CDA246F961000EBD947 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A3310CDC246F9DB700EBD947 /* GameSceneObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneObjects.swift; sourceTree = "<group>"; };
 		A3CB7AA0240233CF00972F53 /* GameCenterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterController.swift; sourceTree = "<group>"; };
 		F10C60381E0ED293006517B9 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		F11032C21DFDE66800597BF6 /* Spacecraft.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spacecraft.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,11 +65,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A3310CD9246F95B600EBD947 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A3310CDA246F961000EBD947 /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		A3310CDE246F9DD400EBD947 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		A3AA9FA32415CF8400B7F032 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A3AA9FA42415D00000B7F032 /* SettingsEntryKeys.swift */,
-				A3AA9FA62415D1C500B7F032 /* LanguageEntryKeys.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -99,6 +112,8 @@
 				F12643A72247C9B80011866E /* Scene */,
 				F12643A62247C9A90011866E /* Sks */,
 				F12643A42247C62A0011866E /* Sound */,
+				A3310CD9246F95B600EBD947 /* Helpers */,
+				A3310CDE246F9DD400EBD947 /* Supporting Files */,
 				F19903A41ED0FC0100DCABAF /* Assets.xcassets */,
 				F11032CF1DFDE66800597BF6 /* Main.storyboard */,
 				F11032D41DFDE66800597BF6 /* LaunchScreen.storyboard */,
@@ -143,6 +158,7 @@
 			children = (
 				F11032CB1DFDE66800597BF6 /* GameScene.swift */,
 				F11032F91DFDE6F800597BF6 /* GameOverScene.swift */,
+				A3310CDC246F9DB700EBD947 /* GameSceneObjects.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -243,14 +259,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1423F3E1E00581F00E46831 /* AboutViewController.swift in Sources */,
-				A3AA9FA52415D00000B7F032 /* SettingsEntryKeys.swift in Sources */,
+				A3310CDB246F961000EBD947 /* Constants.swift in Sources */,
 				F11032CC1DFDE66800597BF6 /* GameScene.swift in Sources */,
 				F11CAF551E168CB900962CD2 /* SettingsViewController.swift in Sources */,
 				F11032CE1DFDE66800597BF6 /* GameViewController.swift in Sources */,
 				A3CB7AA1240233CF00972F53 /* GameCenterController.swift in Sources */,
+				A3310CDD246F9DB700EBD947 /* GameSceneObjects.swift in Sources */,
 				F18750F01E02BE5F00192536 /* MainViewController.swift in Sources */,
 				F11032FA1DFDE6F800597BF6 /* GameOverScene.swift in Sources */,
-				A3AA9FA72415D1C500B7F032 /* LanguageEntryKeys.swift in Sources */,
 				F11032C61DFDE66800597BF6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

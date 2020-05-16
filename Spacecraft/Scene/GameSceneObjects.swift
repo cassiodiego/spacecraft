@@ -2,7 +2,7 @@
 //  GameSceneObjects.swift
 //  Spacecraft
 //
-//  Created by Cassio Diego T. Campos on 16/05/20.
+//  Created by Cassio Diego Tavares Campos on 16/05/20.
 //  Copyright © 2020 Cassio Diego Tavares Campos. All rights reserved.
 //
 
@@ -28,14 +28,13 @@ class GameSceneObjects: SKScene {
     
     func alreadyExist(key: String) -> Bool { return UserDefaults.standard.object(forKey: key) != nil }
 
-    
     func getKindShip() -> Int {
         
-        let playerChoosedShip = alreadyExist(key: "ship")
+        let playerChoosedShip = alreadyExist(key: assets.ship)
         
-        !playerChoosedShip ? UserDefaults.standard.set(0, forKey: "ship") : nil
+        !playerChoosedShip ? UserDefaults.standard.set(0, forKey: assets.ship) : nil
         
-        return UserDefaults.standard.object(forKey: "ship")! as! Int
+        return UserDefaults.standard.object(forKey: assets.ship)! as! Int
         
     }
     
@@ -45,7 +44,7 @@ class GameSceneObjects: SKScene {
         
         var spritePlayer:String = ""
         
-        ship == 0 ? (spritePlayer = "spacecraft") : (spritePlayer = "spacecraft2")
+        ship == 0 ? (spritePlayer = assets.spacecraftOne) : (spritePlayer = assets.spacecraftTwo)
 
         player = SKSpriteNode(imageNamed: spritePlayer)
         player.position = CGPoint(x: self.frame.size.width/2, y: player.size.height/2 + 30)
@@ -132,12 +131,12 @@ class GameSceneObjects: SKScene {
         
         fire.run(boom)
 
-        if(side == "left"){
+        if(side == directions.left){
             
             fireLeft = fire
             self.addChild(fireLeft)
             
-        } else if(side == "right") {
+        } else if(side == directions.right) {
             
             fireRight = fire
             self.addChild(fireRight)

@@ -20,6 +20,8 @@ struct Constants {
         static let yellowStar:String = "yellowStar"
         static let orangeShot:String = "Shot"
         static let blueShot:String = "Shot2"
+        static let spacecraftOne:String = "spacecraft"
+        static let spacecraftTwo:String = "spacecraft2"
     }
     
     struct Directions {

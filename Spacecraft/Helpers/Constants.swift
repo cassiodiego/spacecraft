@@ -12,7 +12,6 @@ struct Constants {
     
     struct Assets {
         static let firstBackground:String = "Background"
-        static let ship:String = "ship"
         static let rockOne:NSString = "rock_1"
         static let rockTwo:NSString = "rock_2"
         static let rockThree:NSString = "rock_3"
@@ -34,6 +33,17 @@ struct Constants {
         static let shotCategory:UInt32 = 0x1 << 0
         static let playerCategory:UInt32 = 0x1 << 0
         static let EdgeBody: UInt32 = 0x1 << 4
+    }
+    
+    struct Configs {
+        static let ship:String = "ship"
+        static let soundStatus:String = "soundStatus"
+    }
+    
+    struct Levels {
+        struct LevelOne {
+            
+        }
     }
 
 }

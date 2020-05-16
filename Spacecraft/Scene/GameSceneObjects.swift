@@ -18,23 +18,23 @@ class GameSceneObjects: SKScene {
     var rightJet:SKSpriteNode = SKSpriteNode()
     
     var explosion:SKSpriteNode!
-    
     var fireLeft:SKSpriteNode!
     var fireRight:SKSpriteNode!
     
     let directions = Constants.Directions.self
     let collisions = Constants.CollisionCategories.self
     let assets = Constants.Assets.self
+    let dataKeys = Constants.Configs.self
     
     func alreadyExist(key: String) -> Bool { return UserDefaults.standard.object(forKey: key) != nil }
 
     func getKindShip() -> Int {
         
-        let playerChoosedShip = alreadyExist(key: assets.ship)
+        let playerChoosedShip = alreadyExist(key: dataKeys.ship)
         
-        !playerChoosedShip ? UserDefaults.standard.set(0, forKey: assets.ship) : nil
+        !playerChoosedShip ? UserDefaults.standard.set(0, forKey: dataKeys.ship) : nil
         
-        return UserDefaults.standard.object(forKey: assets.ship)! as! Int
+        return UserDefaults.standard.object(forKey: dataKeys.ship)! as! Int
         
     }
     

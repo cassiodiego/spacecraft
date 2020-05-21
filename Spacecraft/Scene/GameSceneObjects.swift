@@ -24,17 +24,19 @@ class GameSceneObjects: SKScene {
     let directions = Constants.Directions.self
     let collisions = Constants.CollisionCategories.self
     let assets = Constants.Assets.self
-    let dataKeys = Constants.Configs.self
+    let dataConfigKeys = Constants.DataConfigKeys.self
+    
+    
     
     func alreadyExist(key: String) -> Bool { return UserDefaults.standard.object(forKey: key) != nil }
 
     func getKindShip() -> Int {
         
-        let playerChoosedShip = alreadyExist(key: dataKeys.ship)
+        let playerChoosedShip = alreadyExist(key: dataConfigKeys.ship)
         
-        !playerChoosedShip ? UserDefaults.standard.set(0, forKey: dataKeys.ship) : nil
+        !playerChoosedShip ? UserDefaults.standard.set(0, forKey: dataConfigKeys.ship) : nil
         
-        return UserDefaults.standard.object(forKey: dataKeys.ship)! as! Int
+        return UserDefaults.standard.object(forKey: dataConfigKeys.ship)! as! Int
         
     }
     

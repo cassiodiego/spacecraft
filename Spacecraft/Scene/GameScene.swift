@@ -194,7 +194,6 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         let direction:CGPoint = vecNormalize(offset)
         let shotLength:CGPoint = vecMult(direction, b: 300)
         let finalDestination:CGPoint = vecAdd(shotLength, b: shot.position)
-        let velocity = 200/1
         let moveDuration:Float = Float(self.size.width) / Float(velocity)
         let soundIsOn = UserDefaults.standard.bool(forKey: dataKeys.soundStatus)
         

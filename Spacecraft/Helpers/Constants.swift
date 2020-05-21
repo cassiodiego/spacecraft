@@ -35,9 +35,13 @@ struct Constants {
         static let EdgeBody: UInt32 = 0x1 << 4
     }
     
-    struct Configs {
+    struct DataConfigKeys {
         static let ship:String = "ship"
         static let soundStatus:String = "soundStatus"
+    }
+    
+    struct Configs {
+        static let velocity = 200/1
     }
     
     struct Levels {

@@ -40,7 +40,7 @@ struct Constants {
         static let soundStatus:String = "soundStatus"
     }
     
-    struct Configs {
+    struct GameConfigInitialValues {
         static let velocity = 200/1
     }
     

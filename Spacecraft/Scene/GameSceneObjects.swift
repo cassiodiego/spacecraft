@@ -25,8 +25,7 @@ class GameSceneObjects: SKScene {
     let collisions = Constants.CollisionCategories.self
     let assets = Constants.Assets.self
     let dataConfigKeys = Constants.DataConfigKeys.self
-    
-    
+    let gameConfigInitialValues = Constants.GameConfigInitialValues.self
     
     func alreadyExist(key: String) -> Bool { return UserDefaults.standard.object(forKey: key) != nil }
 

@@ -108,7 +108,6 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         }
     }
     
-    
     func updateWithTimeSinceLastUpdate(_ timeSinceLastUpdate:CFTimeInterval){
         
         lastYieldTimeIntervalRock += timeSinceLastUpdate

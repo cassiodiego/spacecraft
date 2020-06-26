@@ -11,14 +11,14 @@ import Foundation
 struct Constants {
     
     struct Assets {
-        static let firstBackground:String = "Background"
+        static let firstBackground:String = "background"
         static let rockOne:NSString = "rock_1"
         static let rockTwo:NSString = "rock_2"
         static let rockThree:NSString = "rock_3"
         static let whiteStar:String = "star"
         static let yellowStar:String = "yellowStar"
-        static let orangeShot:String = "Shot"
-        static let blueShot:String = "Shot2"
+        static let orangeShot:String = "shot"
+        static let blueShot:String = "shot2"
         static let spacecraftOne:String = "spacecraft"
         static let spacecraftTwo:String = "spacecraft2"
     }

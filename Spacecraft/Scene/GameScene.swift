@@ -18,18 +18,16 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
     var lastYieldTimeIntervalRock:TimeInterval = TimeInterval()
     var lastUpdateTimerIntervalRock:TimeInterval = TimeInterval()
     
-    var lastYieldTimeIntervalStar:TimeInterval = TimeInterval()
-    var lastUpdateTimerIntervalStar:TimeInterval = TimeInterval()
-    
     var lastYieldTimeIntervalAurora:TimeInterval = TimeInterval()
     var lastUpdateTimerIntervalAurora:TimeInterval = TimeInterval()
-    var lastYieldTimeIntervalYellowStar:TimeInterval = TimeInterval()
     
     var rocksDestroyed:Int = 0
     
     var scoreLabel:SKLabelNode = SKLabelNode()
     
     override func didMove(to view: SKView) {
+        
+        self.setupStars()
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
@@ -65,10 +63,10 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         _ = screenSize.width
         _ = screenSize.height
         
-        Background = SKSpriteNode(imageNamed: assets.firstBackground)
-        
+        Background = SKSpriteNode(imageNamed: self.assets.firstBackground)
+
         Background.position = CGPoint(x: (screenSize.width * 0.40), y: (screenSize.height * 0.500))
-        
+
         Background.zPosition = 1
         
         self.addChild(Background)
@@ -109,41 +107,24 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
     }
     
     func updateWithTimeSinceLastUpdate(_ timeSinceLastUpdate:CFTimeInterval){
-        
+
         lastYieldTimeIntervalRock += timeSinceLastUpdate
-        lastYieldTimeIntervalStar += timeSinceLastUpdate
         lastYieldTimeIntervalAurora += timeSinceLastUpdate
-        lastYieldTimeIntervalYellowStar += timeSinceLastUpdate
-        
         var speed:Double = 3
-        
+
         speed = speed - 0.1
         
         if (lastYieldTimeIntervalRock > 1){
-            
+
             lastYieldTimeIntervalRock = 0
-            self.setupRock(assets.rockOne, score: 1)
-        }
-        
-        if (lastYieldTimeIntervalStar > 0.0001){
-            
-            lastYieldTimeIntervalStar = 0
-            self.setupStar(kind: assets.whiteStar, minDuration: 2, maxDuration: 6, duration: 20)
+            self.setupRock(self.assets.rockOne, score: 1)
         }
         
         if (lastYieldTimeIntervalAurora > 5){
-            
+
             lastYieldTimeIntervalAurora = 0
             setupAurora()
         }
-        
-        if (lastYieldTimeIntervalYellowStar > 1){
-            
-            lastYieldTimeIntervalYellowStar = 0
-            self.setupStar(kind: assets.yellowStar, minDuration: 8, maxDuration: 10, duration: 40)
-            
-        }
-        
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -175,9 +156,9 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         
         scoreLabel.text = "\(newscore)"
 
-        newscore > 25 && newscore < 50 ? setupRock(assets.rockOne, score: newscore) : nil
-        newscore > 50 ? setupRock(assets.rockTwo, score: newscore) : nil
-        newscore > 200 ? setupRock(assets.rockThree, score: newscore) : nil
+        newscore > 25 && newscore < 50 ? setupRock(self.assets.rockOne, score: newscore) : nil
+        newscore > 50 ? setupRock(self.assets.rockTwo, score: newscore) : nil
+        newscore > 200 ? setupRock(self.assets.rockThree, score: newscore) : nil
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -185,7 +166,7 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         var spriteShot:String = ""
         var actionArray = [SKAction]()
 
-        self.getKindShip() == 0 ? (spriteShot = assets.orangeShot) : (spriteShot = assets.blueShot)
+        self.getKindShip() == 0 ? (spriteShot = self.assets.orangeShot) : (spriteShot = self.assets.blueShot)
         
         let shot:SKSpriteNode = SKSpriteNode(imageNamed: spriteShot)
         let location = CGPoint(x: player.position.x, y:player.position.y+500)
@@ -196,7 +177,7 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         let moveDuration:Float = Float(self.size.width) / Float(gameConfigInitialValues.velocity)
         let soundIsOn = UserDefaults.standard.bool(forKey: dataConfigKeys.soundStatus)
         
-        soundIsOn ? self.run(SKAction.playSoundFileNamed(assets.orangeShot, waitForCompletion: false)) : nil
+        soundIsOn ? self.run(SKAction.playSoundFileNamed(self.assets.orangeShot, waitForCompletion: false)) : nil
         
         shot.position = player.position
         shot.physicsBody = SKPhysicsBody(circleOfRadius: shot.size.width/2)

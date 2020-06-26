@@ -190,26 +190,14 @@ class GameSceneObjects: SKScene {
         rock.run(SKAction.sequence(actionArray))
     }
     
-    func setupStar(kind: String, minDuration: Int, maxDuration: Int, duration: Int){
+    func setupStars(){
         
-        let star:SKSpriteNode = SKSpriteNode(imageNamed: kind)
-        let minX = star.size.width/2
-        let maxX = self.frame.size.width - star.size.width/2
-        let rangeX = maxX - minX
-        let position:CGFloat = CGFloat(arc4random()).truncatingRemainder(dividingBy: CGFloat(rangeX)) + CGFloat(minX)
-        
-        star.zPosition = 3
-        star.position = CGPoint(x: position, y: self.frame.size.height+star.size.height)
-        
-        self.addChild(star)
-        
-        let rangeDuration = maxDuration - minDuration
-        let duration = Int(arc4random_uniform(20)) % Int(rangeDuration) + Int(minDuration)
-        
-        var actionArray = [SKAction]()
-        actionArray.append(SKAction.move(to: CGPoint(x: position, y: -star.size.height), duration:TimeInterval(duration)))
-        actionArray.append(SKAction.removeFromParent())
-        star.run(SKAction.sequence(actionArray))
+        if let starParticles = SKEmitterNode(fileNamed: "StarEmitter.sks") {
+            starParticles.position = CGPoint(x: size.width/2, y: size.height)
+            starParticles.name = "starParticle"
+            starParticles.targetNode = scene
+            addChild(starParticles)
+        }
         
     }
     

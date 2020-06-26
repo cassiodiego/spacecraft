@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="La0-fi-rzZ">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="La0-fi-rzZ">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,14 +16,14 @@
                         <viewControllerLayoutGuide type="bottom" id="Dom-QL-T1w"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="firstView" id="ISC-HZ-so8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background4" translatesAutoresizingMaskIntoConstraints="NO" id="WFB-3Y-lPT">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3dO-pr-ZNb">
-                                <rect key="frame" x="132.66666666666666" y="384.66666666666669" width="110" height="43"/>
+                                <rect key="frame" x="132.66666666666666" y="357.66666666666669" width="110" height="43"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="s1r-q8-kne"/>
@@ -39,7 +37,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tuN-EV-I46">
-                                <rect key="frame" x="176.66666666666666" y="736" width="22" height="22"/>
+                                <rect key="frame" x="176.66666666666666" y="682" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="Tdk-oU-4h8"/>
                                     <constraint firstAttribute="height" constant="22" id="dEq-i2-6jC"/>
@@ -52,7 +50,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WAO-OM-cDm">
-                                <rect key="frame" x="44" y="736" width="22" height="22"/>
+                                <rect key="frame" x="44" y="682" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="0R6-CR-fRi"/>
                                     <constraint firstAttribute="height" constant="22" id="bAD-NF-zQr"/>
@@ -63,7 +61,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7OB-Ao-G2h">
-                                <rect key="frame" x="309" y="736" width="22" height="22"/>
+                                <rect key="frame" x="309" y="682" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="I9Q-EF-KOg"/>
                                     <constraint firstAttribute="height" constant="22" id="mSg-vb-4VS"/>
@@ -301,11 +299,11 @@
                         <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
                     </layoutGuides>
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3a-Bi-Ckf">
-                                <rect key="frame" x="337" y="75" width="22" height="22"/>
+                                <rect key="frame" x="337" y="31" width="22" height="22"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="lgh-ob-CHA"/>
@@ -334,6 +332,9 @@
             <point key="canvasLocation" x="-1518.75" y="-3341.1971830985917"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Xnq-zX-Nj6"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="about" width="30" height="30"/>
         <image name="background4" width="375" height="812"/>
@@ -343,7 +344,4 @@
         <image name="two_ships" width="900" height="279"/>
         <image name="x" width="32" height="32"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Xnq-zX-Nj6"/>
-    </inferredMetricsTieBreakers>
 </document>

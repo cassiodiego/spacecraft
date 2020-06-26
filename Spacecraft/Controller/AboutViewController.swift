@@ -13,7 +13,6 @@ import AVFoundation
 class AboutViewController: UIViewController {
 
     @IBOutlet weak var scoreLabel: UILabel!
-    
     @IBOutlet weak var scoreLabelBr: UILabel!
 
     override func viewDidLoad() {
@@ -21,9 +20,7 @@ class AboutViewController: UIViewController {
         super.viewDidLoad()
         
         var highscore:String
-        
         let preferredLanguage = NSLocale.preferredLanguages[0] as String
-        
         let test = highscoreAlreadyExist(key: "highscore")
         
         if test {

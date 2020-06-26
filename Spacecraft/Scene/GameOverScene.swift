@@ -11,7 +11,7 @@ import SpriteKit
 import UIKit
 import GameKit
 
-class GameOverScene: SKScene {
+class GameOverScene: GameSceneObjects {
     
     var Background:SKSpriteNode = SKSpriteNode()
 

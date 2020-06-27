@@ -10,7 +10,7 @@
 		A309E92824A59FD100688F90 /* StarEmitter.sks in Resources */ = {isa = PBXBuildFile; fileRef = A309E92724A59FD100688F90 /* StarEmitter.sks */; };
 		A3310CDB246F961000EBD947 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3310CDA246F961000EBD947 /* Constants.swift */; };
 		A3310CDD246F9DB700EBD947 /* GameSceneObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3310CDC246F9DB700EBD947 /* GameSceneObjects.swift */; };
-		A3CB7AA1240233CF00972F53 /* GameCenterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB7AA0240233CF00972F53 /* GameCenterController.swift */; };
+		A3CB7AA1240233CF00972F53 /* GameCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB7AA0240233CF00972F53 /* GameCenterViewController.swift */; };
 		F10C60391E0ED293006517B9 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F10C60381E0ED293006517B9 /* GameKit.framework */; };
 		F11032C61DFDE66800597BF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11032C51DFDE66800597BF6 /* AppDelegate.swift */; };
 		F11032C81DFDE66800597BF6 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F11032C71DFDE66800597BF6 /* GameScene.sks */; };
@@ -32,7 +32,7 @@
 		A309E92724A59FD100688F90 /* StarEmitter.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StarEmitter.sks; sourceTree = "<group>"; };
 		A3310CDA246F961000EBD947 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A3310CDC246F9DB700EBD947 /* GameSceneObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneObjects.swift; sourceTree = "<group>"; };
-		A3CB7AA0240233CF00972F53 /* GameCenterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterController.swift; sourceTree = "<group>"; };
+		A3CB7AA0240233CF00972F53 /* GameCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterViewController.swift; sourceTree = "<group>"; };
 		F10C60381E0ED293006517B9 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		F11032C21DFDE66800597BF6 /* Spacecraft.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spacecraft.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11032C51DFDE66800597BF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 				F11032CD1DFDE66800597BF6 /* GameViewController.swift */,
 				F18750EF1E02BE5F00192536 /* MainViewController.swift */,
 				F11CAF541E168CB900962CD2 /* SettingsViewController.swift */,
-				A3CB7AA0240233CF00972F53 /* GameCenterController.swift */,
+				A3CB7AA0240233CF00972F53 /* GameCenterViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -267,7 +267,7 @@
 				F11032CC1DFDE66800597BF6 /* GameScene.swift in Sources */,
 				F11CAF551E168CB900962CD2 /* SettingsViewController.swift in Sources */,
 				F11032CE1DFDE66800597BF6 /* GameViewController.swift in Sources */,
-				A3CB7AA1240233CF00972F53 /* GameCenterController.swift in Sources */,
+				A3CB7AA1240233CF00972F53 /* GameCenterViewController.swift in Sources */,
 				A3310CDD246F9DB700EBD947 /* GameSceneObjects.swift in Sources */,
 				F18750F01E02BE5F00192536 /* MainViewController.swift in Sources */,
 				F11032FA1DFDE6F800597BF6 /* GameOverScene.swift in Sources */,

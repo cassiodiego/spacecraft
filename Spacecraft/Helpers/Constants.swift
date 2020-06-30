@@ -19,8 +19,8 @@ struct Constants {
         static let yellowStar:String = "yellowStar"
         static let orangeShot:String = "shot"
         static let blueShot:String = "shot2"
-        static let spacecraftOne:String = "spacecraft"
-        static let spacecraftTwo:String = "spacecraft2"
+        static let Armory:String = "Armory"
+        static let Rinzler:String = "Rinzler"
     }
     
     struct Directions {

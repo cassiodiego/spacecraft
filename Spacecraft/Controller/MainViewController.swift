@@ -10,10 +10,7 @@ import UIKit
 import AVFoundation
 import GameKit
 
-class MainViewController : UIViewController, GKGameCenterControllerDelegate {
-    
-    var gcEnabled = Bool()
-    var gcDefaultLeaderBoard = String()
+class MainViewController : GameCenterViewController {
     
     override func viewDidLoad() {
         
@@ -31,30 +28,6 @@ class MainViewController : UIViewController, GKGameCenterControllerDelegate {
 
     }
     
-    func authenticateLocalPlayer() {
-        
-        let localPlayer: GKLocalPlayer = GKLocalPlayer.local
-        
-        localPlayer.authenticateHandler = {(MainViewController, error) -> Void in
-            
-            if((MainViewController) != nil) {
-                
-                self.present(MainViewController!, animated: true, completion: nil)
-                
-            } else if (localPlayer.isAuthenticated) {
-                
-                self.gcEnabled = true
-                
-                localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: { (leaderboardIdentifer: String?, error: Error?) -> Void in
-                    if error != nil {
-                        print(error as Any)
-                    } else { self.gcDefaultLeaderBoard = leaderboardIdentifer! }
-                })
-                
-            } else { self.gcEnabled = false }
-        }
-    }
-    
     @IBAction func showLeaderboard(_ sender: UIButton) {
         
         let gc: GKGameCenterViewController = GKGameCenterViewController()
@@ -65,34 +38,10 @@ class MainViewController : UIViewController, GKGameCenterControllerDelegate {
         
     }
     
-    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
-        
-        gameCenterViewController.dismiss(animated: true, completion: nil)
-        
-    }
-    
     func AlreadyExist(key: String) -> Bool {
         
         return UserDefaults.standard.object(forKey: key) != nil
     
-    }
-    
-    func syncScore(){
-        
-        let highscore = UserDefaults.standard.object(forKey: "highscore")! as! String
-        
-        let leaderboardID = "LeaderboardSpacecraftI"
-        
-        let sScore = GKScore(leaderboardIdentifier: leaderboardID)
-        
-        sScore.value = Int64(highscore)!
-        
-        GKScore.report([sScore], withCompletionHandler: { (error: Error?) -> Void in
-            
-            if error != nil {
-                debugPrint("[Spacecraft] Game Center Error: \(error!.localizedDescription)")
-            }
-        })
     }
     
     override func didReceiveMemoryWarning() {

@@ -18,11 +18,11 @@ class MainViewController : GameCenterViewController {
         
         let test = AlreadyExist(key: "highscore")
         
-        let musicStatus = UserDefaults.standard.object(forKey: "musicStatus")
-        if musicStatus == nil { UserDefaults.standard.set(true, forKey: "musicStatus") }
+        let musicStatus = UserDefaults.standard.object(forKey: Constants.DataConfigKeys.musicStatus)
+        if musicStatus == nil { UserDefaults.standard.set(true, forKey: Constants.DataConfigKeys.musicStatus) }
         
-        let soundStatus = UserDefaults.standard.object(forKey: "soundStatus")
-        if soundStatus == nil { UserDefaults.standard.set(true, forKey: "soundStatus") }
+        let soundStatus = UserDefaults.standard.object(forKey: Constants.DataConfigKeys.soundStatus)
+        if soundStatus == nil { UserDefaults.standard.set(true, forKey: Constants.DataConfigKeys.soundStatus) }
 
         if test { self.syncScore() }
 

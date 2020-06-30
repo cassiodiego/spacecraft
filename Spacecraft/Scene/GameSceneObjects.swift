@@ -29,23 +29,21 @@ class GameSceneObjects: SKScene {
     
     func alreadyExist(key: String) -> Bool { return UserDefaults.standard.object(forKey: key) != nil }
 
-    func getKindShip() -> Int {
+    func getKindShip() -> String {
         
         let playerChoosedShip = alreadyExist(key: dataConfigKeys.ship)
         
-        !playerChoosedShip ? UserDefaults.standard.set(0, forKey: dataConfigKeys.ship) : nil
+        !playerChoosedShip ? UserDefaults.standard.set(assets.Armory, forKey: dataConfigKeys.ship) : nil
         
-        return UserDefaults.standard.object(forKey: dataConfigKeys.ship)! as! Int
+        return UserDefaults.standard.object(forKey: dataConfigKeys.ship)! as! String
         
     }
     
     func setupPlayer(){
         
-        let ship = self.getKindShip()
-        
         var spritePlayer:String = ""
         
-        ship == 0 ? (spritePlayer = assets.spacecraftOne) : (spritePlayer = assets.spacecraftTwo)
+        self.getKindShip() == assets.Armory ? (spritePlayer = assets.Armory) : (spritePlayer = assets.Rinzler)
 
         player = SKSpriteNode(imageNamed: spritePlayer)
         player.position = CGPoint(x: self.frame.size.width/2, y: player.size.height/2 + 30)

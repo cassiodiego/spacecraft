@@ -41,6 +41,9 @@ struct Constants {
         static let soundStatus:String = "soundStatus"
         static let musicStatus:String = "musicStatus"
     }
+    struct GameCenterConfig {
+        static let leaderboardId:String = "LeaderboardSpacecraftI"
+    }
     
     struct GameConfigInitialValues {
         static let velocity = 200/1
@@ -48,7 +51,6 @@ struct Constants {
     
     struct Levels {
         struct LevelOne {
-            
         }
     }
 

@@ -21,7 +21,7 @@
 		F11032D61DFDE66800597BF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F11032D41DFDE66800597BF6 /* LaunchScreen.storyboard */; };
 		F11032FA1DFDE6F800597BF6 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11032F91DFDE6F800597BF6 /* GameOverScene.swift */; };
 		F11CAF551E168CB900962CD2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11CAF541E168CB900962CD2 /* SettingsViewController.swift */; };
-		F140FC211E06501E0065C432 /* Shot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F140FC201E06501E0065C432 /* Shot.mp3 */; };
+		F140FC211E06501E0065C432 /* shot.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F140FC201E06501E0065C432 /* shot.mp3 */; };
 		F1423F3E1E00581F00E46831 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1423F3D1E00581F00E46831 /* AboutViewController.swift */; };
 		F18750F01E02BE5F00192536 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18750EF1E02BE5F00192536 /* MainViewController.swift */; };
 		F19903A51ED0FC0100DCABAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F19903A41ED0FC0100DCABAF /* Assets.xcassets */; };
@@ -44,7 +44,7 @@
 		F11032D51DFDE66800597BF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F11032F91DFDE6F800597BF6 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		F11CAF541E168CB900962CD2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		F140FC201E06501E0065C432 /* Shot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Shot.mp3; sourceTree = "<group>"; };
+		F140FC201E06501E0065C432 /* shot.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shot.mp3; sourceTree = "<group>"; };
 		F1423F3D1E00581F00E46831 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		F16CE7482046036B002A67EB /* es */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = es; path = es.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F18750EF1E02BE5F00192536 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				F19903AB1ED1FFD000DCABAF /* Spacecraft.mp3 */,
-				F140FC201E06501E0065C432 /* Shot.mp3 */,
+				F140FC201E06501E0065C432 /* shot.mp3 */,
 			);
 			path = Sound;
 			sourceTree = "<group>";
@@ -247,7 +247,7 @@
 				A309E92824A59FD100688F90 /* StarEmitter.sks in Resources */,
 				F11032D11DFDE66800597BF6 /* Main.storyboard in Resources */,
 				F19903AC1ED1FFD000DCABAF /* Spacecraft.mp3 in Resources */,
-				F140FC211E06501E0065C432 /* Shot.mp3 in Resources */,
+				F140FC211E06501E0065C432 /* shot.mp3 in Resources */,
 				F11032C81DFDE66800597BF6 /* GameScene.sks in Resources */,
 				F19903A51ED0FC0100DCABAF /* Assets.xcassets in Resources */,
 				F11032D61DFDE66800597BF6 /* LaunchScreen.storyboard in Resources */,

@@ -19,7 +19,9 @@ class SettingsViewController : UIViewController {
         
         musicStatus.isOn = UserDefaults.standard.bool(forKey: Constants.DataConfigKeys.musicStatus)
         soundStatus.isOn = UserDefaults.standard.bool(forKey: Constants.DataConfigKeys.soundStatus)
-        shipChoice.selectedSegmentIndex = UserDefaults.standard.integer(forKey: Constants.DataConfigKeys.ship)
+        let shipChoiceData:String = UserDefaults.standard.string(forKey: Constants.DataConfigKeys.ship) ?? Constants.Assets.Armory
+            
+         shipChoiceData == Constants.Assets.Armory ? (shipChoice.selectedSegmentIndex = 0) : (shipChoice.selectedSegmentIndex = 1)
 
     }
     
@@ -36,18 +38,14 @@ class SettingsViewController : UIViewController {
     }
     
     @IBAction func saveShipChoice(_ sender: Any) {
-        
-        var ship:Int
-     
+    
         if(shipChoice.selectedSegmentIndex == 0) {
             
-            ship = 0
-            UserDefaults.standard.set(ship, forKey: Constants.DataConfigKeys.ship)
+            UserDefaults.standard.set(Constants.Assets.Armory, forKey: Constants.DataConfigKeys.ship)
             
         } else if(shipChoice.selectedSegmentIndex == 1) {
             
-            ship = 1
-            UserDefaults.standard.set(ship, forKey: Constants.DataConfigKeys.ship)
+            UserDefaults.standard.set(Constants.Assets.Rinzler, forKey: Constants.DataConfigKeys.ship)
             
         }
         

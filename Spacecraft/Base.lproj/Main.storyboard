@@ -16,14 +16,14 @@
                         <viewControllerLayoutGuide type="bottom" id="Dom-QL-T1w"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="firstView" id="ISC-HZ-so8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background4" translatesAutoresizingMaskIntoConstraints="NO" id="WFB-3Y-lPT">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3dO-pr-ZNb">
-                                <rect key="frame" x="132.66666666666666" y="357.66666666666669" width="110" height="43"/>
+                                <rect key="frame" x="132.66666666666666" y="384.66666666666669" width="110" height="43"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="s1r-q8-kne"/>
@@ -37,7 +37,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tuN-EV-I46">
-                                <rect key="frame" x="176.66666666666666" y="682" width="22" height="22"/>
+                                <rect key="frame" x="176.66666666666666" y="736" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="Tdk-oU-4h8"/>
                                     <constraint firstAttribute="height" constant="22" id="dEq-i2-6jC"/>
@@ -50,7 +50,7 @@
                                 </connections>
                             </button>
                             <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WAO-OM-cDm">
-                                <rect key="frame" x="44" y="682" width="22" height="22"/>
+                                <rect key="frame" x="44" y="736" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="0R6-CR-fRi"/>
                                     <constraint firstAttribute="height" constant="22" id="bAD-NF-zQr"/>
@@ -61,7 +61,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7OB-Ao-G2h">
-                                <rect key="frame" x="309" y="682" width="22" height="22"/>
+                                <rect key="frame" x="309" y="736" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="I9Q-EF-KOg"/>
                                     <constraint firstAttribute="height" constant="22" id="mSg-vb-4VS"/>
@@ -333,7 +333,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Xnq-zX-Nj6"/>
+        <segue reference="HdI-r3-5jN"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="about" width="30" height="30"/>

@@ -166,7 +166,7 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         var spriteShot:String = ""
         var actionArray = [SKAction]()
 
-        self.getKindShip() == 0 ? (spriteShot = self.assets.orangeShot) : (spriteShot = self.assets.blueShot)
+        self.getKindShip() == assets.Armory ? (spriteShot = self.assets.orangeShot) : (spriteShot = self.assets.blueShot)
         
         let shot:SKSpriteNode = SKSpriteNode(imageNamed: spriteShot)
         let location = CGPoint(x: player.position.x, y:player.position.y+500)

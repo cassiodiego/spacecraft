@@ -49,7 +49,7 @@ class GameViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         
-        let musicIsOn = UserDefaults.standard.bool(forKey: "musicStatus")
+        let musicIsOn = UserDefaults.standard.bool(forKey: Constants.DataConfigKeys.soundStatus)
         
         if musicIsOn {
             let bgMusicURL:URL = Bundle.main.url(forResource: "Spacecraft", withExtension: "mp3")!

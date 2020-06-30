@@ -17,21 +17,21 @@ class SettingsViewController : UIViewController {
     
     override func viewDidLoad() {
         
-        musicStatus.isOn = UserDefaults.standard.bool(forKey: "musicStatus")
-        soundStatus.isOn = UserDefaults.standard.bool(forKey: "soundStatus")
-        shipChoice.selectedSegmentIndex = UserDefaults.standard.integer(forKey: "ship")
+        musicStatus.isOn = UserDefaults.standard.bool(forKey: Constants.DataConfigKeys.musicStatus)
+        soundStatus.isOn = UserDefaults.standard.bool(forKey: Constants.DataConfigKeys.soundStatus)
+        shipChoice.selectedSegmentIndex = UserDefaults.standard.integer(forKey: Constants.DataConfigKeys.ship)
 
     }
     
     @IBAction func saveMusicStatus(_ sender: Any) {
         
-        UserDefaults.standard.set(musicStatus.isOn, forKey: "musicStatus")
+        UserDefaults.standard.set(musicStatus.isOn, forKey: Constants.DataConfigKeys.musicStatus)
         
     }
     
     @IBAction func saveSoundStatus(_ sender: Any) {
         
-        UserDefaults.standard.set(soundStatus.isOn, forKey: "soundStatus")
+        UserDefaults.standard.set(soundStatus.isOn, forKey: Constants.DataConfigKeys.soundStatus)
     
     }
     
@@ -42,12 +42,12 @@ class SettingsViewController : UIViewController {
         if(shipChoice.selectedSegmentIndex == 0) {
             
             ship = 0
-            UserDefaults.standard.set(ship, forKey: "ship")
+            UserDefaults.standard.set(ship, forKey: Constants.DataConfigKeys.ship)
             
         } else if(shipChoice.selectedSegmentIndex == 1) {
             
             ship = 1
-            UserDefaults.standard.set(ship, forKey: "ship")
+            UserDefaults.standard.set(ship, forKey: Constants.DataConfigKeys.ship)
             
         }
         

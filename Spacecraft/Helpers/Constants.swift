@@ -36,8 +36,10 @@ struct Constants {
     }
     
     struct DataConfigKeys {
+        static let highscore:String = "highscore"
         static let ship:String = "ship"
         static let soundStatus:String = "soundStatus"
+        static let musicStatus:String = "musicStatus"
     }
     
     struct GameConfigInitialValues {

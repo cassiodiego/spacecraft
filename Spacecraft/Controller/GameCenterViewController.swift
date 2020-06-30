@@ -41,11 +41,9 @@ class GameCenterViewController : UIViewController, GKGameCenterControllerDelegat
     
     func syncScore(){
         
-        let highscore = UserDefaults.standard.object(forKey: "highscore")! as! String
+        let highscore = UserDefaults.standard.object(forKey: Constants.DataConfigKeys.highscore)! as! String
         
-        let leaderboardID = "LeaderboardSpacecraftI"
-        
-        let sScore = GKScore(leaderboardIdentifier: leaderboardID)
+        let sScore = GKScore(leaderboardIdentifier: Constants.GameCenterConfig.leaderboardId)
         
         sScore.value = Int64(highscore)!
         

@@ -56,6 +56,7 @@ class GameSceneObjects: SKScene {
         player.physicsBody!.usesPreciseCollisionDetection = true
         player.physicsBody?.velocity = CGVector(dx: xAcceleration * 900, dy: 0)
         player.zPosition = 5
+        
         self.addChild(player)
         
         setupJet(x: self.player.position.x-10, y: self.player.position.y-30, side: self.directions.left)

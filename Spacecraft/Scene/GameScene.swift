@@ -27,19 +27,15 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         
-        self.setupStars()
+        setupStars()
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         
-        self.setupPlayer()
+        setupPlayer()
         
         setupAcelerometer()
-        
-        setupJet(x: self.player.position.x-10, y: self.player.position.y-30, side: self.directions.left)
-
-        setupJet(x: self.player.position.x+10, y: self.player.position.y-30, side: self.directions.right)
         
     }
     
@@ -170,10 +166,10 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         
         let shot:SKSpriteNode = SKSpriteNode(imageNamed: spriteShot)
         let location = CGPoint(x: player.position.x, y:player.position.y+500)
-        let offset:CGPoint = vecSub(location, b: shot.position)
-        let direction:CGPoint = vecNormalize(offset)
-        let shotLength:CGPoint = vecMult(direction, b: 300)
-        let finalDestination:CGPoint = vecAdd(shotLength, b: shot.position)
+        let offset:CGPoint = Utils.vecSub(location, b: shot.position)
+        let direction:CGPoint = Utils.vecNormalize(offset)
+        let shotLength:CGPoint = Utils.vecMult(direction, b: 300)
+        let finalDestination:CGPoint = Utils.vecAdd(shotLength, b: shot.position)
         let moveDuration:Float = Float(self.size.width) / Float(gameConfigInitialValues.velocity)
         let soundIsOn = UserDefaults.standard.bool(forKey: dataConfigKeys.soundStatus)
         
@@ -254,27 +250,6 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         rock.removeFromParent()
         rocksDestroyed += 1
         scoreLabelUpdate(rocksDestroyed)
-    }
-    
-    func vecAdd(_ a:CGPoint, b:CGPoint)->CGPoint{
-        return CGPoint(x: a.x + b.x, y: a.y + b.y)
-    }
-    
-    func vecSub(_ a:CGPoint, b:CGPoint)->CGPoint{
-        return CGPoint(x: a.x - b.x, y: a.y - b.y)
-    }
-    
-    func vecMult(_ a:CGPoint, b:CGFloat)->CGPoint{
-        return CGPoint(x: a.x * b, y: a.y * b)
-    }
-    
-    func vecLength(_ a:CGPoint)->CGFloat{
-        return CGFloat(sqrtf(CFloat(a.x)*CFloat(a.x)+CFloat(a.y)*CFloat(a.y)))
-    }
-    
-    func vecNormalize(_ a:CGPoint)->CGPoint{
-        let length:CGFloat = vecLength(a)
-        return CGPoint(x: a.x / length, y: a.y / length)
     }
     
 }

@@ -92,6 +92,7 @@ class GameOverScene: GameSceneObjects {
             
             UserDefaults.standard.set(score, forKey: "highscore")
             
+            //TO-DO: GameCenterController().sync()
             let leaderboardID = "LeaderboardSpacecraftI"
             let sScore = GKScore(leaderboardIdentifier: leaderboardID)
             sScore.value = Int64(score)!

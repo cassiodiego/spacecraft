@@ -49,9 +49,9 @@ class GameCenterViewController : UIViewController, GKGameCenterControllerDelegat
         
         GKScore.report([sScore], withCompletionHandler: { (error: Error?) -> Void in
             
-            if error != nil {
-                debugPrint("[Spacecraft] Game Center Error: \(error!.localizedDescription)")
-            }
+//            if error != nil {
+//                debugPrint("[Spacecraft] Game Center Error: \(error!.localizedDescription)")
+//            }
         })
     }
     

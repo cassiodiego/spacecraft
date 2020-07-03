@@ -21,11 +21,11 @@ class AboutViewController: UIViewController {
         
         var highscore:String
         let preferredLanguage = NSLocale.preferredLanguages[0] as String
-        let test = highscoreAlreadyExist(key: "highscore")
+        let test = highscoreAlreadyExist(key: Constants.DataConfigKeys.highscore)
         
         if test {
             
-            highscore = UserDefaults.standard.object(forKey: "highscore")! as! String
+            highscore = UserDefaults.standard.object(forKey: Constants.DataConfigKeys.highscore)! as! String
             
             if preferredLanguage != "pt-BR" {
                 

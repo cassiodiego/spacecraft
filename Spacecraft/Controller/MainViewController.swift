@@ -16,7 +16,7 @@ class MainViewController : GameCenterViewController {
         
         self.authenticateLocalPlayer()
         
-        let test = AlreadyExist(key: "highscore")
+        let test = AlreadyExist(key: Constants.DataConfigKeys.highscore)
         
         let musicStatus = UserDefaults.standard.object(forKey: Constants.DataConfigKeys.musicStatus)
         if musicStatus == nil { UserDefaults.standard.set(true, forKey: Constants.DataConfigKeys.musicStatus) }
@@ -33,7 +33,7 @@ class MainViewController : GameCenterViewController {
         let gc: GKGameCenterViewController = GKGameCenterViewController()
         gc.gameCenterDelegate = self
         gc.viewState = GKGameCenterViewControllerState.leaderboards
-        gc.leaderboardIdentifier = "LeaderboardSpacecraftI"
+        gc.leaderboardIdentifier = Constants.GameCenterConfig.leaderboardId
         self.present(gc, animated: true, completion: nil)
         
     }

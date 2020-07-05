@@ -15,16 +15,14 @@ class MainViewController : GameCenterViewController {
     override func viewDidLoad() {
         
         self.authenticateLocalPlayer()
-        
-        let test = AlreadyExist(key: Constants.DataConfigKeys.highscore)
-        
-        let musicStatus = UserDefaults.standard.object(forKey: Constants.DataConfigKeys.musicStatus)
-        if musicStatus == nil { UserDefaults.standard.set(true, forKey: Constants.DataConfigKeys.musicStatus) }
-        
-        let soundStatus = UserDefaults.standard.object(forKey: Constants.DataConfigKeys.soundStatus)
-        if soundStatus == nil { UserDefaults.standard.set(true, forKey: Constants.DataConfigKeys.soundStatus) }
 
-        if test { self.syncScore() }
+        Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.musicStatus) ?
+            UserDefaults.standard.set(true, forKey: Constants.DataConfigKeys.musicStatus) : nil
+        
+        Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.soundStatus) ?
+            UserDefaults.standard.set(true, forKey: Constants.DataConfigKeys.soundStatus) : nil
+
+        Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.highscore) ? self.syncScore() : nil
 
     }
     
@@ -36,12 +34,6 @@ class MainViewController : GameCenterViewController {
         gc.leaderboardIdentifier = Constants.GameCenterConfig.leaderboardId
         self.present(gc, animated: true, completion: nil)
         
-    }
-    
-    func AlreadyExist(key: String) -> Bool {
-        
-        return UserDefaults.standard.object(forKey: key) != nil
-    
     }
     
     override func didReceiveMemoryWarning() {

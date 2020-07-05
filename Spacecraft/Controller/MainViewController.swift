@@ -15,12 +15,12 @@ class MainViewController : GameCenterViewController {
     override func viewDidLoad() {
         
         self.authenticateLocalPlayer()
-                
-        let musicStatus = UserDefaults.standard.object(forKey: Constants.DataConfigKeys.musicStatus)
-        if musicStatus == nil { UserDefaults.standard.set(true, forKey: Constants.DataConfigKeys.musicStatus) }
+
+        Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.musicStatus) ?
+            UserDefaults.standard.set(true, forKey: Constants.DataConfigKeys.musicStatus) : nil
         
-        let soundStatus = UserDefaults.standard.object(forKey: Constants.DataConfigKeys.soundStatus)
-        if soundStatus == nil { UserDefaults.standard.set(true, forKey: Constants.DataConfigKeys.soundStatus) }
+        Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.soundStatus) ?
+            UserDefaults.standard.set(true, forKey: Constants.DataConfigKeys.soundStatus) : nil
 
         Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.highscore) ? self.syncScore() : nil
 

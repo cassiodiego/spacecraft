@@ -31,4 +31,8 @@ class Utils {
         return CGPoint(x: a.x / length, y: a.y / length)
     }
     
+    static func alreadyExistDataForKey(key: String)->Bool{
+        return UserDefaults.standard.object(forKey: key) != nil
+    }
+    
 }

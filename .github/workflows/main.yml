@@ -13,6 +13,10 @@ jobs:
     name: Spacecraft
     runs-on: macOS-latest
     steps:
+      - name: Installing Xcodegen
+        run: git clone https://github.com/yonaskolb/XcodeGen.git && cd XcodeGen && make install
+      - name: Checkout
+        run: cd ../ && xcodegen generate
       - name: Checkout
         uses: actions/checkout@master
       - name: Device List

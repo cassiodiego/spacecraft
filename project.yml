@@ -1,0 +1,46 @@
+name: Spacecraft
+settings:
+  base:
+    CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: YES
+    CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER: YES
+    MARKETING_VERSION: 1.7
+    CURRENT_PROJECT_VERSION: 224
+options:
+  bundleIdPrefix: "com.cassiodiego"
+  createIntermediateGroups: true
+  usesTabs: false
+  indentWidth: 4
+  tabWidth: 4
+targets:
+  Spacecraft:
+    type: application
+    platform: iOS
+    deploymentTarget: 12.0
+    info:
+      path: Spacecraft/Info.plist
+      properties:
+        LSRequiresIPhoneOS: true
+        UIRequiredDeviceCapabilities: [armv7]
+        UIRequiresFullScreen: true
+        UIStatusBarHidden: true
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UILaunchStoryboardName: LaunchScreen
+    sources:
+      - path: Spacecraft
+    dependencies:
+      - sdk: GameKit.framework
+    settings:
+      base:
+        DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
+        TARGETED_DEVICE_FAMILY: 1
+      configs:
+        Debug:
+          OTHER_SWIFT_FLAGS: $(inherited) "-D" "DEBUG"
+        Release:
+          OTHER_SWIFT_FLAGS: $(inherited) "-D" "RELEASE"
+    attributes:
+      SystemCapabilities:
+        com.apple.GameCenter:
+          enabled: 1
+        
+

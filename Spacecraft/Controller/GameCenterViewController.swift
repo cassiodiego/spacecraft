@@ -23,7 +23,7 @@ class GameCenterViewController : UIViewController, GKGameCenterControllerDelegat
             
             if((MainViewController) != nil) {
                 
-                MainViewController?.present(MainViewController!, animated: true, completion: nil)
+                self.present(MainViewController!, animated: true, completion: nil)
                 
             } else if (localPlayer.isAuthenticated) {
                 

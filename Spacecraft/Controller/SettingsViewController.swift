@@ -9,59 +9,58 @@
 import UIKit
 import AVFoundation
 
-class SettingsViewController : UIViewController {
-    
+class SettingsViewController: UIViewController {
+
     @IBOutlet weak var musicStatus: UISwitch!
     @IBOutlet weak var soundStatus: UISwitch!
     @IBOutlet weak var shipChoice: UISegmentedControl!
-    
+
     override func viewDidLoad() {
-        
+
         musicStatus.isOn = UserDefaults.standard.bool(forKey: Constants.DataConfigKeys.musicStatus)
         soundStatus.isOn = UserDefaults.standard.bool(forKey: Constants.DataConfigKeys.soundStatus)
-        let shipChoiceData:String = UserDefaults.standard.string(forKey: Constants.DataConfigKeys.ship) ?? Constants.Assets.Armory
-            
+        let shipChoiceData: String = UserDefaults.standard.string(forKey: Constants.DataConfigKeys.ship) ?? Constants.Assets.Armory
+
          shipChoiceData == Constants.Assets.Armory ? (shipChoice.selectedSegmentIndex = 0) : (shipChoice.selectedSegmentIndex = 1)
 
     }
-    
+
     @IBAction func saveMusicStatus(_ sender: Any) {
-        
+
         UserDefaults.standard.set(musicStatus.isOn, forKey: Constants.DataConfigKeys.musicStatus)
-        
+
     }
-    
+
     @IBAction func saveSoundStatus(_ sender: Any) {
-        
+
         UserDefaults.standard.set(soundStatus.isOn, forKey: Constants.DataConfigKeys.soundStatus)
-    
+
     }
-    
+
     @IBAction func saveShipChoice(_ sender: Any) {
-    
+
         if(shipChoice.selectedSegmentIndex == 0) {
-            
+
             UserDefaults.standard.set(Constants.Assets.Armory, forKey: Constants.DataConfigKeys.ship)
-            
+
         } else if(shipChoice.selectedSegmentIndex == 1) {
-            
+
             UserDefaults.standard.set(Constants.Assets.Rinzler, forKey: Constants.DataConfigKeys.ship)
-            
+
         }
-        
+
     }
-    
+
     override func didReceiveMemoryWarning() {
-        
+
         super.didReceiveMemoryWarning()
-        
+
     }
-    
-    override var prefersStatusBarHidden : Bool {
-        
+
+    override var prefersStatusBarHidden: Bool {
+
         return true
-        
+
     }
-    
 
 }

@@ -10,42 +10,33 @@ import UIKit
 import AVFoundation
 import GameKit
 
-class MainViewController : GameCenterViewController {
-    
+class MainViewController: GameCenterViewController {
     override func viewDidLoad() {
-        
         self.authenticateLocalPlayer()
 
         Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.musicStatus) ?
             UserDefaults.standard.set(true, forKey: Constants.DataConfigKeys.musicStatus) : nil
-        
+
         Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.soundStatus) ?
             UserDefaults.standard.set(true, forKey: Constants.DataConfigKeys.soundStatus) : nil
 
         Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.highscore) ? self.syncScore() : nil
 
     }
-    
     @IBAction func showLeaderboard(_ sender: UIButton) {
-        
-        let gc: GKGameCenterViewController = GKGameCenterViewController()
-        gc.gameCenterDelegate = self
-        gc.viewState = GKGameCenterViewControllerState.leaderboards
-        gc.leaderboardIdentifier = Constants.GameCenterConfig.leaderboardId
-        self.present(gc, animated: true, completion: nil)
-        
+        let gameCenter: GKGameCenterViewController = GKGameCenterViewController()
+        gameCenter.gameCenterDelegate = self
+        gameCenter.viewState = GKGameCenterViewControllerState.leaderboards
+        gameCenter.leaderboardIdentifier = Constants.GameCenterConfig.leaderboardId
+        self.present(gameCenter, animated: true, completion: nil)
     }
-    
+
     override func didReceiveMemoryWarning() {
-        
         super.didReceiveMemoryWarning()
-        
     }
-    
-    override var prefersStatusBarHidden : Bool {
-        
+
+    override var prefersStatusBarHidden: Bool {
         return true
-        
     }
 
 }

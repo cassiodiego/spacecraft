@@ -13,12 +13,8 @@ jobs:
     name: Spacecraft
     runs-on: macOS-latest
     steps:
-      - name : Installing Homebrew
-        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
       - name: Installing Xcodegen
-        run: brew install xcodegen
-      - name: Installing Swiftlint
-        run: brew install swiftlint
+        run: git clone https://github.com/cassiodiego/XcodeGen.git && cd XcodeGen && make install
       - name: Checkout
         uses: actions/checkout@master
       - name: Gererating xcodeproj

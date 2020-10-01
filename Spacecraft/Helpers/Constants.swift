@@ -17,17 +17,22 @@ struct Constants {
         static let rockThree: NSString = "rock_3"
         static let whiteStar: String = "star"
         static let yellowStar: String = "yellowStar"
-        static let orangeShot: String = "shot"
-        static let blueShot: String = "shot2"
-        static let Armory: String = "Armory"
-        static let Rinzler: String = "Rinzler"
+        static let orangeShot: String = "orangeShot"
+        static let blueShot: String = "blueShot"
+        static let armory: String = "Armory"
+        static let rinzler: String = "Rinzler"
+        static let spacecraftLogo = "spacecraftLogo"
+        static let twoShips = "twoShips"
+        static let shotSound: String = "shotSound"
     }
 
     struct Directions {
         static let left: String = "left"
         static let right: String = "right"
     }
-
+    struct Fonts {
+        static let main: String = "Helvetica"
+    }
     struct CollisionCategories {
         static let rockCategory: UInt32 = 0x1 << 1
         static let shotCategory: UInt32 = 0x1 << 0

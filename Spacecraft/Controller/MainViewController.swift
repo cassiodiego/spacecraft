@@ -13,11 +13,10 @@ import GameKit
 class MainViewController: GameCenterViewController {
     override func viewDidLoad() {
         self.authenticateLocalPlayer()
-
-        Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.musicStatus) ?
+        !(Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.musicStatus)) ?
             UserDefaults.standard.set(true, forKey: Constants.DataConfigKeys.musicStatus) : nil
 
-        Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.soundStatus) ?
+        !(Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.soundStatus)) ?
             UserDefaults.standard.set(true, forKey: Constants.DataConfigKeys.soundStatus) : nil
 
         Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.highscore) ? self.syncScore() : nil

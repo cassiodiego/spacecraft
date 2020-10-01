@@ -14,28 +14,22 @@ import GameKit
 class GameOverScene: GameSceneObjects {
 
     var background: SKSpriteNode = SKSpriteNode()
-
     var viewController: UIViewController?
     let spanish = Constants.SupportedLanguages.spanish.self
     let portuguese = Constants.SupportedLanguages.portuguese.self
     let english = Constants.SupportedLanguages.english.self
 
     init(size: CGSize, won: Bool, score: String) {
-
         super.init(size: size)
-
-        let preferredLanguage = NSLocale.preferredLanguages[0] as String
-
         self.backgroundColor = SKColor.black
-
+        let preferredLanguage = NSLocale.preferredLanguages[0] as String
         var message: NSString = NSString()
         var scoreLabel: NSString = NSString()
-
         let screenSize = UIScreen.main.bounds
         _ = screenSize.width
         _ = screenSize.height
 
-        background = SKSpriteNode(imageNamed: "background")
+        background = SKSpriteNode(imageNamed: self.assets.firstBackground)
         background.position = CGPoint(x: (screenSize.width * 0.40), y: (screenSize.height * 0.500))
 
         if (won) {
@@ -64,10 +58,10 @@ class GameOverScene: GameSceneObjects {
 
         }
         var highscore: String
-        Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.highscore) ? (highscore = (UserDefaults.standard.object(forKey: "highscore")! as? String)!) : (highscore = "0")
+        Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.highscore) ? (highscore = (UserDefaults.standard.object(forKey: Constants.DataConfigKeys.highscore)! as? String)!) : (highscore = "0")
 
         if (Int(score))! > (Int(highscore))! {
-            UserDefaults.standard.set(score, forKey: "highscore")
+            UserDefaults.standard.set(score, forKey: Constants.DataConfigKeys.highscore)
             GameCenterViewController().syncScore()
         }
         self.addChild(background)
@@ -78,13 +72,13 @@ class GameOverScene: GameSceneObjects {
         bgScore.zPosition = 3
         self.addChild(bgScore)
 
-        let logo: SKSpriteNode = SKSpriteNode(imageNamed: "SpacecraftLogo")
-        logo.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.690))
-        logo.zPosition = 3
-        logo.setScale(0.22)
-        self.addChild(logo)
+        let spacecraftLogo: SKSpriteNode = SKSpriteNode(imageNamed: Constants.Assets.spacecraftLogo)
+        spacecraftLogo.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.690))
+        spacecraftLogo.zPosition = 3
+        spacecraftLogo.setScale(0.22)
+        self.addChild(spacecraftLogo)
 
-        let label1 = SKLabelNode(fontNamed: "Helvetica")
+        let label1 = SKLabelNode(fontNamed: Constants.Fonts.main)
         label1.text = message as String
         label1.fontColor = SKColor.white
         label1.fontSize = 33
@@ -92,7 +86,7 @@ class GameOverScene: GameSceneObjects {
         label1.zPosition = 3
         self.addChild(label1)
 
-        let label2 = SKLabelNode(fontNamed: "Helvetica")
+        let label2 = SKLabelNode(fontNamed: Constants.Fonts.main)
         label2.text = scoreLabel as String
         label2.fontSize = 20
         label2.fontColor = SKColor.white
@@ -100,56 +94,58 @@ class GameOverScene: GameSceneObjects {
         label2.zPosition = 4
         self.addChild(label2)
 
-        let label3 = SKLabelNode(fontNamed: "Helvetica")
+        let scoreTextLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
         if Int(score)! < Int(highscore)! {
-            label3.text = "\(highscore)"
-        } else { label3.text = "\(score)" }
-        label3.fontSize = 35
-        label3.fontColor = SKColor.white
-        label3.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.830))
-        label3.zPosition = 2
-        self.addChild(label3)
-        let label4 = SKLabelNode(fontNamed: "Helvetica")
+            scoreTextLabel.text = "\(highscore)"
+        } else { scoreTextLabel.text = "\(score)" }
+        scoreTextLabel.fontSize = 35
+        scoreTextLabel.fontColor = SKColor.white
+        scoreTextLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.830))
+        scoreTextLabel.zPosition = 2
+        self.addChild(scoreTextLabel)
+        let touchToRestartLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
         if preferredLanguage == "pt-BR" {
-            label4.text = "TOQUE NA TELA PARA RECOMEÇAR"
+            touchToRestartLabel.text = "TOQUE NA TELA PARA RECOMEÇAR"
             } else if spanish.contains(preferredLanguage) {
 
-            label4.text = "TOQUE PARA REINICIAR"
+            touchToRestartLabel.text = "TOQUE PARA REINICIAR"
         } else {
-            label4.text = "TOUCH TO RESTART"
+            touchToRestartLabel.text = "TOUCH TO RESTART"
         }
-        label4.fontSize = 10
-        label4.fontColor = SKColor.white
-        label4.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.360))
-        label4.zPosition = 1
-        self.addChild(label4)
+        touchToRestartLabel.fontSize = 10
+        touchToRestartLabel.fontColor = SKColor.white
+        touchToRestartLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.360))
+        touchToRestartLabel.zPosition = 1
+        self.addChild(touchToRestartLabel)
 
-        let label5 = SKLabelNode(fontNamed: "Helvetica")
-        label5.text = "spacecraft.com.br"
-        label5.fontSize = 18
-        label5.fontColor = SKColor.yellow
-        label5.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.100))
-        label5.zPosition = 1
-        self.addChild(label5)
+        let spacecraftWebsiteLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
+        spacecraftWebsiteLabel.text = "cassiodiego.com"
+        spacecraftWebsiteLabel.fontSize = 18
+        spacecraftWebsiteLabel.fontColor = SKColor.yellow
+        spacecraftWebsiteLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.100))
+        spacecraftWebsiteLabel.zPosition = 1
+        self.addChild(spacecraftWebsiteLabel)
 
-        let label6 = SKLabelNode(fontNamed: "Helvetica")
+        let emailLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
         if preferredLanguage == "pt-BR" {
-            label6.text = "contato@cassiodiego.com"
+            emailLabel.text = "contato@cassiodiego.com"
             } else if spanish.contains(preferredLanguage) {
-            label6.text = "contacto@cassiodiego.com"
+            emailLabel.text = "contacto@cassiodiego.com"
         } else {
-            label6.text = "contact@cassiodiego.com"
+            emailLabel.text = "contact@cassiodiego.com"
         }
-        label6.fontSize = 14
-        label6.fontColor = SKColor.yellow
-        label6.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.070))
-        label6.zPosition = 1
-        self.addChild(label6)
+        emailLabel.fontSize = 14
+        emailLabel.fontColor = SKColor.yellow
+        emailLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.070))
+        emailLabel.zPosition = 1
+        self.addChild(emailLabel)
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    override func didMove(to view: SKView) { }
+    override func didMove(to view: SKView) {
+        setupStars()
+    }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         let touchLocation = touch!.location(in: self)

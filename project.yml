@@ -42,5 +42,8 @@ targets:
       SystemCapabilities:
         com.apple.GameCenter:
           enabled: 1
+    postCompileScripts:
+      - script: swiftlint
+        name: Swiftlint
         
 

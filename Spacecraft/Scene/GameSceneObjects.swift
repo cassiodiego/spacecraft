@@ -10,39 +10,39 @@ import Foundation
 import SpriteKit
 
 class GameSceneObjects: SKScene {
-    
-    var xAcceleration:CGFloat  = 0.0
-    
-    var player:SKSpriteNode = SKSpriteNode()
-    var leftJet:SKSpriteNode = SKSpriteNode()
-    var rightJet:SKSpriteNode = SKSpriteNode()
-    
-    var explosion:SKSpriteNode!
-    var fireLeft:SKSpriteNode!
-    var fireRight:SKSpriteNode!
-    
+
+    var xAcceleration: CGFloat  = 0.0
+
+    var player: SKSpriteNode = SKSpriteNode()
+    var leftJet: SKSpriteNode = SKSpriteNode()
+    var rightJet: SKSpriteNode = SKSpriteNode()
+
+    var explosion: SKSpriteNode!
+    var fireLeft: SKSpriteNode!
+    var fireRight: SKSpriteNode!
+
     let directions = Constants.Directions.self
     let collisions = Constants.CollisionCategories.self
     let assets = Constants.Assets.self
     let dataConfigKeys = Constants.DataConfigKeys.self
     let gameConfigInitialValues = Constants.GameConfigInitialValues.self
-    
+
     func alreadyExist(key: String) -> Bool { return UserDefaults.standard.object(forKey: key) != nil }
 
     func getKindShip() -> String {
-        
+
         let playerChoosedShip = alreadyExist(key: dataConfigKeys.ship)
-        
+
         !playerChoosedShip ? UserDefaults.standard.set(assets.Armory, forKey: dataConfigKeys.ship) : nil
-        
-        return UserDefaults.standard.object(forKey: dataConfigKeys.ship)! as! String
-        
+
+        return (UserDefaults.standard.object(forKey: dataConfigKeys.ship)! as? String)!
+
     }
-    
-    func setupPlayer(){
-        
-        var spritePlayer:String = ""
-        
+
+    func setupPlayer() {
+
+        var spritePlayer: String = ""
+
         self.getKindShip() == assets.Armory ? (spritePlayer = assets.Armory) : (spritePlayer = assets.Rinzler)
 
         player = SKSpriteNode(imageNamed: spritePlayer)
@@ -56,56 +56,55 @@ class GameSceneObjects: SKScene {
         player.physicsBody!.usesPreciseCollisionDetection = true
         player.physicsBody?.velocity = CGVector(dx: xAcceleration * 900, dy: 0)
         player.zPosition = 5
-        
+
         self.addChild(player)
-        
+
         setupJet(x: self.player.position.x-10, y: self.player.position.y-30, side: self.directions.left)
         setupJet(x: self.player.position.x+10, y: self.player.position.y-30, side: self.directions.right)
-        
+
     }
 
-    func setupAurora(){
-        
-        let aurora:SKSpriteNode = SKSpriteNode(imageNamed: "aurora-1")
-        
+    func setupAurora() {
+
+        let aurora: SKSpriteNode = SKSpriteNode(imageNamed: "aurora-1")
+
         aurora.zPosition = 2
-        
+
         let minX = aurora.size.width/2
         let maxX = self.frame.size.width - aurora.size.width/2
         let rangeX = maxX - minX
-        let position:CGFloat = CGFloat(arc4random()).truncatingRemainder(dividingBy: CGFloat(rangeX)) + CGFloat(minX)
-        
+        let position: CGFloat = CGFloat(arc4random()).truncatingRemainder(dividingBy: CGFloat(rangeX)) + CGFloat(minX)
+
         aurora.position = CGPoint(x: position, y: self.frame.size.height+aurora.size.height)
-        
+
         self.addChild(aurora)
-        
+
         let duration = 25
         var actionArray = [SKAction]()
-        actionArray.append(SKAction.move(to: CGPoint(x: position, y: -aurora.size.height), duration:TimeInterval(duration)))
+        actionArray.append(SKAction.move(to: CGPoint(x: position, y: -aurora.size.height), duration: TimeInterval(duration)))
         actionArray.append(SKAction.removeFromParent())
         aurora.run(SKAction.sequence(actionArray))
-        
+
     }
-    
-       func setupExplosion(x:CGFloat, y:CGFloat){
-           
+
+       func setupExplosion(x: CGFloat, y: CGFloat) {
+
            let boom = SKAction.repeatForever(
                SKAction.animate(with: [SKTexture(imageNamed: "e-1"), SKTexture(imageNamed: "e-2"), SKTexture(imageNamed: "e-3"),
                                        SKTexture(imageNamed: "e-4"), SKTexture(imageNamed: "e-5"), SKTexture(imageNamed: "e-6"),
                                        SKTexture(imageNamed: "e-7"), SKTexture(imageNamed: "e-8"), SKTexture(imageNamed: "e-9")],
                                 timePerFrame: 0.09))
-           
+
            explosion = SKSpriteNode(texture: SKTexture(imageNamed: "e-1"))
            explosion.setScale(0.6)
            explosion.position = CGPoint(x: x, y: y)
            explosion.zPosition = 6
 
            explosion.run(boom)
-    
+
            self.addChild(explosion)
        }
-    
-    func jetAnimation() -> SKAction{
+    func jetAnimation() -> SKAction {
         let anim = SKAction.animate(with: [SKTexture(imageNamed: "f-1"), SKTexture(imageNamed: "f-2"), SKTexture(imageNamed: "f-3"),
                                            SKTexture(imageNamed: "f-4"), SKTexture(imageNamed: "f-5"), SKTexture(imageNamed: "f-6"),
                                            SKTexture(imageNamed: "f-7"), SKTexture(imageNamed: "f-8"), SKTexture(imageNamed: "f-9"),
@@ -122,41 +121,34 @@ class GameSceneObjects: SKScene {
                                     timePerFrame: 0.09)
         return anim
     }
-    
-    func setupJet(x:CGFloat, y:CGFloat, side: String){
+    func setupJet(x: CGFloat, y: CGFloat, side: String) {
 
         let anim = self.jetAnimation()
         let boom = SKAction.repeatForever(anim)
-        
         let fire = SKSpriteNode(texture: SKTexture(imageNamed: "f-1"))
         fire.setScale(0.05)
         fire.position = CGPoint(x: x, y: y)
         fire.zPosition = 4
-        
         fire.run(boom)
 
-        if(side == directions.left){
-            
+        if(side == directions.left) {
             fireLeft = fire
             self.addChild(fireLeft)
-            
+
         } else if(side == directions.right) {
-            
+
             fireRight = fire
             self.addChild(fireRight)
-            
+
         }
 
     }
-    
-    func setupRock(_ rockType:NSString, score:Int){
-        
-        let rock:SKSpriteNode = SKSpriteNode(imageNamed: rockType as String)
+    func setupRock(_ rockType: NSString, score: Int) {
+        let rock: SKSpriteNode = SKSpriteNode(imageNamed: rockType as String)
         let minX = rock.size.width/2
         let maxX = self.frame.size.width - rock.size.width/2
         let rangeX = maxX - minX
-        let position:CGFloat = CGFloat(arc4random()).truncatingRemainder(dividingBy: CGFloat(rangeX)) + CGFloat(minX)
-        
+        let position: CGFloat = CGFloat(arc4random()).truncatingRemainder(dividingBy: CGFloat(rangeX)) + CGFloat(minX)
         rock.physicsBody = SKPhysicsBody(rectangleOf: rock.size)
         rock.physicsBody!.isDynamic = true
         rock.physicsBody!.categoryBitMask = collisions.rockCategory
@@ -165,43 +157,29 @@ class GameSceneObjects: SKScene {
         rock.physicsBody!.collisionBitMask = 0
         rock.zPosition = 4
         rock.position = CGPoint(x: position, y: self.frame.size.height+rock.size.height)
-        
         self.addChild(rock)
-        
         var minDuration = 2
         var maxDuration = 4
-        
         if score > 50 {
-            
             minDuration = 1
             maxDuration = 4
-            
-        } else if score > 100{
-            
+        } else if score > 100 {
             minDuration = 1
             maxDuration = 1
-            
         }
-        
         let rangeDuration = maxDuration - minDuration
-        
         let duration = Int(arc4random_uniform(20)) % Int(rangeDuration) + Int(minDuration)
-        
         var actionArray = [SKAction]()
-        actionArray.append(SKAction.move(to: CGPoint(x: position, y: -rock.size.height), duration:TimeInterval(duration)))
+        actionArray.append(SKAction.move(to: CGPoint(x: position, y: -rock.size.height), duration: TimeInterval(duration)))
         actionArray.append(SKAction.removeFromParent())
         rock.run(SKAction.sequence(actionArray))
     }
-    
-    func setupStars(){
-        
+    func setupStars() {
         if let starParticles = SKEmitterNode(fileNamed: "StarEmitter.sks") {
             starParticles.position = CGPoint(x: size.width/2, y: size.height)
             starParticles.name = "starParticle"
             starParticles.targetNode = scene
             addChild(starParticles)
         }
-        
     }
-    
 }

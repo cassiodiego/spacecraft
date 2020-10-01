@@ -16,19 +16,14 @@ extension SKNode {
     class func unarchiveFromFile(_ file: NSString) -> SKNode? {
 
         let path = Bundle.main.path(forResource: file as String, ofType: "sks")
-        var sceneData = Data()
 
         do {
-            try sceneData = Data(contentsOf: URL(fileURLWithPath: path!), options: NSData.ReadingOptions.mappedIfSafe)
+            _ = try Data(contentsOf: URL(fileURLWithPath: path!), options: NSData.ReadingOptions.mappedIfSafe)
         } catch { abort() }
 
-        let archiver = NSKeyedUnarchiver(forReadingWith: sceneData)
-        archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
-        let scene = (archiver.decodeObject(forKey: NSKeyedArchiveRootObjectKey) as? GameScene)!
-        archiver.finishDecoding()
-
-        return scene
+        return SKScene(fileNamed: "SKScene")
     }
+
 }
 
 class GameViewController: UIViewController {
@@ -36,9 +31,7 @@ class GameViewController: UIViewController {
     var backgroundMusicPlayer: AVAudioPlayer = AVAudioPlayer()
 
     override func viewDidLoad() {
-
         super.viewDidLoad()
-
     }
 
     override func viewWillLayoutSubviews() {

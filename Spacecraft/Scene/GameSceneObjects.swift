@@ -33,7 +33,7 @@ class GameSceneObjects: SKScene {
 
         let playerChoosedShip = alreadyExist(key: dataConfigKeys.ship)
 
-        !playerChoosedShip ? UserDefaults.standard.set(assets.Armory, forKey: dataConfigKeys.ship) : nil
+        !playerChoosedShip ? UserDefaults.standard.set(assets.armory, forKey: dataConfigKeys.ship) : nil
 
         return (UserDefaults.standard.object(forKey: dataConfigKeys.ship)! as? String)!
 
@@ -43,7 +43,7 @@ class GameSceneObjects: SKScene {
 
         var spritePlayer: String = ""
 
-        self.getKindShip() == assets.Armory ? (spritePlayer = assets.Armory) : (spritePlayer = assets.Rinzler)
+        self.getKindShip() == assets.armory ? (spritePlayer = assets.armory) : (spritePlayer = assets.rinzler)
 
         player = SKSpriteNode(imageNamed: spritePlayer)
         player.position = CGPoint(x: self.frame.size.width/2, y: player.size.height/2 + 30)

@@ -16,19 +16,14 @@ extension SKNode {
     class func unarchiveFromFile(_ file: NSString) -> SKNode? {
 
         let path = Bundle.main.path(forResource: file as String, ofType: "sks")
-        var sceneData = Data()
 
         do {
-            try sceneData = Data(contentsOf: URL(fileURLWithPath: path!), options: NSData.ReadingOptions.mappedIfSafe)
+            _ = try Data(contentsOf: URL(fileURLWithPath: path!), options: NSData.ReadingOptions.mappedIfSafe)
         } catch { abort() }
 
-        let archiver = NSKeyedUnarchiver(forReadingWith: sceneData)
-        archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
-        let scene = (archiver.decodeObject(forKey: NSKeyedArchiveRootObjectKey) as? GameScene)!
-        archiver.finishDecoding()
-
-        return scene
+        return SKScene(fileNamed: "SKScene")
     }
+
 }
 
 class GameViewController: UIViewController {
@@ -36,9 +31,7 @@ class GameViewController: UIViewController {
     var backgroundMusicPlayer: AVAudioPlayer = AVAudioPlayer()
 
     override func viewDidLoad() {
-
         super.viewDidLoad()
-
     }
 
     override func viewWillLayoutSubviews() {
@@ -46,7 +39,7 @@ class GameViewController: UIViewController {
         let musicIsOn = UserDefaults.standard.bool(forKey: Constants.DataConfigKeys.soundStatus)
 
         if musicIsOn {
-            let bgMusicURL: URL = Bundle.main.url(forResource: "spacecraft-1", withExtension: "mp3")!
+            let bgMusicURL: URL = Bundle.main.url(forResource: Constants.Assets.backgroundMusicOne, withExtension: "mp3")!
             do {
                 backgroundMusicPlayer = try AVAudioPlayer(contentsOf: bgMusicURL)
             } catch  _ as NSError {
@@ -68,43 +61,25 @@ class GameViewController: UIViewController {
         skView.presentScene(scene)
 
     }
-
     override var shouldAutorotate: Bool {
-
         return false
-
     }
-
     @IBAction func backHome(_ sender: Any) {
-
         self.view.removeFromSuperview()
         self.dismiss(animated: true, completion: nil)
-
     }
-
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-
         if UIDevice.current.userInterfaceIdiom == .phone {
-
             return UIInterfaceOrientationMask.allButUpsideDown
-
         } else {
-
             return UIInterfaceOrientationMask.all
-
         }
     }
-
     override func didReceiveMemoryWarning() {
-
         super.didReceiveMemoryWarning()
-
     }
-
     override var prefersStatusBarHidden: Bool {
-
         return true
-
     }
 
 }

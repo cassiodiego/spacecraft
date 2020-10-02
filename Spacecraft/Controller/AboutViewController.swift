@@ -48,19 +48,15 @@ class AboutViewController: UIViewController {
     }
 
     func highscoreAlreadyExist(key: String) -> Bool {
-
-        return UserDefaults.standard.object(forKey: key) != nil}
+        return UserDefaults.standard.object(forKey: key) != nil
+    }
 
     override func didReceiveMemoryWarning() {
-
         super.didReceiveMemoryWarning()
-
     }
 
     override var prefersStatusBarHidden: Bool {
-
         return true
-
     }
 
 }

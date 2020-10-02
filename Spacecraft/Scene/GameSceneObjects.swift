@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import UIKit
 
 class GameSceneObjects: SKScene {
 
@@ -30,21 +31,15 @@ class GameSceneObjects: SKScene {
     func alreadyExist(key: String) -> Bool { return UserDefaults.standard.object(forKey: key) != nil }
 
     func getKindShip() -> String {
-
         let playerChoosedShip = alreadyExist(key: dataConfigKeys.ship)
-
-        !playerChoosedShip ? UserDefaults.standard.set(assets.Armory, forKey: dataConfigKeys.ship) : nil
-
+        !playerChoosedShip ? UserDefaults.standard.set(assets.armory, forKey: dataConfigKeys.ship) : nil
         return (UserDefaults.standard.object(forKey: dataConfigKeys.ship)! as? String)!
-
     }
 
     func setupPlayer() {
 
         var spritePlayer: String = ""
-
-        self.getKindShip() == assets.Armory ? (spritePlayer = assets.Armory) : (spritePlayer = assets.Rinzler)
-
+        self.getKindShip() == assets.armory ? (spritePlayer = assets.armory) : (spritePlayer = assets.rinzler)
         player = SKSpriteNode(imageNamed: spritePlayer)
         player.position = CGPoint(x: self.frame.size.width/2, y: player.size.height/2 + 30)
         player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width/2)
@@ -66,7 +61,7 @@ class GameSceneObjects: SKScene {
 
     func setupAurora() {
 
-        let aurora: SKSpriteNode = SKSpriteNode(imageNamed: "aurora-1")
+        let aurora: SKSpriteNode = SKSpriteNode(imageNamed: assets.auroraOne)
 
         aurora.zPosition = 2
 
@@ -99,9 +94,7 @@ class GameSceneObjects: SKScene {
            explosion.setScale(0.6)
            explosion.position = CGPoint(x: x, y: y)
            explosion.zPosition = 6
-
            explosion.run(boom)
-
            self.addChild(explosion)
        }
     func jetAnimation() -> SKAction {
@@ -134,12 +127,9 @@ class GameSceneObjects: SKScene {
         if(side == directions.left) {
             fireLeft = fire
             self.addChild(fireLeft)
-
         } else if(side == directions.right) {
-
             fireRight = fire
             self.addChild(fireRight)
-
         }
 
     }
@@ -177,7 +167,7 @@ class GameSceneObjects: SKScene {
     func setupStars() {
         if let starParticles = SKEmitterNode(fileNamed: "StarEmitter.sks") {
             starParticles.position = CGPoint(x: size.width/2, y: size.height)
-            starParticles.name = "starParticle"
+            starParticles.name = assets.starParticle
             starParticles.targetNode = scene
             addChild(starParticles)
         }

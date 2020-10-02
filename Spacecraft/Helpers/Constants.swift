@@ -12,22 +12,32 @@ struct Constants {
 
     struct Assets {
         static let firstBackground: String = "background"
-        static let rockOne: NSString = "rock_1"
-        static let rockTwo: NSString = "rock_2"
-        static let rockThree: NSString = "rock_3"
-        static let whiteStar: String = "star"
+        static let auroraOne: String = "auroraOne"
+        static let rockOne: NSString = "rockOne"
+        static let rockTwo: NSString = "rockTwo"
+        static let rockThree: NSString = "rockThree"
+        static let whiteStar: String = "whiteStar"
+        static let starParticle: String = "starParticle"
         static let yellowStar: String = "yellowStar"
-        static let orangeShot: String = "shot"
-        static let blueShot: String = "shot2"
-        static let Armory: String = "Armory"
-        static let Rinzler: String = "Rinzler"
+        static let orangeShot: String = "orangeShot"
+        static let blueShot: String = "blueShot"
+        static let armory: String = "Armory"
+        static let rinzler: String = "Rinzler"
+        static let spacecraftLogo = "spacecraftLogo"
+        static let twoShips = "twoShips"
+        static let shotSound: String = "shotSound"
+        static let backgroundMusicOne: String = "backgroundMusicOne"
+        static let scoreBackgroundOne: String = "scoreBackgroundOne"
+        static let scoreBackgroundTwo: String = "scoreBackgroundTwo"
     }
 
     struct Directions {
         static let left: String = "left"
         static let right: String = "right"
     }
-
+    struct Fonts {
+        static let main: String = "Helvetica"
+    }
     struct CollisionCategories {
         static let rockCategory: UInt32 = 0x1 << 1
         static let shotCategory: UInt32 = 0x1 << 0
@@ -47,11 +57,6 @@ struct Constants {
 
     struct GameConfigInitialValues {
         static let velocity = 200/1
-    }
-    struct SupportedLanguages {
-        static let english: [String] = ["en"]
-        static let portuguese: [String] = ["pt", "pt-BR", "pt-PT"]
-        static let spanish: [String] = ["es", "es-ES", "es-HN", "es-CO", "es-PA", "es-SV", "es-CR", "es-PE", "es-BO", "es-GQ", "es-MX", "es-GT", "es-419", "es-AR", "es-PR", "es-US", "es-NI", "es-PY", "es-UY", "es-DO", "es-CL", "es-VE"]
     }
     struct Levels {
     }

@@ -31,8 +31,12 @@ targets:
       - sdk: GameKit.framework
     settings:
       base:
-        DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
+        SDKROOT: iphoneos
+        IPHONEOS_DEPOYMENT_TARGET: 12
+        SWIFT_VERSION: 5.3
         TARGETED_DEVICE_FAMILY: 1
+        ENABLE_BITCODE: YES
+        DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
       configs:
         Debug:
           OTHER_SWIFT_FLAGS: $(inherited) "-D" "DEBUG"
@@ -45,5 +49,3 @@ targets:
     postCompileScripts:
       - script: swiftlint
         name: Swiftlint
-        
-

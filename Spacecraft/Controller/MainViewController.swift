@@ -11,6 +11,7 @@ import AVFoundation
 import GameKit
 
 class MainViewController: GameCenterViewController {
+    
     override func viewDidLoad() {
         self.authenticateLocalPlayer()
         !(Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.musicStatus)) ?
@@ -20,8 +21,8 @@ class MainViewController: GameCenterViewController {
             UserDefaults.standard.set(true, forKey: Constants.DataConfigKeys.soundStatus) : nil
 
         Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.highscore) ? self.syncScore() : nil
-
     }
+    
     @IBAction func showLeaderboard(_ sender: UIButton) {
         let gameCenter: GKGameCenterViewController = GKGameCenterViewController()
         gameCenter.gameCenterDelegate = self

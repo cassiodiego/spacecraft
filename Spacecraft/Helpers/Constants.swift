@@ -26,7 +26,7 @@ struct Constants {
         static let spacecraftLogo = "spacecraftLogo"
         static let twoShips = "twoShips"
         static let shotSound: String = "shotSound"
-        static let backgroundSoundOne: String = "backgroundSoundOne"
+        static let backgroundMusicOne: String = "backgroundMusicOne"
         static let scoreBackgroundOne: String = "scoreBackgroundOne"
         static let scoreBackgroundTwo: String = "scoreBackgroundTwo"
     }

@@ -35,9 +35,11 @@ struct Constants {
         static let left: String = "left"
         static let right: String = "right"
     }
+    
     struct Fonts {
         static let main: String = "Helvetica"
     }
+    
     struct CollisionCategories {
         static let rockCategory: UInt32 = 0x1 << 1
         static let shotCategory: UInt32 = 0x1 << 0
@@ -51,6 +53,7 @@ struct Constants {
         static let soundStatus: String = "soundStatus"
         static let musicStatus: String = "musicStatus"
     }
+    
     struct GameCenterConfig {
         static let leaderboardId: String = "LeaderboardSpacecraftI"
     }
@@ -58,7 +61,10 @@ struct Constants {
     struct GameConfigInitialValues {
         static let velocity = 200/1
     }
-    struct Levels {
+    
+    struct Author {
+        static let email: String = "mail@cassiodiego.com"
+        static let site: String = "cassiodiego.com"
     }
 
 }

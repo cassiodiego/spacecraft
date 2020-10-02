@@ -11,8 +11,10 @@ import AVFoundation
 import GameKit
 
 class GameCenterViewController: UIViewController, GKGameCenterControllerDelegate {
+    
     var gcEnabled = Bool()
     var gcDefaultLeaderBoard = String()
+    
     func authenticateLocalPlayer() {
         let localPlayer: GKLocalPlayer = GKLocalPlayer.local
         localPlayer.authenticateHandler = {(MainViewController, error) -> Void in
@@ -28,6 +30,7 @@ class GameCenterViewController: UIViewController, GKGameCenterControllerDelegate
             } else { self.gcEnabled = false }
         }
     }
+    
     func syncScore() {
         let highscore = (UserDefaults.standard.object(forKey: Constants.DataConfigKeys.highscore)! as? String)!
         let sScore = GKScore(leaderboardIdentifier: Constants.GameCenterConfig.leaderboardId)
@@ -38,6 +41,7 @@ class GameCenterViewController: UIViewController, GKGameCenterControllerDelegate
             }
         })
     }
+    
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismiss(animated: true, completion: nil)
     }

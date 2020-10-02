@@ -39,7 +39,7 @@ class GameViewController: UIViewController {
         let musicIsOn = UserDefaults.standard.bool(forKey: Constants.DataConfigKeys.soundStatus)
 
         if musicIsOn {
-            let bgMusicURL: URL = Bundle.main.url(forResource: "spacecraft-1", withExtension: "mp3")!
+            let bgMusicURL: URL = Bundle.main.url(forResource: Constants.Assets.backgroundSoundOne, withExtension: "mp3")!
             do {
                 backgroundMusicPlayer = try AVAudioPlayer(contentsOf: bgMusicURL)
             } catch  _ as NSError {
@@ -61,43 +61,25 @@ class GameViewController: UIViewController {
         skView.presentScene(scene)
 
     }
-
     override var shouldAutorotate: Bool {
-
         return false
-
     }
-
     @IBAction func backHome(_ sender: Any) {
-
         self.view.removeFromSuperview()
         self.dismiss(animated: true, completion: nil)
-
     }
-
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-
         if UIDevice.current.userInterfaceIdiom == .phone {
-
             return UIInterfaceOrientationMask.allButUpsideDown
-
         } else {
-
             return UIInterfaceOrientationMask.all
-
         }
     }
-
     override func didReceiveMemoryWarning() {
-
         super.didReceiveMemoryWarning()
-
     }
-
     override var prefersStatusBarHidden: Bool {
-
         return true
-
     }
 
 }

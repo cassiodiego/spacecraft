@@ -39,7 +39,7 @@ class GameViewController: UIViewController {
         let musicIsOn = UserDefaults.standard.bool(forKey: Constants.DataConfigKeys.soundStatus)
 
         if musicIsOn {
-            let bgMusicURL: URL = Bundle.main.url(forResource: Constants.Assets.backgroundSoundOne, withExtension: "mp3")!
+            let bgMusicURL: URL = Bundle.main.url(forResource: Constants.Assets.backgroundMusicOne, withExtension: "mp3")!
             do {
                 backgroundMusicPlayer = try AVAudioPlayer(contentsOf: bgMusicURL)
             } catch  _ as NSError {

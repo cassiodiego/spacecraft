@@ -9,7 +9,7 @@ The Starbot Z0D10 pilots the spaceship Armory and Rinzler fighting the meteor sh
 
 ## Additional Information
 - App Store: https://appsto.re/br/z1MYgb.i
-- The Author web site: https://cassiodiego.com
-- Twitter profile: https://twitter.com/cassiodiego
+- The Author: https://cassiodiego.com
+- Twitter: https://twitter.com/cassiodiego
 - Email: mail@cassiodiego.com
 

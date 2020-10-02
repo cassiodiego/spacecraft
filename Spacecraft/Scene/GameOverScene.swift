@@ -95,7 +95,6 @@ class GameOverScene: GameSceneObjects {
         emailLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.070))
         emailLabel.zPosition = 1
         self.addChild(emailLabel)
-
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

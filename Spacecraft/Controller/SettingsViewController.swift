@@ -16,11 +16,10 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var shipChoice: UISegmentedControl!
 
     override func viewDidLoad() {
-
+        musicStatus.isOn = UserDefaults.standard.bool(forKey: Constants.DataConfigKeys.musicStatus)
+        soundStatus.isOn = UserDefaults.standard.bool(forKey: Constants.DataConfigKeys.soundStatus)
         let shipChoiceData: String = UserDefaults.standard.string(forKey: Constants.DataConfigKeys.ship) ?? Constants.Assets.armory
-
-         shipChoiceData == Constants.Assets.armory ? (shipChoice.selectedSegmentIndex = 0) : (shipChoice.selectedSegmentIndex = 1)
-
+        shipChoiceData == Constants.Assets.armory ? (shipChoice.selectedSegmentIndex = 0) : (shipChoice.selectedSegmentIndex = 1)
     }
 
     @IBAction func saveMusicStatus(_ sender: Any) {
@@ -32,29 +31,18 @@ class SettingsViewController: UIViewController {
     }
 
     @IBAction func saveShipChoice(_ sender: Any) {
-
         if(shipChoice.selectedSegmentIndex == 0) {
             UserDefaults.standard.set(Constants.Assets.armory, forKey: Constants.DataConfigKeys.ship)
         } else if(shipChoice.selectedSegmentIndex == 1) {
             UserDefaults.standard.set(Constants.Assets.rinzler, forKey: Constants.DataConfigKeys.ship)
         }
-
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        musicStatus.isOn = UserDefaults.standard.bool(forKey: Constants.DataConfigKeys.musicStatus)
-        soundStatus.isOn = UserDefaults.standard.bool(forKey: Constants.DataConfigKeys.soundStatus)
     }
 
     override func didReceiveMemoryWarning() {
-
         super.didReceiveMemoryWarning()
-
     }
 
     override var prefersStatusBarHidden: Bool {
-
         return true
-
     }
-
 }

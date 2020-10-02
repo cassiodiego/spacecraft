@@ -64,7 +64,6 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
     }
 
     func setupAcelerometer() {
-
         if motionManager.isAccelerometerAvailable == true {
             motionManager.accelerometerUpdateInterval = 0.1
             motionManager.startAccelerometerUpdates(to: OperationQueue.current!, withHandler: { data, _ in
@@ -129,7 +128,9 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         let finalDestination: CGPoint = Utils.vecAdd(shotLength, b: shot.position)
         let moveDuration: Float = Float(self.size.width) / Float(gameConfigInitialValues.velocity)
         let soundIsOn = UserDefaults.standard.bool(forKey: dataConfigKeys.soundStatus)
+        
         soundIsOn ? self.run(SKAction.playSoundFileNamed(self.assets.shotSound, waitForCompletion: false)) : nil
+        
         shot.position = player.position
         shot.physicsBody = SKPhysicsBody(circleOfRadius: shot.size.width/2)
         shot.physicsBody!.isDynamic = false
@@ -142,7 +143,9 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         if (offset.y < 0) {
             return
         }
+        
         self.addChild(shot)
+        
         actionArray.append(SKAction.move(to: finalDestination, duration: TimeInterval(moveDuration)))
         actionArray.append(SKAction.removeFromParent())
         shot.run(SKAction.sequence(actionArray))
@@ -182,9 +185,11 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
             self.view!.presentScene(gameOverScene, transition: transition)
         }
     }
+    
     func shotDidCollideWithRock(shot: SKSpriteNode, rock: SKSpriteNode) {
         rock.removeFromParent()
         rocksDestroyed += 1
         scoreLabelUpdate(rocksDestroyed)
     }
+    
 }

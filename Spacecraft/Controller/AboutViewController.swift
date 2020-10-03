@@ -12,43 +12,27 @@ import AVFoundation
 
 class AboutViewController: UIViewController {
 
+    @IBOutlet weak var aboutTextView: UITextView!
     @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var scoreLabelBr: UILabel!
+    @IBOutlet weak var howToPlaylabel: UILabel!
+    @IBOutlet weak var howToPlayTextView: UITextView!
+    @IBOutlet weak var warningLabel: UILabel!
+    @IBOutlet weak var warningTextView: UITextView!
+    @IBOutlet weak var spacecraftWebsite: UILabel!
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        var highscore: String
-        let preferredLanguage = NSLocale.preferredLanguages[0] as String
-        let test = highscoreAlreadyExist(key: Constants.DataConfigKeys.highscore)
+        
+        aboutTextView.text = NSLocalizedString("ABOUT_TEXTVIEW", comment: "About TextView")
+        howToPlaylabel.text = NSLocalizedString("HOW_TO_PLAY_LABEL", comment: "How To Play Label")
+        howToPlayTextView.text = NSLocalizedString("HOW_TO_PLAY_TEXTVIEW", comment: "How To Play TextView")
+        warningLabel.text = NSLocalizedString("WARNING_LABEL", comment: "Warning Label")
+        warningTextView.text = NSLocalizedString("WARNING_TEXTVIEW", comment: "Warning TextView")
+        spacecraftWebsite.text = Constants.Author.site
+        
+        (Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.highscore)) ? (scoreLabel.text = (UserDefaults.standard.object(forKey: Constants.DataConfigKeys.highscore)! as? String)!) : (scoreLabel.text = "0")
 
-        if test {
-            highscore = (UserDefaults.standard.object(forKey: Constants.DataConfigKeys.highscore)! as? String)!
-            if preferredLanguage != "pt-BR" {
-                scoreLabel.text = highscore
-            } else {
-                scoreLabelBr.text = highscore
-            }
-
-        } else {
-
-            highscore = "0"
-
-            if preferredLanguage != "pt-BR" {
-
-                scoreLabel.text = highscore
-
-            } else {
-
-                scoreLabelBr.text = highscore
-
-            }
-
-        }
-
-    }
-
-    func highscoreAlreadyExist(key: String) -> Bool {
-        return UserDefaults.standard.object(forKey: key) != nil
     }
 
     override func didReceiveMemoryWarning() {

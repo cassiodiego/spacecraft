@@ -85,9 +85,9 @@ class GameOverScene: GameSceneObjects {
     }
     
     func setupScoreLabel(won: Bool, score: String) {
+        let scoreLabelText: String = NSLocalizedString("SCORE_LABEL", comment: "Last Score")
         let scoreLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
-        won ? (scoreLabel.text = NSLocalizedString("SCORE: \(score)", comment: "Winner Score")) :
-              (scoreLabel.text = NSLocalizedString("SCORE: \(score)", comment: "Looser Score"))
+        scoreLabel.text = scoreLabelText+score
         scoreLabel.fontSize = 20
         scoreLabel.fontColor = SKColor.white
         scoreLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.465))
@@ -97,8 +97,8 @@ class GameOverScene: GameSceneObjects {
     
     func setupMessageLabel(won: Bool) {
         let messageLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
-        won ? (messageLabel.text = NSLocalizedString("YOU WIN, CONGRATULATIONS!", comment: "Winner Message")) :
-              (messageLabel.text = NSLocalizedString("GAME OVER", comment: "Looser Message"))
+        won ? (messageLabel.text = NSLocalizedString("WINNER_MESSAGE", comment: "Winner Message")) :
+              (messageLabel.text = NSLocalizedString("GAME_OVER_LABEL", comment: "Loser Message"))
         messageLabel.fontColor = SKColor.white
         messageLabel.fontSize = 33
         messageLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.540))
@@ -138,7 +138,7 @@ class GameOverScene: GameSceneObjects {
     
     func setupTouchToRestartLabel() {
         let touchToRestartLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
-        touchToRestartLabel.text = NSLocalizedString("TOUCH TO RESTART", comment: "Restart game") as NSString as String
+        touchToRestartLabel.text = NSLocalizedString("RESTART_LABEL", comment: "Restart game")
         touchToRestartLabel.fontSize = 10
         touchToRestartLabel.fontColor = SKColor.white
         touchToRestartLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.360))

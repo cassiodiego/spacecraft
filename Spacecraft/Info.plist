@@ -34,5 +34,10 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>PressStart2P-Regular.ttf</string>
+		<string>BungeeInline-Regular.ttf</string>
+	</array>
 </dict>
 </plist>

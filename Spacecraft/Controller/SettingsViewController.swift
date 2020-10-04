@@ -15,6 +15,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var soundStatus: UISwitch!
     @IBOutlet weak var shipChoice: UISegmentedControl!
 
+    
     override func viewDidLoad() {
         musicStatus.isOn = UserDefaults.standard.bool(forKey: Constants.DataConfigKeys.musicStatus)
         soundStatus.isOn = UserDefaults.standard.bool(forKey: Constants.DataConfigKeys.soundStatus)
@@ -36,6 +37,11 @@ class SettingsViewController: UIViewController {
         } else if(shipChoice.selectedSegmentIndex == 1) {
             UserDefaults.standard.set(Constants.Assets.rinzler, forKey: Constants.DataConfigKeys.ship)
         }
+    }
+    
+    @IBAction func backToHome(_ sender: Any) {
+            self.view.removeFromSuperview()
+            self.dismiss(animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

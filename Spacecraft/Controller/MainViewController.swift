@@ -12,7 +12,15 @@ import GameKit
 
 class MainViewController: GameCenterViewController {
     
+    @IBOutlet weak var startGame: UILabel!
+    
     override func viewDidLoad() {
+        
+        startGame.blink()
+        startGame.attributedText = NSAttributedString(
+            string: NSLocalizedString("START_LABEL", comment: "Start the game"),
+            attributes: Utils.setupLetterpress())
+        
         self.authenticateLocalPlayer()
         !(Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.musicStatus)) ?
             UserDefaults.standard.set(true, forKey: Constants.DataConfigKeys.musicStatus) : nil
@@ -38,5 +46,5 @@ class MainViewController: GameCenterViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
-
+    
 }

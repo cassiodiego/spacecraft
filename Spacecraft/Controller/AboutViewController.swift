@@ -20,6 +20,7 @@ class AboutViewController: UIViewController {
     @IBOutlet weak var warningTextView: UITextView!
     @IBOutlet weak var spacecraftWebsite: UILabel!
 
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -31,8 +32,14 @@ class AboutViewController: UIViewController {
         warningTextView.text = NSLocalizedString("WARNING_TEXTVIEW", comment: "Warning TextView")
         spacecraftWebsite.text = Constants.Author.site
         
-        (Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.highscore)) ? (scoreLabel.text = (UserDefaults.standard.object(forKey: Constants.DataConfigKeys.highscore)! as? String)!) : (scoreLabel.text = "0")
-
+        (Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.highscore)) ?
+            (scoreLabel.text = (UserDefaults.standard.object(forKey: Constants.DataConfigKeys.highscore)! as? String)!) :
+            (scoreLabel.text = "0")
+    }
+    
+    @IBAction func backToHome(_ sender: Any) {
+        self.view.removeFromSuperview()
+        self.dismiss(animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

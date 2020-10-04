@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Constants {
 
@@ -36,8 +37,14 @@ struct Constants {
         static let right: String = "right"
     }
     
+    struct UI {
+        static let spacecraftBlue: UIColor = Utils.hexStringToUIColor(hex: "#1C5FAA")
+    }
+    
     struct Fonts {
         static let main: String = "Helvetica"
+        static let bungeeInline: String = "BungeeInline-Regular"
+        static let pressStart: String = "PressStart2P-Regular"
     }
     
     struct CollisionCategories {

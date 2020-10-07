@@ -16,7 +16,7 @@
 "GAME_OVER_LABEL" = "JUEGO TERMINADO";
 
 /* Last Score */
-"SCORE_LABEL" = "PUNTUACIÓN: \(score)";
+"SCORE_LABEL" = "PUNTUACIÓN: ";
 
 /* Restart game */
 "RESTART_LABEL" = "TOQUE PARA REINICIAR";

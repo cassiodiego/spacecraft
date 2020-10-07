@@ -15,7 +15,7 @@
 "GAME_OVER_LABEL" = "GAME OVER";
 
 /* Last Score */
-"SCORE_LABEL" = "SCORE: \(score)";
+"SCORE_LABEL" = "SCORE: ";
 
 /* Restart game */
 "RESTART_LABEL" = "TOUCH TO RESTART";

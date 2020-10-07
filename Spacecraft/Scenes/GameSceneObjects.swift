@@ -3,7 +3,7 @@
 //  Spacecraft
 //
 //  Created by Cassio Diego Tavares Campos on 16/05/20.
-//  Copyright © 2020 Cassio Diego Tavares Campos. All rights reserved.
+//  Copyright (c) 2020 Cassio Diego Tavares Campos. All rights reserved.
 //
 
 import Foundation

@@ -17,7 +17,7 @@ targets:
     platform: iOS
     deploymentTarget: 12.0
     info:
-      path: Spacecraft/Info.plist
+      path: Spacecraft/Supporting Files/Info.plist
       properties:
         LSRequiresIPhoneOS: true
         UIRequiredDeviceCapabilities: [armv7]

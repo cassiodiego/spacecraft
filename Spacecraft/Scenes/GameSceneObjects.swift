@@ -21,8 +21,6 @@ class GameSceneObjects: SKScene {
     var explosion: SKSpriteNode!
     var fireLeft: SKSpriteNode!
     var fireRight: SKSpriteNode!
-    
-    var spriteLife: SKSpriteNode = SKSpriteNode()
 
     let directions = Constants.Directions.self
     let collisions = Constants.CollisionCategories.self
@@ -82,17 +80,6 @@ class GameSceneObjects: SKScene {
         actionArray.append(SKAction.removeFromParent())
         aurora.run(SKAction.sequence(actionArray))
 
-    }
-    
-    func setupLifes(lifes: Int, screenSize: CGRect) {
-        for index in 1...lifes {
-            spriteLife = SKSpriteNode(imageNamed: "1up")
-            spriteLife.position = CGPoint(x: (screenSize.width * (0.35+CGFloat((Double(index)*(0.07))))), y: (screenSize.height * 0.88))
-            print(spriteLife.position)
-            spriteLife.zPosition = 8
-            self.addChild(spriteLife)
-        }
-        
     }
 
        func setupExplosion(x: CGFloat, y: CGFloat) {

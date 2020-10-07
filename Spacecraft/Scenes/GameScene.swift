@@ -42,8 +42,6 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         self.backgroundColor = SKColor.black
         var background: SKSpriteNode = SKSpriteNode()
         let screenSize = UIScreen.main.bounds
-        _ = screenSize.width
-        _ = screenSize.height
 
         background = SKSpriteNode(imageNamed: self.assets.firstBackground)
         background.position = CGPoint(x: (screenSize.width * 0.40), y: (screenSize.height * 0.500))
@@ -51,12 +49,15 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
 
         self.addChild(background)
 
-        scoreLabel.position = CGPoint(x: (screenSize.width * 0.10), y: (screenSize.height * 0.88))
+        scoreLabel.position = CGPoint(x: (screenSize.width * 0.10), y: (screenSize.height * 0.87))
         scoreLabel.zPosition = 2
 
         self.addChild(scoreLabel)
 
         scoreLabelUpdate(0)
+        self.setupLifes(lifes: 3, screenSize: screenSize)
+        
+        
     }
 
     required init?(coder aDecoder: NSCoder) {

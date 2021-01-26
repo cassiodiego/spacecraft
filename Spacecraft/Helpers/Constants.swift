@@ -43,7 +43,6 @@ struct Constants {
     
     struct Fonts {
         static let main: String = "Helvetica"
-        static let bungeeInline: String = "BungeeInline-Regular"
         static let pressStart: String = "PressStart2P-Regular"
     }
     

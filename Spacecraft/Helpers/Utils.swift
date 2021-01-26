@@ -38,6 +38,7 @@ class Utils {
     
     static func setupLetterpress() -> [NSAttributedString.Key: NSObject] {
         return [NSAttributedString.Key.foregroundColor: Constants.UI.spacecraftBlue,
+                NSAttributedString.Key.font: UIFont(name: Constants.Fonts.pressStart, size: 24)!,
                 NSAttributedString.Key.textEffect: NSAttributedString.TextEffectStyle.letterpressStyle as NSString]
     }
     

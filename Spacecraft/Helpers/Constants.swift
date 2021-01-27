@@ -30,6 +30,8 @@ struct Constants {
         static let backgroundMusicOne: String = "backgroundMusicOne"
         static let scoreBackgroundOne: String = "scoreBackgroundOne"
         static let scoreBackgroundTwo: String = "scoreBackgroundTwo"
+        static let scoreIcon: String = "scoreIcon"
+        static let heartIcon: String = "heartIcon"
     }
 
     struct Directions {

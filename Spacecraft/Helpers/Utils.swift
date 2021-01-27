@@ -37,7 +37,12 @@ class Utils {
     }
     
     static func setupLetterpress() -> [NSAttributedString.Key: NSObject] {
+        let startShadow = NSShadow()
+        startShadow.shadowBlurRadius = 0
+        startShadow.shadowOffset = CGSize(width: 0.5, height: 0.5)
+        startShadow.shadowColor = UIColor.white
         return [NSAttributedString.Key.foregroundColor: Constants.UI.spacecraftBlue,
+                NSAttributedString.Key.shadow: startShadow,
                 NSAttributedString.Key.font: UIFont(name: Constants.Fonts.pressStart, size: 24)!,
                 NSAttributedString.Key.textEffect: NSAttributedString.TextEffectStyle.letterpressStyle as NSString]
     }

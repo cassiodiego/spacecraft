@@ -10,7 +10,7 @@
 "START_LABEL" = "INICIAR";
 
 /* Winner Message */
-"WINNER_MESSAGE" = "FINAL DE ETAPA, PARABÉNS!";
+"WINNER_MESSAGE" = "FASE CONCLUÍDA!";
 
 /* Game Over Label */
 "GAME_OVER_LABEL" = "FIM DE JOGO!";
@@ -35,9 +35,3 @@
 
 /* Warning TextView */
 "WARNING_TEXTVIEW" = "Sabemos que, de acordo com as leis da física, o som não se propaga no vácuo ou no espaço. No entanto, para adicionar mais emoção ao jogo, sons e efeitos foram adicionados.";
-
-
-
-
-
-

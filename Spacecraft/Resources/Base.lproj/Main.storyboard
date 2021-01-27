@@ -432,16 +432,16 @@
                         <viewControllerLayoutGuide type="top" id="8aa-yV-Osq"/>
                         <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
                     </layoutGuides>
-                    <view key="view" userInteractionEnabled="NO" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
+                    <view key="view" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E3a-Bi-Ckf">
-                                <rect key="frame" x="337" y="75" width="22" height="22"/>
+                                <rect key="frame" x="308" y="71" width="35" height="35"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="22" id="lgh-ob-CHA"/>
-                                    <constraint firstAttribute="height" constant="22" id="sgZ-xC-dRM"/>
+                                    <constraint firstAttribute="width" constant="35" id="lgh-ob-CHA"/>
+                                    <constraint firstAttribute="height" constant="35" id="sgZ-xC-dRM"/>
                                 </constraints>
                                 <state key="normal" image="x">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -456,8 +456,8 @@
                             <accessibilityTraits key="traits" notEnabled="YES"/>
                         </accessibility>
                         <constraints>
-                            <constraint firstItem="E3a-Bi-Ckf" firstAttribute="top" secondItem="8aa-yV-Osq" secondAttribute="bottom" constant="31" id="hcM-fm-2bh"/>
-                            <constraint firstItem="E3a-Bi-Ckf" firstAttribute="trailing" secondItem="3se-qz-xqx" secondAttribute="trailingMargin" id="l9N-aU-5pb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="E3a-Bi-Ckf" secondAttribute="trailing" constant="16" id="Uko-23-9So"/>
+                            <constraint firstItem="E3a-Bi-Ckf" firstAttribute="top" secondItem="8aa-yV-Osq" secondAttribute="bottom" constant="27" id="hcM-fm-2bh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cft-Fz-a9L"/>
@@ -477,7 +477,7 @@
         <image name="settings" width="30" height="30"/>
         <image name="spacecraftLogo" width="1000" height="241"/>
         <image name="twoShips" width="900" height="279"/>
-        <image name="x" width="32" height="32"/>
+        <image name="x" width="64" height="64"/>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

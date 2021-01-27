@@ -9,7 +9,7 @@
 "START_LABEL" = "START";
 
 /* Winner Message */
-"WINNER_MESSAGE" = "COMPLETED STAGE! CONGRATS!";
+"WINNER_MESSAGE" = "COMPLETED STAGE!";
 
 /* Game Over Label */
 "GAME_OVER_LABEL" = "GAME OVER";
@@ -34,6 +34,3 @@
 
 /* Warning TextView */
 "WARNING_TEXTVIEW" = "We know that according to the laws of physics, sound does not propagate in the vacuum, or in space. However to add more excitement to the game, sounds and effects have been added.";
-
-
-

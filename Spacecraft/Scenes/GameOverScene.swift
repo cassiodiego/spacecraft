@@ -17,7 +17,6 @@ class GameOverScene: GameSceneObjects {
     var viewController: UIViewController?
     var message: String = String()
     var scoreMessage: String = String()
-    let screenSize = UIScreen.main.bounds
     
     init(size: CGSize, won: Bool, score: String) {
         

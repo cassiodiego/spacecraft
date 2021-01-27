@@ -17,6 +17,8 @@ class GameSceneObjects: SKScene {
     var player: SKSpriteNode = SKSpriteNode()
     var leftJet: SKSpriteNode = SKSpriteNode()
     var rightJet: SKSpriteNode = SKSpriteNode()
+    var livesIcon: SKSpriteNode = SKSpriteNode()
+    var scoreIcon: SKSpriteNode = SKSpriteNode()
 
     var explosion: SKSpriteNode!
     var fireLeft: SKSpriteNode!
@@ -27,6 +29,8 @@ class GameSceneObjects: SKScene {
     let assets = Constants.Assets.self
     let dataConfigKeys = Constants.DataConfigKeys.self
     let gameConfigInitialValues = Constants.GameConfigInitialValues.self
+    
+    let screenSize = UIScreen.main.bounds
 
     func alreadyExist(key: String) -> Bool { return UserDefaults.standard.object(forKey: key) != nil }
 
@@ -82,21 +86,26 @@ class GameSceneObjects: SKScene {
 
     }
 
-       func setupExplosion(x: CGFloat, y: CGFloat) {
+    func setupExplosion(x: CGFloat, y: CGFloat) {
 
-           let boom = SKAction.repeatForever(
-               SKAction.animate(with: [SKTexture(imageNamed: "e-1"), SKTexture(imageNamed: "e-2"), SKTexture(imageNamed: "e-3"),
-                                       SKTexture(imageNamed: "e-4"), SKTexture(imageNamed: "e-5"), SKTexture(imageNamed: "e-6"),
-                                       SKTexture(imageNamed: "e-7"), SKTexture(imageNamed: "e-8"), SKTexture(imageNamed: "e-9")],
-                                timePerFrame: 0.09))
+       let boom = SKAction.repeatForever(
+           SKAction.animate(with: [SKTexture(imageNamed: "e-1"), SKTexture(imageNamed: "e-2"), SKTexture(imageNamed: "e-3"),
+                SKTexture(imageNamed: "e-4"), SKTexture(imageNamed: "e-5"), SKTexture(imageNamed: "e-6"),
+                SKTexture(imageNamed: "e-7"), SKTexture(imageNamed: "e-8"), SKTexture(imageNamed: "e-9")],
+                timePerFrame: 0.09))
 
-           explosion = SKSpriteNode(texture: SKTexture(imageNamed: "e-1"))
-           explosion.setScale(0.6)
-           explosion.position = CGPoint(x: x, y: y)
-           explosion.zPosition = 6
-           explosion.run(boom)
-           self.addChild(explosion)
-       }
+       explosion = SKSpriteNode(texture: SKTexture(imageNamed: "e-1"))
+       explosion.setScale(0.6)
+       explosion.position = CGPoint(x: x, y: y)
+       explosion.zPosition = 6
+       explosion.run(boom)
+       self.addChild(explosion)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.explosion.removeFromParent()
+        }
+       
+    }
+    
     func jetAnimation() -> SKAction {
         let anim = SKAction.animate(with: [SKTexture(imageNamed: "f-1"), SKTexture(imageNamed: "f-2"), SKTexture(imageNamed: "f-3"),
                                            SKTexture(imageNamed: "f-4"), SKTexture(imageNamed: "f-5"), SKTexture(imageNamed: "f-6"),
@@ -164,6 +173,7 @@ class GameSceneObjects: SKScene {
         actionArray.append(SKAction.removeFromParent())
         rock.run(SKAction.sequence(actionArray))
     }
+    
     func setupStars() {
         if let starParticles = SKEmitterNode(fileNamed: "StarEmitter.sks") {
             starParticles.position = CGPoint(x: size.width/2, y: size.height)
@@ -171,5 +181,17 @@ class GameSceneObjects: SKScene {
             starParticles.targetNode = scene
             addChild(starParticles)
         }
+    }
+    
+    func setupHeader() {
+        scoreIcon = SKSpriteNode(imageNamed: "scoreIcon")
+        scoreIcon.position = CGPoint(x: (screenSize.width * 0.12), y: (screenSize.height * 0.895))
+        scoreIcon.zPosition = 2
+        self.addChild(scoreIcon)
+        
+        livesIcon = SKSpriteNode(imageNamed: "heartIcon")
+        livesIcon.position = CGPoint(x: (screenSize.width * 0.48), y: (screenSize.height * 0.895))
+        livesIcon.zPosition = 2
+        self.addChild(livesIcon)
     }
 }

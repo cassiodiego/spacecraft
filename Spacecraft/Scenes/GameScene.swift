@@ -3,7 +3,6 @@
 //  Spacecraft
 //
 //  Created by Cassio Diego Tavares Campos on 31/05/16.
-//  Modified by Cassio Diego Tavares Campos on 11/03/19.
 //  Copyright (c) 2016 Cassio Diego Tavares Campos. All rights reserved.
 
 import SpriteKit
@@ -19,15 +18,19 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
     var lastYieldTimeIntervalAurora: TimeInterval = TimeInterval()
     var lastUpdateTimerIntervalAurora: TimeInterval = TimeInterval()
     var rocksDestroyed: Int = 0
+    var spacecraftColisions: Int = 3
     var scoreLabel: SKLabelNode = SKLabelNode()
+    var livesLabel: SKLabelNode = SKLabelNode()
 
     override func didMove(to view: SKView) {
+        
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         setupStars()
         setupPlayer()
         setupAcelerometer()
+
     }
 
     override init(size: CGSize) {
@@ -50,20 +53,29 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         background.zPosition = 1
 
         self.addChild(background)
-
-        scoreLabel.position = CGPoint(x: (screenSize.width * 0.10), y: (screenSize.height * 0.88))
+        
+        setupHeader()
+        
+        scoreLabel.position = CGPoint(x: (screenSize.width * 0.24), y: (screenSize.height * 0.88))
         scoreLabel.zPosition = 2
-
         self.addChild(scoreLabel)
+        scoreLabelUpdate(999)
 
-        scoreLabelUpdate(0)
+        livesLabel.position = CGPoint(x: (screenSize.width * 0.57), y: (screenSize.height * 0.88))
+        livesLabel.zPosition = 2
+        self.addChild(livesLabel)
+        livesLabelUpdate(3)
+        
     }
 
     required init?(coder aDecoder: NSCoder) {
+        
         fatalError("init(coder:) has not been implemented")
+        
     }
 
     func setupAcelerometer() {
+        
         if motionManager.isAccelerometerAvailable == true {
             motionManager.accelerometerUpdateInterval = 0.1
             motionManager.startAccelerometerUpdates(to: OperationQueue.current!, withHandler: { data, _ in
@@ -73,9 +85,11 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
                 if (data!.acceleration.x < 0) { self.xAcceleration = currentX + CGFloat((data?.acceleration.x)! * 500) } else if (data!.acceleration.x > 0) { self.xAcceleration = currentX + CGFloat((data?.acceleration.x)! * 500) }
             })
         }
+        
     }
 
     func updateWithTimeSinceLastUpdate(_ timeSinceLastUpdate: CFTimeInterval) {
+        
         lastYieldTimeIntervalRock += timeSinceLastUpdate
         lastYieldTimeIntervalAurora += timeSinceLastUpdate
         var speed: Double = 3
@@ -90,9 +104,11 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
             lastYieldTimeIntervalAurora = 0
             setupAurora()
         }
+        
     }
 
     override func update(_ currentTime: TimeInterval) {
+        
         let action = SKAction.moveTo(x: xAcceleration, duration: 1)
         let actionJetLeft = SKAction.moveTo(x: xAcceleration-10, duration: 1)
         let actionJetRight = SKAction.moveTo(x: xAcceleration+10, duration: 1)
@@ -106,15 +122,26 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
             lastUpdateTimerIntervalRock = currentTime
         }
         updateWithTimeSinceLastUpdate(timeSinceLastUpdate)
+        
     }
+    
     func scoreLabelUpdate(_ newscore: Int) {
+        
         scoreLabel.text = "\(newscore)"
         newscore > 25 && newscore < 50 ? setupRock(self.assets.rockOne, score: newscore) : nil
         newscore > 50 ? setupRock(self.assets.rockTwo, score: newscore) : nil
         newscore > 200 ? setupRock(self.assets.rockThree, score: newscore) : nil
+        
     }
-
+    
+    func livesLabelUpdate(_ numberOfLives: Int) {
+        
+        livesLabel.text = "\(numberOfLives)"
+        
+    }
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
         var spriteShot: String = ""
         var actionArray = [SKAction]()
 
@@ -149,9 +176,11 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         actionArray.append(SKAction.move(to: finalDestination, duration: TimeInterval(moveDuration)))
         actionArray.append(SKAction.removeFromParent())
         shot.run(SKAction.sequence(actionArray))
+        
     }
 
     func didBegin(_ contact: SKPhysicsContact) {
+        
         let firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
         var thirdBody: SKPhysicsBody
@@ -174,22 +203,30 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
             let score = scoreLabel.text
+            
+            spacecraftColisions -= 1
+            livesLabelUpdate(spacecraftColisions)
+            if (spacecraftColisions == -1) {
             let transition: SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
             let gameOverScene: SKScene = GameOverScene(size: self.size, won: false, score: score!)
             self.view!.presentScene(gameOverScene, transition: transition)
+            }
         }
-        if(scoreLabel.text == "99999") {
+        if(scoreLabel.text == "999") {
             let score = scoreLabel.text
             let transition: SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
             let gameOverScene: SKScene = GameOverScene(size: self.size, won: true, score: score!)
             self.view!.presentScene(gameOverScene, transition: transition)
         }
+        
     }
     
     func shotDidCollideWithRock(shot: SKSpriteNode, rock: SKSpriteNode) {
+        
         rock.removeFromParent()
         rocksDestroyed += 1
         scoreLabelUpdate(rocksDestroyed)
+        
     }
     
 }

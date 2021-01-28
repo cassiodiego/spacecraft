@@ -205,8 +205,8 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
            (player.position.y == firstBody.node!.position.y) ||
            (player.position.x == thirdBody.node!.position.x) ||
            (player.position.y == thirdBody.node!.position.y) ||
-           (player.position.x < 0.0)                         ||
-           (player.position.x > width) {
+           (player.position.x < (0.0+(player.size.width/2))) ||
+           (player.position.x > (width-(player.size.width/2))) {
                 setupExplosion(x: player.position.x, y: player.position.y)
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
                 AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)

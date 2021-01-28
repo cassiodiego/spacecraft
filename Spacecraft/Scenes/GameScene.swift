@@ -18,7 +18,7 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
     var lastYieldTimeIntervalAurora: TimeInterval = TimeInterval()
     var lastUpdateTimerIntervalAurora: TimeInterval = TimeInterval()
     var rocksDestroyed: Int = 0
-    var spacecraftColisions: Int = 3
+    var spacecraftColisions: Int = 4
     var scoreLabel: SKLabelNode = SKLabelNode()
     var livesLabel: SKLabelNode = SKLabelNode()
 
@@ -59,13 +59,13 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         scoreLabel.position = CGPoint(x: (screenSize.width * 0.24), y: (screenSize.height * 0.88))
         scoreLabel.zPosition = 2
         self.addChild(scoreLabel)
-        scoreLabelUpdate(999)
+        scoreLabelUpdate(0)
 
         livesLabel.position = CGPoint(x: (screenSize.width * 0.57), y: (screenSize.height * 0.88))
         livesLabel.zPosition = 2
         self.addChild(livesLabel)
-        livesLabelUpdate(3)
-        
+        livesLabelUpdate(4)
+            
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -184,6 +184,9 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         let firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
         var thirdBody: SKPhysicsBody
+        let width = UIScreen.main.bounds.size.width
+        let score = scoreLabel.text
+        let transition: SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
 
         if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
             firstBody = contact.bodyA
@@ -198,26 +201,20 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
             firstBody.node != nil && secondBody.node != nil ?
                 shotDidCollideWithRock(shot: (firstBody.node as? SKSpriteNode)!, rock: (secondBody.node as? SKSpriteNode)!) : nil
         }
-        if (player.position.x == firstBody.node!.position.x) || (player.position.y == firstBody.node!.position.y) || (player.position.x == thirdBody.node!.position.x) || (player.position.y == thirdBody.node!.position.y) {
-            setupExplosion(x: player.position.x, y: player.position.y)
-            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-            let score = scoreLabel.text
-            
-            spacecraftColisions -= 1
-            livesLabelUpdate(spacecraftColisions)
-            if (spacecraftColisions == -1) {
-            let transition: SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
-            let gameOverScene: SKScene = GameOverScene(size: self.size, won: false, score: score!)
-            self.view!.presentScene(gameOverScene, transition: transition)
-            }
+        if (player.position.x == firstBody.node!.position.x) ||
+           (player.position.y == firstBody.node!.position.y) ||
+           (player.position.x == thirdBody.node!.position.x) ||
+           (player.position.y == thirdBody.node!.position.y) ||
+           (player.position.x < (0.0+(player.size.width/2))) ||
+           (player.position.x > (width-(player.size.width/2))) {
+                setupExplosion(x: player.position.x, y: player.position.y)
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+                spacecraftColisions -= 1
+                livesLabelUpdate(spacecraftColisions)
+                spacecraftColisions == 0 ? self.view!.presentScene(GameOverScene(size: self.size, won: false, score: score!), transition: transition) : nil
         }
-        if(scoreLabel.text == "999") {
-            let score = scoreLabel.text
-            let transition: SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
-            let gameOverScene: SKScene = GameOverScene(size: self.size, won: true, score: score!)
-            self.view!.presentScene(gameOverScene, transition: transition)
-        }
+        scoreLabel.text == "9999" ? self.view!.presentScene(GameOverScene(size: self.size, won: true, score: score!), transition: transition) : nil
         
     }
     

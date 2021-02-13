@@ -1,6 +1,5 @@
 disabled_rules:
   - trailing_whitespace
-  - valid_docs
   - function_parameter_count
   - vertical_whitespace
   - shorthand_operator
@@ -43,24 +42,19 @@ identifier_name:
     - MainViewController
     
 trailing_semicolon: error
-empty_count: error
 closing_brace: error
 opening_brace: error
 return_arrow_whitespace: error
 statement_position: error
 syntactic_sugar: error
 vertical_parameter_alignment: error
-empty_parentheses_with_trailing_clojures: error
-clojure_parameter_position: error
 redundant_void_return: error
 redundant_optional_initialization: error
-ununsed_clojure_parameter: error
 opening_brace: warning
 implicit_getter: error
 comma: error
 colon: error
 weak_delegate: error
-class_delegate_protocol: error
 force_try: warning
 force_cast: warning
 todo: warning

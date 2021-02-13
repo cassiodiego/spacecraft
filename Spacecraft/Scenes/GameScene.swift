@@ -148,7 +148,7 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         self.getKindShip() == assets.armory ? (spriteShot = self.assets.orangeShot) : (spriteShot = self.assets.blueShot)
 
         let shot: SKSpriteNode = SKSpriteNode(imageNamed: spriteShot)
-        let location = CGPoint(x: player.position.x, y: player.position.y+500)
+        let location = CGPoint(x: player.position.x, y: player.position.y+200)
         let offset: CGPoint = Utils.vecSub(location, b: shot.position)
         let direction: CGPoint = Utils.vecNormalize(offset)
         let shotLength: CGPoint = Utils.vecMult(direction, b: 300)

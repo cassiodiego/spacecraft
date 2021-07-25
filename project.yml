@@ -20,6 +20,7 @@ targets:
       path: Spacecraft/Supporting Files/Info.plist
       properties:
         LSRequiresIPhoneOS: true
+        UIAppFonts: ["PressStart2P-Regular.ttf"]
         UIRequiredDeviceCapabilities: [armv7]
         UIRequiresFullScreen: true
         UIStatusBarHidden: true

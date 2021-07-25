@@ -14,7 +14,7 @@ jobs:
     runs-on: macOS-latest
     steps:
       - name: Installing Xcodegen
-        run: git clone https://github.com/cassiodiego/XcodeGen.git && cd XcodeGen && make install
+        run: git clone https://github.com/cassiodiego/xcodegen.git && cd XcodeGen && make install
       - name: Checkout
         uses: actions/checkout@master
       - name: Gererating xcodeproj

@@ -14,8 +14,6 @@ jobs:
         uses: actions/checkout@master
       - name: Gererating xcodeproj
         run: xcodegen generate  
-      - name: Device List
-        run: xctrace list devices
       - name: Build
         run: xcodebuild clean -project Spacecraft.xcodeproj -scheme "Spacecraft" -destination "platform=iOS Simulator,name=iPhone 13 Pro Max,OS=latest"
 

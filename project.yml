@@ -34,7 +34,7 @@ targets:
       base:
         SDKROOT: iphoneos
         IPHONEOS_DEPOYMENT_TARGET: 12
-        SWIFT_VERSION: 5.3
+        SWIFT_VERSION: 5.5
         TARGETED_DEVICE_FAMILY: 1
         ENABLE_BITCODE: YES
         DEBUG_INFORMATION_FORMAT: dwarf-with-dsym

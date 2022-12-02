@@ -208,7 +208,6 @@
 			buildConfigurationList = AB57154DE7D09778B3001431 /* Build configuration list for PBXNativeTarget "Spacecraft" */;
 			buildPhases = (
 				6509148F82F0BDC4699B742B /* Sources */,
-				3823A827E38A7573EE78279B /* Swiftlint */,
 				F2B310A0E084CCE6A42F9D09 /* Resources */,
 				2DAB474958C8A2937DB5044A /* Frameworks */,
 			);
@@ -278,27 +277,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		3823A827E38A7573EE78279B /* Swiftlint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Swiftlint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = swiftlint;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6509148F82F0BDC4699B742B /* Sources */ = {

@@ -145,7 +145,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A3F069322C4F523200BD8E9F /* Controller */ = {
+		A3F069322C4F523200BD8E9F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				A3F069282C4F505500BD8E9F /* AboutViewController.swift */,
@@ -154,7 +154,7 @@
 				A3F069302C4F507200BD8E9F /* SettingsViewController.swift */,
 				A3F0692E2C4F506D00BD8E9F /* MainViewController.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		B1610EF8BB23FAD4619BC220 = {
@@ -173,7 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				040A58DCC8CD1C42297E062F /* AppDelegate.swift */,
-				A3F069322C4F523200BD8E9F /* Controller */,
+				A3F069322C4F523200BD8E9F /* Controllers */,
 				12A667B7E7725C933701B681 /* Helpers */,
 				1BCCE88F50C6641E58AFFFF3 /* Resources */,
 				2938D6D011857909823D1E2A /* Scenes */,

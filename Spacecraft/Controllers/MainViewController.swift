@@ -16,8 +16,6 @@ class MainViewController: GameCenterViewController {
     
     override func viewDidLoad() {
         
-
-        
         startGame.blink()
         startGame.attributedText = NSAttributedString(
             string: NSLocalizedString("START_LABEL", comment: "Start the game"),
@@ -34,6 +32,11 @@ class MainViewController: GameCenterViewController {
         
         let starLayer = StarEmitter.createStarLayer()
         view.layer.addSublayer(starLayer)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startGame.blink()
     }
     
     @IBAction func showLeaderboard(_ sender: UIButton) {

@@ -66,11 +66,6 @@ class GameViewController: UIViewController {
         return false
     }
     
-    @IBAction func backHome(_ sender: Any) {
-        self.view.removeFromSuperview()
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return UIInterfaceOrientationMask.allButUpsideDown

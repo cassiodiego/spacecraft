@@ -20,7 +20,6 @@ class AboutViewController: UIViewController {
     @IBOutlet weak var warningTextView: UITextView!
     @IBOutlet weak var spacecraftWebsite: UILabel!
 
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()

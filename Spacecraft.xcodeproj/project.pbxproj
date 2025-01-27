@@ -57,6 +57,7 @@
 		A3A290AB2D4811B700C38FD3 /* GameOverSceneObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverSceneObjects.swift; sourceTree = "<group>"; };
 		A3A290AD2D482D4300C38FD3 /* BaseSceneObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSceneObjects.swift; sourceTree = "<group>"; };
 		A3A290AF2D48301B00C38FD3 /* StarEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarEmitter.swift; sourceTree = "<group>"; };
+		A3A291002D483EF800C38FD3 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk/System/iOSSupport/System/Library/Frameworks/GameKit.framework; sourceTree = DEVELOPER_DIR; };
 		A3F069332C4F531A00BD8E9F /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		A3F069342C4F531A00BD8E9F /* GameCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterViewController.swift; sourceTree = "<group>"; };
 		A3F069352C4F531A00BD8E9F /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +146,7 @@
 		A36DB411DF357F3AC1A1FA0B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A3A291002D483EF800C38FD3 /* GameKit.framework */,
 				C40DF222D10214CC72CF357A /* GameKit.framework */,
 			);
 			name = Frameworks;
@@ -252,6 +254,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
+				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					3F20623D73756173F041908C = {

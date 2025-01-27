@@ -89,23 +89,19 @@ class GameSceneObjects: SKScene {
     }
 
     func setupExplosion(x: CGFloat, y: CGFloat) {
+        let textures = (1...9).map { SKTexture(imageNamed: "e-\($0)") }
+        let boom = SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: 0.09))
 
-       let boom = SKAction.repeatForever(
-           SKAction.animate(with: [SKTexture(imageNamed: "e-1"), SKTexture(imageNamed: "e-2"), SKTexture(imageNamed: "e-3"),
-                SKTexture(imageNamed: "e-4"), SKTexture(imageNamed: "e-5"), SKTexture(imageNamed: "e-6"),
-                SKTexture(imageNamed: "e-7"), SKTexture(imageNamed: "e-8"), SKTexture(imageNamed: "e-9")],
-                timePerFrame: 0.09))
-
-       explosion = SKSpriteNode(texture: SKTexture(imageNamed: "e-1"))
-       explosion.setScale(0.6)
-       explosion.position = CGPoint(x: x, y: y)
-       explosion.zPosition = 6
-       explosion.run(boom)
-       self.addChild(explosion)
+        explosion = SKSpriteNode(texture: textures.first)
+        explosion.setScale(0.6)
+        explosion.position = CGPoint(x: x, y: y)
+        explosion.zPosition = 6
+        explosion.run(boom)
+        self.addChild(explosion)
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.explosion.removeFromParent()
         }
-       
     }
     
     func jetAnimation() -> SKAction {
@@ -115,7 +111,6 @@ class GameSceneObjects: SKScene {
     }
     
     func setupJet(x: CGFloat, y: CGFloat, side: String) {
-
         let anim = self.jetAnimation()
         let boom = SKAction.repeatForever(anim)
         let fire = SKSpriteNode(texture: SKTexture(imageNamed: "f-1"))

@@ -141,85 +141,131 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        var spriteShot: String = ""
-        var actionArray = [SKAction]()
+        guard let touch = touches.first else { return }
+        handleTouchEnded(at: touch.location(in: self))
+    }
 
-        self.getKindShip() == assets.armory ? (spriteShot = self.assets.orangeShot) : (spriteShot = self.assets.blueShot)
+    func handleTouchEnded(at location: CGPoint) {
+        let spriteShot = determineShotSprite()
+        let shot = createShotNode(with: spriteShot, at: player.position)
+        let finalDestination = calculateShotDestination(from: shot.position, to: location)
+        let moveDuration = calculateMoveDuration()
 
-        let shot: SKSpriteNode = SKSpriteNode(imageNamed: spriteShot)
-        let location = CGPoint(x: player.position.x, y: player.position.y+200)
-        let offset: CGPoint = Utils.vecSub(location, b: shot.position)
-        let direction: CGPoint = Utils.vecNormalize(offset)
-        let shotLength: CGPoint = Utils.vecMult(direction, b: 300)
-        let finalDestination: CGPoint = Utils.vecAdd(shotLength, b: shot.position)
-        let moveDuration: Float = Float(self.size.width) / Float(gameConfigInitialValues.velocity)
-        let soundIsOn = UserDefaults.standard.bool(forKey: dataConfigKeys.soundStatus)
+        playShotSoundIfNeeded()
         
-        soundIsOn ? self.run(SKAction.playSoundFileNamed(self.assets.shotSound, waitForCompletion: false)) : nil
-        
-        shot.position = player.position
-        shot.physicsBody = SKPhysicsBody(circleOfRadius: shot.size.width/2)
-        shot.physicsBody!.isDynamic = false
-        shot.physicsBody!.categoryBitMask = collisions.shotCategory
-        shot.physicsBody!.contactTestBitMask = collisions.rockCategory
-        shot.physicsBody!.collisionBitMask = 0
-        shot.physicsBody!.usesPreciseCollisionDetection = true
-        shot.zPosition = 3
-
-        if (offset.y < 0) {
-            return
+        if isShotValid(from: shot.position, to: location) {
+            self.addChild(shot)
+            runShotActions(on: shot, to: finalDestination, duration: moveDuration)
         }
-        
-        self.addChild(shot)
-        
-        actionArray.append(SKAction.move(to: finalDestination, duration: TimeInterval(moveDuration)))
-        actionArray.append(SKAction.removeFromParent())
-        shot.run(SKAction.sequence(actionArray))
-        
+    }
+
+    func determineShotSprite() -> String {
+        return self.getKindShip() == assets.armory ? self.assets.orangeShot : self.assets.blueShot
+    }
+
+    func createShotNode(with imageName: String, at position: CGPoint) -> SKSpriteNode {
+        let shot = SKSpriteNode(imageNamed: imageName)
+        shot.position = position
+        shot.physicsBody = SKPhysicsBody(circleOfRadius: shot.size.width / 2)
+        shot.physicsBody?.isDynamic = false
+        shot.physicsBody?.categoryBitMask = collisions.shotCategory
+        shot.physicsBody?.contactTestBitMask = collisions.rockCategory
+        shot.physicsBody?.collisionBitMask = 0
+        shot.physicsBody?.usesPreciseCollisionDetection = true
+        shot.zPosition = 3
+        return shot
+    }
+
+    func calculateShotDestination(from startPosition: CGPoint, to touchLocation: CGPoint) -> CGPoint {
+        let offset = Utils.vecSub(touchLocation, b: startPosition)
+        let direction = Utils.vecNormalize(offset)
+        let shotLength = Utils.vecMult(direction, b: 300)
+        return Utils.vecAdd(shotLength, b: startPosition)
+    }
+
+    func calculateMoveDuration() -> TimeInterval {
+        return TimeInterval(Float(self.size.width) / Float(gameConfigInitialValues.velocity))
+    }
+
+    func playShotSoundIfNeeded() {
+        let soundIsOn = UserDefaults.standard.bool(forKey: dataConfigKeys.soundStatus)
+        if soundIsOn {
+            self.run(SKAction.playSoundFileNamed(self.assets.shotSound, waitForCompletion: false))
+        }
+    }
+
+    func isShotValid(from startPosition: CGPoint, to touchLocation: CGPoint) -> Bool {
+        let offset = Utils.vecSub(touchLocation, b: startPosition)
+        return offset.y >= 0
+    }
+
+    func runShotActions(on shot: SKSpriteNode, to destination: CGPoint, duration: TimeInterval) {
+        let moveAction = SKAction.move(to: destination, duration: duration)
+        let removeAction = SKAction.removeFromParent()
+        shot.run(SKAction.sequence([moveAction, removeAction]))
     }
 
     func didBegin(_ contact: SKPhysicsContact) {
-        
         let firstBody: SKPhysicsBody
-        var secondBody: SKPhysicsBody
-        var thirdBody: SKPhysicsBody
+        let secondBody: SKPhysicsBody
+        let thirdBody: SKPhysicsBody
         let width = UIScreen.main.bounds.size.width
         let score = scoreLabel.text
         let transition: SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
+        
+        (firstBody, secondBody, thirdBody) = initializeBodies(contact: contact)
+        
+        handleShotCollision(firstBody: firstBody, secondBody: secondBody)
+        
+        checkPlayerPositionAndCollisions(firstBody: firstBody, thirdBody: thirdBody, width: width, score: score, transition: transition)
+        
+        checkForGameOver(score: score, transition: transition)
+    }
 
-        if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
-            firstBody = contact.bodyA
-            secondBody = contact.bodyB
-            thirdBody = contact.bodyB
+    func initializeBodies(contact: SKPhysicsContact) -> (SKPhysicsBody, SKPhysicsBody, SKPhysicsBody) {
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            return (contact.bodyA, contact.bodyB, contact.bodyB)
         } else {
-            firstBody = contact.bodyB
-            secondBody = contact.bodyA
-            thirdBody = contact.bodyB
+            return (contact.bodyB, contact.bodyA, contact.bodyB)
         }
+    }
+
+    func handleShotCollision(firstBody: SKPhysicsBody, secondBody: SKPhysicsBody) {
         if (firstBody.categoryBitMask & collisions.shotCategory) != 0 && (secondBody.categoryBitMask & collisions.rockCategory) != 0 {
-            firstBody.node != nil && secondBody.node != nil ?
-                shotDidCollideWithRock(shot: (firstBody.node as? SKSpriteNode)!, rock: (secondBody.node as? SKSpriteNode)!) : nil
+            if let shotNode = firstBody.node as? SKSpriteNode, let rockNode = secondBody.node as? SKSpriteNode {
+                shotDidCollideWithRock(shot: shotNode, rock: rockNode)
+            }
         }
+    }
+
+    func checkPlayerPositionAndCollisions(firstBody: SKPhysicsBody, thirdBody: SKPhysicsBody, width: CGFloat, score: String?, transition: SKTransition) {
         if (player.position.x == firstBody.node!.position.x) ||
            (player.position.y == firstBody.node!.position.y) ||
            (player.position.x == thirdBody.node!.position.x) ||
            (player.position.y == thirdBody.node!.position.y) ||
-           (player.position.x < (0.0+(player.size.width/2))) ||
-           (player.position.x > (width-(player.size.width/2))) {
-                setupExplosion(x: player.position.x, y: player.position.y)
-                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
-                spacecraftColisions -= 1
-                livesLabelUpdate(spacecraftColisions)
-                spacecraftColisions == 0 ? self.view!.presentScene(GameOverScene(size: self.size, won: false, score: score!), transition: transition) : nil
+           (player.position.x < (0.0 + (player.size.width / 2))) ||
+           (player.position.x > (width - (player.size.width / 2))) {
+            
+            setupExplosion(x: player.position.x, y: player.position.y)
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
+            
+            spacecraftColisions -= 1
+            livesLabelUpdate(spacecraftColisions)
+            
+            if spacecraftColisions == 0 {
+                self.view!.presentScene(GameOverScene(size: self.size, won: false, score: score!), transition: transition)
+            }
         }
-        scoreLabel.text == "9999" ? self.view!.presentScene(GameOverScene(size: self.size, won: true, score: score!), transition: transition) : nil
-        
+    }
+
+    func checkForGameOver(score: String?, transition: SKTransition) {
+        if scoreLabel.text == "9999" {
+            self.view!.presentScene(GameOverScene(size: self.size, won: true, score: score!), transition: transition)
+        }
     }
     
     func shotDidCollideWithRock(shot: SKSpriteNode, rock: SKSpriteNode) {
-        
         rock.removeFromParent()
         rocksDestroyed += 1
         scoreLabelUpdate(rocksDestroyed)

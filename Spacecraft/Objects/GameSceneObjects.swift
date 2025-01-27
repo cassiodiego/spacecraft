@@ -10,44 +10,40 @@ import Foundation
 import SpriteKit
 import UIKit
 
-class GameSceneObjects: SKScene {
-
-    var xAcceleration: CGFloat  = 0.0
-
+class GameSceneObjects: BaseSceneObjects {
+    
+    var xAcceleration: CGFloat = 0.0
+    
     var player: SKSpriteNode = SKSpriteNode()
     var leftJet: SKSpriteNode = SKSpriteNode()
     var rightJet: SKSpriteNode = SKSpriteNode()
     var livesIcon: SKSpriteNode = SKSpriteNode()
     var scoreIcon: SKSpriteNode = SKSpriteNode()
-    var exitButton: SKSpriteNode = SKSpriteNode()
-
+    
     var explosion: SKSpriteNode!
     var fireLeft: SKSpriteNode!
     var fireRight: SKSpriteNode!
-
+    
     let directions = Constants.Directions.self
     let collisions = Constants.CollisionCategories.self
-    let assets = Constants.Assets.self
-    let gameHeaderProportion = Constants.GameHeaderProportions.self
+
     let dataConfigKeys = Constants.DataConfigKeys.self
     let gameConfigInitialValues = Constants.GameConfigInitialValues.self
-    
-    let screenSize = UIScreen.main.bounds
-
+        
     func alreadyExist(key: String) -> Bool { return UserDefaults.standard.object(forKey: key) != nil }
-
+    
     func getKindShip() -> String {
         let playerChoosedShip = alreadyExist(key: dataConfigKeys.ship)
         !playerChoosedShip ? UserDefaults.standard.set(assets.armory, forKey: dataConfigKeys.ship) : nil
         return (UserDefaults.standard.object(forKey: dataConfigKeys.ship)! as? String)!
     }
-
+    
     func setupPlayer() {
         var spritePlayer: String = ""
         self.getKindShip() == assets.armory ? (spritePlayer = assets.armory) : (spritePlayer = assets.rinzler)
         player = SKSpriteNode(imageNamed: spritePlayer)
-        player.position = CGPoint(x: self.frame.size.width/2, y: player.size.height/2 + 30)
-        player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width/2)
+        player.position = CGPoint(x: self.frame.size.width / 2, y: player.size.height / 2 + 30)
+        player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width / 2)
         player.physicsBody!.isDynamic = true
         player.physicsBody!.categoryBitMask = collisions.playerCategory
         player.physicsBody!.contactTestBitMask = collisions.rockCategory
@@ -56,35 +52,34 @@ class GameSceneObjects: SKScene {
         player.physicsBody!.usesPreciseCollisionDetection = true
         player.physicsBody?.velocity = CGVector(dx: xAcceleration * 900, dy: 0)
         player.zPosition = 5
-
+        
         self.addChild(player)
-
-        setupJet(x: self.player.position.x-10, y: self.player.position.y-30, side: self.directions.left)
-        setupJet(x: self.player.position.x+10, y: self.player.position.y-30, side: self.directions.right)
-
+        
+        setupJet(x: self.player.position.x - 10, y: self.player.position.y - 30, side: self.directions.left)
+        setupJet(x: self.player.position.x + 10, y: self.player.position.y - 30, side: self.directions.right)
     }
-
+    
     func setupAurora() {
         let aurora = SKSpriteNode(imageNamed: assets.auroraOne)
         aurora.zPosition = 2
-
+        
         let minX = aurora.size.width / 2
         let maxX = self.frame.size.width - aurora.size.width / 2
         let positionX = CGFloat.random(in: minX...maxX)
-
+        
         aurora.position = CGPoint(x: positionX, y: self.frame.size.height + aurora.size.height)
         self.addChild(aurora)
-
+        
         let moveDuration = 25.0
         let moveAction = SKAction.move(to: CGPoint(x: positionX, y: -aurora.size.height), duration: moveDuration)
         let removeAction = SKAction.removeFromParent()
         aurora.run(SKAction.sequence([moveAction, removeAction]))
     }
-
+    
     func setupExplosion(x: CGFloat, y: CGFloat) {
         let textures = (1...9).map { SKTexture(imageNamed: "e-\($0)") }
         let boom = SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: 0.09))
-
+        
         explosion = SKSpriteNode(texture: textures.first)
         explosion.setScale(0.6)
         explosion.position = CGPoint(x: x, y: y)
@@ -111,15 +106,14 @@ class GameSceneObjects: SKScene {
         fire.position = CGPoint(x: x, y: y)
         fire.zPosition = 4
         fire.run(boom)
-
-        if(side == directions.left) {
+        
+        if (side == directions.left) {
             fireLeft = fire
             self.addChild(fireLeft)
-        } else if(side == directions.right) {
+        } else if (side == directions.right) {
             fireRight = fire
             self.addChild(fireRight)
         }
-
     }
     
     func setupRock(_ rockType: NSString, score: Int) {
@@ -145,7 +139,7 @@ class GameSceneObjects: SKScene {
         let removeAction = SKAction.removeFromParent()
         rock.run(SKAction.sequence([moveAction, removeAction]))
     }
-
+    
     private func getDurations(for score: Int) -> (Int, Int) {
         switch score {
         case let x where x > 100:
@@ -154,15 +148,6 @@ class GameSceneObjects: SKScene {
             return (1, 4)
         default:
             return (2, 4)
-        }
-    }
-    
-    func setupStars() {
-        if let starParticles = SKEmitterNode(fileNamed: "StarEmitter.sks") {
-            starParticles.position = CGPoint(x: size.width/2, y: size.height)
-            starParticles.name = assets.starParticle
-            starParticles.targetNode = scene
-            addChild(starParticles)
         }
     }
     
@@ -185,13 +170,4 @@ class GameSceneObjects: SKScene {
         livesIcon.zPosition = gameHeaderProportion.zPosition
         self.addChild(livesIcon)
     }
-    
-    func setupExitButton() {
-        exitButton = SKSpriteNode(imageNamed: assets.exitButton)
-        exitButton.position = CGPoint(x: screenSize.width * gameHeaderProportion.exitButtonXProportion, y: screenSize.height * gameHeaderProportion.exitButtonYProportion)
-        exitButton.zPosition = gameHeaderProportion.zPosition
-        exitButton.setScale(gameHeaderProportion.exitButtonScale)
-        self.addChild(exitButton)
-    }
-    
 }

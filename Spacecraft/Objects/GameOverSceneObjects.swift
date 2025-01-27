@@ -10,17 +10,12 @@ import Foundation
 import SpriteKit
 import UIKit
 
-class GameOverSceneObjects: SKScene {
+class GameOverSceneObjects: BaseSceneObjects {
     
     var background: SKSpriteNode = SKSpriteNode()
-    var exitButton: SKSpriteNode = SKSpriteNode()
     var message: String = String()
     var scoreMessage: String = String()
     
-    let assets = Constants.Assets.self
-    let gameHeaderProportion = Constants.GameHeaderProportions.self
-    let screenSize = UIScreen.main.bounds
-
     func setupBackground() {
         self.backgroundColor = SKColor.black
         background = SKSpriteNode(imageNamed: assets.firstBackground)
@@ -47,7 +42,7 @@ class GameOverSceneObjects: SKScene {
     func setupScoreLabel(won: Bool, score: String) {
         let scoreLabelText: String = NSLocalizedString("SCORE_LABEL", comment: "Last Score")
         let scoreLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
-        scoreLabel.text = scoreLabelText+score
+        scoreLabel.text = scoreLabelText + score
         scoreLabel.fontSize = 20
         scoreLabel.fontColor = SKColor.white
         scoreLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.465))
@@ -57,8 +52,7 @@ class GameOverSceneObjects: SKScene {
     
     func setupMessageLabel(won: Bool) {
         let messageLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
-        won ? (messageLabel.text = NSLocalizedString("WINNER_MESSAGE", comment: "Winner Message")) :
-              (messageLabel.text = NSLocalizedString("GAME_OVER_LABEL", comment: "Loser Message"))
+        won ? (messageLabel.text = NSLocalizedString("WINNER_MESSAGE", comment: "Winner Message")) : (messageLabel.text = NSLocalizedString("GAME_OVER_LABEL", comment: "Loser Message"))
         messageLabel.fontColor = SKColor.white
         messageLabel.fontSize = 33
         messageLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.540))
@@ -104,22 +98,5 @@ class GameOverSceneObjects: SKScene {
         touchToRestartLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.360))
         touchToRestartLabel.zPosition = 1
         self.addChild(touchToRestartLabel)
-    }
-    
-    func setupStars() {
-        if let starParticles = SKEmitterNode(fileNamed: "StarEmitter.sks") {
-            starParticles.position = CGPoint(x: size.width/2, y: size.height)
-            starParticles.name = assets.starParticle
-            starParticles.targetNode = scene
-            addChild(starParticles)
-        }
-    }
-    
-    func setupExitButton() {
-        exitButton = SKSpriteNode(imageNamed: assets.exitButton)
-        exitButton.position = CGPoint(x: screenSize.width * gameHeaderProportion.exitButtonXProportion, y: screenSize.height * gameHeaderProportion.exitButtonYProportion)
-        exitButton.zPosition = gameHeaderProportion.zPosition
-        exitButton.setScale(gameHeaderProportion.exitButtonScale)
-        self.addChild(exitButton)
     }
 }

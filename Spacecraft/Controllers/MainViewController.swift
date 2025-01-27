@@ -16,6 +16,8 @@ class MainViewController: GameCenterViewController {
     
     override func viewDidLoad() {
         
+
+        
         startGame.blink()
         startGame.attributedText = NSAttributedString(
             string: NSLocalizedString("START_LABEL", comment: "Start the game"),
@@ -29,6 +31,9 @@ class MainViewController: GameCenterViewController {
             UserDefaults.standard.set(true, forKey: Constants.DataConfigKeys.soundStatus) : nil
 
         Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.highscore) ? self.syncScore() : nil
+        
+        let starLayer = StarEmitter.createStarLayer()
+        view.layer.addSublayer(starLayer)
     }
     
     @IBAction func showLeaderboard(_ sender: UIButton) {

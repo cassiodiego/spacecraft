@@ -109,23 +109,9 @@ class GameSceneObjects: SKScene {
     }
     
     func jetAnimation() -> SKAction {
-        
-        let anim = SKAction.animate(with: [SKTexture(imageNamed: "f-1"), SKTexture(imageNamed: "f-2"), SKTexture(imageNamed: "f-3"),
-                                           SKTexture(imageNamed: "f-4"), SKTexture(imageNamed: "f-5"), SKTexture(imageNamed: "f-6"),
-                                           SKTexture(imageNamed: "f-7"), SKTexture(imageNamed: "f-8"), SKTexture(imageNamed: "f-9"),
-                                           SKTexture(imageNamed: "f-10"), SKTexture(imageNamed: "f-11"), SKTexture(imageNamed: "f-12"),
-                                           SKTexture(imageNamed: "f-13"), SKTexture(imageNamed: "f-14"), SKTexture(imageNamed: "f-15"),
-                                           SKTexture(imageNamed: "f-16"), SKTexture(imageNamed: "f-17"), SKTexture(imageNamed: "f-18"),
-                                           SKTexture(imageNamed: "f-19"), SKTexture(imageNamed: "f-20"), SKTexture(imageNamed: "f-21"),
-                                           SKTexture(imageNamed: "f-22"), SKTexture(imageNamed: "f-23"), SKTexture(imageNamed: "f-24"),
-                                           SKTexture(imageNamed: "f-25"), SKTexture(imageNamed: "f-26"), SKTexture(imageNamed: "f-27"),
-                                           SKTexture(imageNamed: "f-28"), SKTexture(imageNamed: "f-29"), SKTexture(imageNamed: "f-30"),
-                                           SKTexture(imageNamed: "f-31"), SKTexture(imageNamed: "f-32"), SKTexture(imageNamed: "f-33"),
-                                           SKTexture(imageNamed: "f-34"), SKTexture(imageNamed: "f-35"), SKTexture(imageNamed: "f-36"),
-                                           SKTexture(imageNamed: "f-37"), SKTexture(imageNamed: "f-38"), SKTexture(imageNamed: "f-39")],
-                                    timePerFrame: 0.09)
+        let textures = (1...39).map { SKTexture(imageNamed: "f-\($0)") }
+        let anim = SKAction.animate(with: textures, timePerFrame: 0.09)
         return anim
-        
     }
     
     func setupJet(x: CGFloat, y: CGFloat, side: String) {
@@ -149,48 +135,46 @@ class GameSceneObjects: SKScene {
     }
     
     func setupRock(_ rockType: NSString, score: Int) {
+        let rock = SKSpriteNode(imageNamed: rockType as String)
         
-        let rock: SKSpriteNode = SKSpriteNode(imageNamed: rockType as String)
-        let minX = rock.size.width/2
-        let maxX = self.frame.size.width - rock.size.width/2
-        let rangeX = maxX - minX
-        let position: CGFloat = CGFloat(arc4random()).truncatingRemainder(dividingBy: CGFloat(rangeX)) + CGFloat(minX)
+        let minX = rock.size.width / 2
+        let maxX = frame.size.width - rock.size.width / 2
+        let positionX = CGFloat(arc4random_uniform(UInt32(maxX - minX))) + minX
+        
         rock.physicsBody = SKPhysicsBody(rectangleOf: rock.size)
-        rock.physicsBody!.isDynamic = true
-        rock.physicsBody!.categoryBitMask = collisions.rockCategory
-        rock.physicsBody!.contactTestBitMask = collisions.shotCategory
-        rock.physicsBody!.contactTestBitMask = collisions.playerCategory
-        rock.physicsBody!.collisionBitMask = 0
+        rock.physicsBody?.isDynamic = true
+        rock.physicsBody?.categoryBitMask = collisions.rockCategory
+        rock.physicsBody?.contactTestBitMask = collisions.shotCategory | collisions.playerCategory
+        rock.physicsBody?.collisionBitMask = 0
         rock.zPosition = 4
-        rock.position = CGPoint(x: position, y: self.frame.size.height+rock.size.height)
-        self.addChild(rock)
-        var minDuration = 2
-        var maxDuration = 4
-        if score > 50 {
-            minDuration = 1
-            maxDuration = 4
-        } else if score > 100 {
-            minDuration = 1
-            maxDuration = 1
-        }
-        let rangeDuration = maxDuration - minDuration
-        let duration = Int(arc4random_uniform(20)) % Int(rangeDuration) + Int(minDuration)
-        var actionArray = [SKAction]()
-        actionArray.append(SKAction.move(to: CGPoint(x: position, y: -rock.size.height), duration: TimeInterval(duration)))
-        actionArray.append(SKAction.removeFromParent())
-        rock.run(SKAction.sequence(actionArray))
+        rock.position = CGPoint(x: positionX, y: frame.size.height + rock.size.height)
+        addChild(rock)
         
+        let (minDuration, maxDuration) = getDurations(for: score)
+        let duration = TimeInterval(Int(arc4random_uniform(UInt32(maxDuration - minDuration))) + minDuration)
+        
+        let moveAction = SKAction.move(to: CGPoint(x: positionX, y: -rock.size.height), duration: duration)
+        let removeAction = SKAction.removeFromParent()
+        rock.run(SKAction.sequence([moveAction, removeAction]))
+    }
+
+    private func getDurations(for score: Int) -> (Int, Int) {
+        if score > 100 {
+            return (1, 1)
+        } else if score > 50 {
+            return (1, 4)
+        } else {
+            return (2, 4)
+        }
     }
     
     func setupStars() {
-        
         if let starParticles = SKEmitterNode(fileNamed: "StarEmitter.sks") {
             starParticles.position = CGPoint(x: size.width/2, y: size.height)
             starParticles.name = assets.starParticle
             starParticles.targetNode = scene
             addChild(starParticles)
         }
-        
     }
     
     func setupHeader() {

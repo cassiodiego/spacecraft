@@ -35,15 +35,12 @@ class GameSceneObjects: SKScene {
     func alreadyExist(key: String) -> Bool { return UserDefaults.standard.object(forKey: key) != nil }
 
     func getKindShip() -> String {
-        
         let playerChoosedShip = alreadyExist(key: dataConfigKeys.ship)
         !playerChoosedShip ? UserDefaults.standard.set(assets.armory, forKey: dataConfigKeys.ship) : nil
         return (UserDefaults.standard.object(forKey: dataConfigKeys.ship)! as? String)!
-        
     }
 
     func setupPlayer() {
-
         var spritePlayer: String = ""
         self.getKindShip() == assets.armory ? (spritePlayer = assets.armory) : (spritePlayer = assets.rinzler)
         player = SKSpriteNode(imageNamed: spritePlayer)
@@ -66,26 +63,20 @@ class GameSceneObjects: SKScene {
     }
 
     func setupAurora() {
-
-        let aurora: SKSpriteNode = SKSpriteNode(imageNamed: assets.auroraOne)
-
+        let aurora = SKSpriteNode(imageNamed: assets.auroraOne)
         aurora.zPosition = 2
 
-        let minX = aurora.size.width/2
-        let maxX = self.frame.size.width - aurora.size.width/2
-        let rangeX = maxX - minX
-        let position: CGFloat = CGFloat(arc4random()).truncatingRemainder(dividingBy: CGFloat(rangeX)) + CGFloat(minX)
+        let minX = aurora.size.width / 2
+        let maxX = self.frame.size.width - aurora.size.width / 2
+        let positionX = CGFloat.random(in: minX...maxX)
 
-        aurora.position = CGPoint(x: position, y: self.frame.size.height+aurora.size.height)
-
+        aurora.position = CGPoint(x: positionX, y: self.frame.size.height + aurora.size.height)
         self.addChild(aurora)
 
-        let duration = 25
-        var actionArray = [SKAction]()
-        actionArray.append(SKAction.move(to: CGPoint(x: position, y: -aurora.size.height), duration: TimeInterval(duration)))
-        actionArray.append(SKAction.removeFromParent())
-        aurora.run(SKAction.sequence(actionArray))
-
+        let moveDuration = 25.0
+        let moveAction = SKAction.move(to: CGPoint(x: positionX, y: -aurora.size.height), duration: moveDuration)
+        let removeAction = SKAction.removeFromParent()
+        aurora.run(SKAction.sequence([moveAction, removeAction]))
     }
 
     func setupExplosion(x: CGFloat, y: CGFloat) {
@@ -154,11 +145,12 @@ class GameSceneObjects: SKScene {
     }
 
     private func getDurations(for score: Int) -> (Int, Int) {
-        if score > 100 {
+        switch score {
+        case let x where x > 100:
             return (1, 1)
-        } else if score > 50 {
+        case let x where x > 50:
             return (1, 4)
-        } else {
+        default:
             return (2, 4)
         }
     }
@@ -173,7 +165,6 @@ class GameSceneObjects: SKScene {
     }
     
     func setupHeader() {
-        
         scoreIcon = SKSpriteNode(imageNamed: Constants.Assets.scoreIcon)
         scoreIcon.position = CGPoint(x: (screenSize.width * 0.12), y: (screenSize.height * 0.895))
         scoreIcon.zPosition = 2
@@ -183,6 +174,5 @@ class GameSceneObjects: SKScene {
         livesIcon.position = CGPoint(x: (screenSize.width * 0.48), y: (screenSize.height * 0.895))
         livesIcon.zPosition = 2
         self.addChild(livesIcon)
-        
     }
 }

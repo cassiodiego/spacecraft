@@ -71,7 +71,7 @@ struct Constants {
     }
     
     struct Author {
-        static let email: String = "mail@cassiodiego.com"
+        static let email: String = "hello@cassiodiego.com"
         static let site: String = "cassiodiego.com"
     }
 

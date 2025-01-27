@@ -20,6 +20,7 @@
 		98139CFED1F6E98F2BF5BCBD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BFE7CE324FB4FB3C5DEDA /* Constants.swift */; };
 		9AF67CAB2C1C08A6C2456DE3 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 9E22A41CE48A1943A5AEE0A3 /* Actions.sks */; };
 		9FC012BA7775C6F57FFF165F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 472DB7F41844891D45326F2D /* Main.storyboard */; };
+		A3A290AC2D4811C000C38FD3 /* GameOverSceneObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A290AB2D4811B700C38FD3 /* GameOverSceneObjects.swift */; };
 		A3F069392C4F531A00BD8E9F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F069332C4F531A00BD8E9F /* AboutViewController.swift */; };
 		A3F0693A2C4F531A00BD8E9F /* GameCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F069342C4F531A00BD8E9F /* GameCenterViewController.swift */; };
 		A3F0693B2C4F531A00BD8E9F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F069352C4F531A00BD8E9F /* GameViewController.swift */; };
@@ -51,6 +52,7 @@
 		8F9F098A26F4ECCABAED5AAA /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9849E6C2A425C8D0FF79E79E /* GameSceneObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneObjects.swift; sourceTree = "<group>"; };
 		9E22A41CE48A1943A5AEE0A3 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		A3A290AB2D4811B700C38FD3 /* GameOverSceneObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverSceneObjects.swift; sourceTree = "<group>"; };
 		A3F069332C4F531A00BD8E9F /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		A3F069342C4F531A00BD8E9F /* GameCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterViewController.swift; sourceTree = "<group>"; };
 		A3F069352C4F531A00BD8E9F /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -114,8 +116,6 @@
 			children = (
 				AE40CC975194EB1021EA67BC /* GameOverScene.swift */,
 				3E94CEE8661C0DFBE9EAAFA8 /* GameScene.swift */,
-				3EF59FCF3AAA51F5BD2B6A2D /* GameSceneActions.swift */,
-				9849E6C2A425C8D0FF79E79E /* GameSceneObjects.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -143,6 +143,23 @@
 				C40DF222D10214CC72CF357A /* GameKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A3A290A92D48115800C38FD3 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				A3A290AB2D4811B700C38FD3 /* GameOverSceneObjects.swift */,
+				9849E6C2A425C8D0FF79E79E /* GameSceneObjects.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		A3A290AA2D48118D00C38FD3 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				3EF59FCF3AAA51F5BD2B6A2D /* GameSceneActions.swift */,
+			);
+			path = Actions;
 			sourceTree = "<group>";
 		};
 		A3F069382C4F531A00BD8E9F /* Controllers */ = {
@@ -173,8 +190,10 @@
 			isa = PBXGroup;
 			children = (
 				040A58DCC8CD1C42297E062F /* AppDelegate.swift */,
+				A3A290AA2D48118D00C38FD3 /* Actions */,
 				A3F069382C4F531A00BD8E9F /* Controllers */,
 				12A667B7E7725C933701B681 /* Helpers */,
+				A3A290A92D48115800C38FD3 /* Objects */,
 				1BCCE88F50C6641E58AFFFF3 /* Resources */,
 				2938D6D011857909823D1E2A /* Scenes */,
 				45BD8C30FCC5FB5A02C97634 /* Supporting Files */,
@@ -227,7 +246,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					3F20623D73756173F041908C = {
 						SystemCapabilities = {
@@ -286,6 +305,7 @@
 			files = (
 				A3F0693B2C4F531A00BD8E9F /* GameViewController.swift in Sources */,
 				A3F0693C2C4F531A00BD8E9F /* MainViewController.swift in Sources */,
+				A3A290AC2D4811C000C38FD3 /* GameOverSceneObjects.swift in Sources */,
 				34CE477DA668C235E8DA3FF4 /* AppDelegate.swift in Sources */,
 				98139CFED1F6E98F2BF5BCBD /* Constants.swift in Sources */,
 				FB5A2EB14653B0AE4C8970A9 /* GameOverScene.swift in Sources */,

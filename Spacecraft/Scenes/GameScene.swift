@@ -64,7 +64,6 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         livesLabel.zPosition = 2
         self.addChild(livesLabel)
         livesLabelUpdate(4)
-            
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -131,11 +130,26 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
-        gameSceneActions.handleTouchEnded(at: touch.location(in: self))
+        let location = touch.location(in: self)
+        
+        if exitButton.contains(location) {
+            exitGame()
+        } else {
+            gameSceneActions.handleTouchEnded(at: location)
+        }
     }
 
     func didBegin(_ contact: SKPhysicsContact) {
         gameSceneActions.didBegin(contact)
     }
     
+    func exitGame() {
+        guard let view = self.view else { return }
+        _ = SKTransition.flipHorizontal(withDuration: 0.5)
+        
+        if let mainVC = view.window?.rootViewController as? MainViewController {
+            view.window?.rootViewController = mainVC
+            mainVC.dismiss(animated: true, completion: nil)
+        }
+    }
 }

@@ -11,12 +11,7 @@ import SpriteKit
 import UIKit
 import GameKit
 
-class GameOverScene: GameSceneObjects {
-
-    var background: SKSpriteNode = SKSpriteNode()
-    var viewController: UIViewController?
-    var message: String = String()
-    var scoreMessage: String = String()
+class GameOverScene: GameOverSceneObjects {
     
     init(size: CGSize, won: Bool, score: String) {
         
@@ -31,7 +26,7 @@ class GameOverScene: GameSceneObjects {
             UserDefaults.standard.set(score, forKey: Constants.DataConfigKeys.highscore)
             GameCenterViewController().syncScore()
         }
-
+        setupExitButton()
         setupScoreBackground()
         setupSpacecraftLogo()
         setupMessageLabel(won: won)
@@ -51,98 +46,30 @@ class GameOverScene: GameSceneObjects {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first
-        let touchLocation = touch!.location(in: self)
-        if touchLocation.x != 0 {
-            let transition: SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
-            let gameScene: SKScene = GameScene(size: self.size)
-            self.view!.presentScene(gameScene, transition: transition)
+        guard let touch = touches.first else { return }
+        let location = touch.location(in: self)
+        
+        if exitButton.contains(location) {
+            exitGame()
+        } else {
+            let touch = touches.first
+            let touchLocation = touch!.location(in: self)
+            if touchLocation.x != 0 {
+                let transition: SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
+                let gameScene: SKScene = GameScene(size: self.size)
+                self.view!.presentScene(gameScene, transition: transition)
+            }
         }
     }
     
-    func setupBackground() {
-        self.backgroundColor = SKColor.black
-        background = SKSpriteNode(imageNamed: self.assets.firstBackground)
-        background.position = CGPoint(x: (screenSize.width * 0.40), y: (screenSize.height * 0.500))
-        self.addChild(background)
+    func exitGame() {
+        guard let view = self.view else { return }
+        _ = SKTransition.flipHorizontal(withDuration: 0.5)
+        
+        if let mainVC = view.window?.rootViewController as? MainViewController {
+            view.window?.rootViewController = mainVC
+            mainVC.dismiss(animated: true, completion: nil)
+        }
     }
-    
-    func setupScoreBackground() {
-        let scoreBackground: SKSpriteNode = SKSpriteNode(imageNamed: Constants.Assets.scoreBackgroundTwo)
-        scoreBackground.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.834))
-        scoreBackground.setScale(0.76)
-        scoreBackground.zPosition = 3
-        self.addChild(scoreBackground)
-    }
-    
-    func setupSpacecraftLogo() {
-        let spacecraftLogo: SKSpriteNode = SKSpriteNode(imageNamed: Constants.Assets.spacecraftLogo)
-        spacecraftLogo.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.690))
-        spacecraftLogo.zPosition = 3
-        spacecraftLogo.setScale(0.22)
-        self.addChild(spacecraftLogo)
-    }
-    
-    func setupScoreLabel(won: Bool, score: String) {
-        let scoreLabelText: String = NSLocalizedString("SCORE_LABEL", comment: "Last Score")
-        let scoreLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
-        scoreLabel.text = scoreLabelText+score
-        scoreLabel.fontSize = 20
-        scoreLabel.fontColor = SKColor.white
-        scoreLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.465))
-        scoreLabel.zPosition = 4
-        self.addChild(scoreLabel)
-    }
-    
-    func setupMessageLabel(won: Bool) {
-        let messageLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
-        won ? (messageLabel.text = NSLocalizedString("WINNER_MESSAGE", comment: "Winner Message")) :
-              (messageLabel.text = NSLocalizedString("GAME_OVER_LABEL", comment: "Loser Message"))
-        messageLabel.fontColor = SKColor.white
-        messageLabel.fontSize = 33
-        messageLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.540))
-        messageLabel.zPosition = 3
-        self.addChild(messageLabel)
-    }
-    
-    func setupScoreTextLabel(highscore: String, score: String) {
-        let scoreTextLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
-        (Int(score)! < Int(highscore)!) ? (scoreTextLabel.text = "\(highscore)") : (scoreTextLabel.text = "\(score)")
-        scoreTextLabel.fontSize = 35
-        scoreTextLabel.fontColor = SKColor.white
-        scoreTextLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.830))
-        scoreTextLabel.zPosition = 2
-        self.addChild(scoreTextLabel)
-    }
-    
-    func setupEmailLabel() {
-        let emailLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
-        emailLabel.text = Constants.Author.email
-        emailLabel.fontSize = 14
-        emailLabel.fontColor = SKColor.yellow
-        emailLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.070))
-        emailLabel.zPosition = 1
-        self.addChild(emailLabel)
-    }
-    
-    func setupSpacecraftWebsiteLabel() {
-        let spacecraftWebsiteLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
-        spacecraftWebsiteLabel.text = Constants.Author.site
-        spacecraftWebsiteLabel.fontSize = 18
-        spacecraftWebsiteLabel.fontColor = SKColor.yellow
-        spacecraftWebsiteLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.100))
-        spacecraftWebsiteLabel.zPosition = 1
-        self.addChild(spacecraftWebsiteLabel)
-    }
-    
-    func setupTouchToRestartLabel() {
-        let touchToRestartLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
-        touchToRestartLabel.text = NSLocalizedString("RESTART_LABEL", comment: "Restart game")
-        touchToRestartLabel.fontSize = 10
-        touchToRestartLabel.fontColor = SKColor.white
-        touchToRestartLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.360))
-        touchToRestartLabel.zPosition = 1
-        self.addChild(touchToRestartLabel)
-    }
-    
 }
+

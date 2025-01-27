@@ -19,6 +19,7 @@ class GameSceneObjects: SKScene {
     var rightJet: SKSpriteNode = SKSpriteNode()
     var livesIcon: SKSpriteNode = SKSpriteNode()
     var scoreIcon: SKSpriteNode = SKSpriteNode()
+    var exitButton: SKSpriteNode = SKSpriteNode()
 
     var explosion: SKSpriteNode!
     var fireLeft: SKSpriteNode!
@@ -27,6 +28,7 @@ class GameSceneObjects: SKScene {
     let directions = Constants.Directions.self
     let collisions = Constants.CollisionCategories.self
     let assets = Constants.Assets.self
+    let gameHeaderProportion = Constants.GameHeaderProportions.self
     let dataConfigKeys = Constants.DataConfigKeys.self
     let gameConfigInitialValues = Constants.GameConfigInitialValues.self
     
@@ -165,14 +167,31 @@ class GameSceneObjects: SKScene {
     }
     
     func setupHeader() {
-        scoreIcon = SKSpriteNode(imageNamed: Constants.Assets.scoreIcon)
-        scoreIcon.position = CGPoint(x: (screenSize.width * 0.12), y: (screenSize.height * 0.895))
-        scoreIcon.zPosition = 2
+        setupScoreIcon()
+        setupLivesIcon()
+        setupExitButton()
+    }
+    
+    func setupScoreIcon() {
+        scoreIcon = SKSpriteNode(imageNamed: assets.scoreIcon)
+        scoreIcon.position = CGPoint(x: screenSize.width * gameHeaderProportion.scoreIconXProportion, y: screenSize.height * gameHeaderProportion.iconsYProportion)
+        scoreIcon.zPosition = gameHeaderProportion.zPosition
         self.addChild(scoreIcon)
-        
-        livesIcon = SKSpriteNode(imageNamed: Constants.Assets.heartIcon)
-        livesIcon.position = CGPoint(x: (screenSize.width * 0.48), y: (screenSize.height * 0.895))
-        livesIcon.zPosition = 2
+    }
+    
+    func setupLivesIcon() {
+        livesIcon = SKSpriteNode(imageNamed: assets.heartIcon)
+        livesIcon.position = CGPoint(x: screenSize.width * gameHeaderProportion.livesIconXProportion, y: screenSize.height * gameHeaderProportion.iconsYProportion)
+        livesIcon.zPosition = gameHeaderProportion.zPosition
         self.addChild(livesIcon)
     }
+    
+    func setupExitButton() {
+        exitButton = SKSpriteNode(imageNamed: assets.exitButton)
+        exitButton.position = CGPoint(x: screenSize.width * gameHeaderProportion.exitButtonXProportion, y: screenSize.height * gameHeaderProportion.exitButtonYProportion)
+        exitButton.zPosition = gameHeaderProportion.zPosition
+        exitButton.setScale(gameHeaderProportion.exitButtonScale)
+        self.addChild(exitButton)
+    }
+    
 }

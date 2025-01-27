@@ -58,12 +58,13 @@ class GameSceneActions {
     }
 
     func createShotNode(with imageName: String, at position: CGPoint) -> SKSpriteNode {
+        guard let scene = scene else { fatalError("Scene is not set") }
         let shot = SKSpriteNode(imageNamed: imageName)
         shot.position = position
         shot.physicsBody = SKPhysicsBody(circleOfRadius: shot.size.width / 2)
         shot.physicsBody?.isDynamic = false
-        shot.physicsBody?.categoryBitMask = scene?.collisions.shotCategory ?? 0
-        shot.physicsBody?.contactTestBitMask = scene?.collisions.rockCategory ?? 0
+        shot.physicsBody?.categoryBitMask = scene.collisions.shotCategory
+        shot.physicsBody?.contactTestBitMask = scene.collisions.rockCategory
         shot.physicsBody?.collisionBitMask = 0
         shot.physicsBody?.usesPreciseCollisionDetection = true
         shot.zPosition = 3
@@ -148,7 +149,6 @@ class GameSceneActions {
         guard let scene = scene else { return }
         
         if isColliding(with: firstBody) || isColliding(with: thirdBody) || isOutOfBounds(width: width) {
-            
             scene.setupExplosion(x: scene.player.position.x, y: scene.player.position.y)
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)

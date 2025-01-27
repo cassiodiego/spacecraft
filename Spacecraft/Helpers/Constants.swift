@@ -32,6 +32,7 @@ struct Constants {
         static let scoreBackgroundTwo: String = "scoreBackgroundTwo"
         static let scoreIcon: String = "scoreIcon"
         static let heartIcon: String = "heartIcon"
+        static let exitButton: String = "x"
     }
 
     struct Directions {
@@ -53,6 +54,16 @@ struct Constants {
         static let shotCategory: UInt32 = 0x1 << 0
         static let playerCategory: UInt32 = 0x1 << 0
         static let EdgeBody: UInt32 = 0x1 << 4
+    }
+    
+    struct GameHeaderProportions {
+        static let scoreIconXProportion: CGFloat = 0.12
+        static let livesIconXProportion: CGFloat = 0.48
+        static let exitButtonXProportion: CGFloat = 0.84
+        static let iconsYProportion: CGFloat = 0.895
+        static let exitButtonYProportion: CGFloat = 0.896
+        static let zPosition: CGFloat = 20
+        static let exitButtonScale: CGFloat = 0.50
     }
 
     struct DataConfigKeys {

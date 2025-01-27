@@ -146,12 +146,8 @@ class GameSceneActions {
 
     func checkPlayerPositionAndCollisions(firstBody: SKPhysicsBody, thirdBody: SKPhysicsBody, width: CGFloat, score: String?, transition: SKTransition) {
         guard let scene = scene else { return }
-        if (scene.player.position.x == firstBody.node!.position.x) ||
-           (scene.player.position.y == firstBody.node!.position.y) ||
-           (scene.player.position.x == thirdBody.node!.position.x) ||
-           (scene.player.position.y == thirdBody.node!.position.y) ||
-           (scene.player.position.x < (0.0 + (scene.player.size.width / 2))) ||
-           (scene.player.position.x > (width - (scene.player.size.width / 2))) {
+        
+        if isColliding(with: firstBody) || isColliding(with: thirdBody) || isOutOfBounds(width: width) {
             
             scene.setupExplosion(x: scene.player.position.x, y: scene.player.position.y)
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
@@ -161,9 +157,21 @@ class GameSceneActions {
             scene.livesLabelUpdate(scene.spacecraftColisions)
             
             if scene.spacecraftColisions == 0 {
-                scene.view!.presentScene(GameOverScene(size: scene.size, won: false, score: score!), transition: transition)
+                scene.view!.presentScene(GameOverScene(size: scene.size, won: false, score: score ?? ""), transition: transition)
             }
         }
+    }
+
+    private func isColliding(with body: SKPhysicsBody) -> Bool {
+        guard let scene = scene else { return false }
+        return scene.player.position == body.node?.position
+    }
+
+    private func isOutOfBounds(width: CGFloat) -> Bool {
+        guard let scene = scene else { return false }
+        let playerX = scene.player.position.x
+        let halfPlayerWidth = scene.player.size.width / 2
+        return playerX < halfPlayerWidth || playerX > (width - halfPlayerWidth)
     }
 
     func checkForGameOver(score: String?, transition: SKTransition) {

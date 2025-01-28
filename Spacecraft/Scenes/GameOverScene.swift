@@ -14,18 +14,11 @@ import GameKit
 class GameOverScene: GameOverSceneObjects {
     
     init(size: CGSize, won: Bool, score: String) {
-        
         super.init(size: size)
         
-        setupBackground()
+        let highscore = verifyHighscore(score: score)
         
-        var highscore: String
-        Utils.alreadyExistDataForKey(key: Constants.DataConfigKeys.highscore) ? (highscore = (UserDefaults.standard.object(forKey: Constants.DataConfigKeys.highscore)! as? String)!) : (highscore = "0")
-
-        if (Int(score))! > (Int(highscore))! {
-            UserDefaults.standard.set(score, forKey: Constants.DataConfigKeys.highscore)
-            GameCenterViewController().syncScore()
-        }
+        setupBackground()
         setupExitButton()
         setupScoreBackground()
         setupSpacecraftLogo()
@@ -52,24 +45,11 @@ class GameOverScene: GameOverSceneObjects {
         if exitButton.contains(location) {
             exitGame()
         } else {
-            let touch = touches.first
-            let touchLocation = touch!.location(in: self)
-            if touchLocation.x != 0 {
-                let transition: SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
-                let gameScene: SKScene = GameScene(size: self.size)
-                self.view!.presentScene(gameScene, transition: transition)
+            if location.x != 0 {
+                let transition = SKTransition.flipHorizontal(withDuration: 0.5)
+                let gameScene = GameScene(size: self.size)
+                self.view?.presentScene(gameScene, transition: transition)
             }
         }
     }
-    
-    func exitGame() {
-        guard let view = self.view else { return }
-        _ = SKTransition.flipHorizontal(withDuration: 0.5)
-        
-        if let mainVC = view.window?.rootViewController as? MainViewController {
-            view.window?.rootViewController = mainVC
-            mainVC.dismiss(animated: true, completion: nil)
-        }
-    }
 }
-

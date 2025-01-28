@@ -23,16 +23,6 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
     var livesLabel: SKLabelNode = SKLabelNode()
     var gameSceneActions: GameSceneActions!
 
-    override func didMove(to view: SKView) {
-        self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
-        self.physicsWorld.contactDelegate = self
-        self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-        setupStars()
-        setupPlayer()
-        setupAcelerometer()
-        gameSceneActions = GameSceneActions(scene: self)
-    }
-
     override init(size: CGSize) {
         super.init(size: size)
 
@@ -69,6 +59,48 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func update(_ currentTime: TimeInterval) {
+        let action = SKAction.moveTo(x: xAcceleration, duration: 1)
+        let actionJetLeft = SKAction.moveTo(x: xAcceleration-10, duration: 1)
+        let actionJetRight = SKAction.moveTo(x: xAcceleration+10, duration: 1)
+        self.player.run(action)
+        self.fireLeft.run(actionJetLeft)
+        self.fireRight.run(actionJetRight)
+        var timeSinceLastUpdate = currentTime - lastUpdateTimerIntervalRock
+        lastUpdateTimerIntervalRock = currentTime
+        if (timeSinceLastUpdate > 1) {
+            timeSinceLastUpdate = 1/60
+            lastUpdateTimerIntervalRock = currentTime
+        }
+        updateWithTimeSinceLastUpdate(timeSinceLastUpdate)
+        
+    }
+    
+    override func didMove(to view: SKView) {
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
+        self.physicsWorld.contactDelegate = self
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        setupStars()
+        setupPlayer()
+        setupAcelerometer()
+        gameSceneActions = GameSceneActions(scene: self)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        let location = touch.location(in: self)
+        
+        if exitButton.contains(location) {
+            exitGame()
+        } else {
+            gameSceneActions.handleTouchEnded(at: location)
+        }
+    }
+
+    func didBegin(_ contact: SKPhysicsContact) {
+        gameSceneActions.didBegin(contact)
+    }
 
     func setupAcelerometer() {
         if motionManager.isAccelerometerAvailable == true {
@@ -100,23 +132,6 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         
     }
 
-    override func update(_ currentTime: TimeInterval) {
-        let action = SKAction.moveTo(x: xAcceleration, duration: 1)
-        let actionJetLeft = SKAction.moveTo(x: xAcceleration-10, duration: 1)
-        let actionJetRight = SKAction.moveTo(x: xAcceleration+10, duration: 1)
-        self.player.run(action)
-        self.fireLeft.run(actionJetLeft)
-        self.fireRight.run(actionJetRight)
-        var timeSinceLastUpdate = currentTime - lastUpdateTimerIntervalRock
-        lastUpdateTimerIntervalRock = currentTime
-        if (timeSinceLastUpdate > 1) {
-            timeSinceLastUpdate = 1/60
-            lastUpdateTimerIntervalRock = currentTime
-        }
-        updateWithTimeSinceLastUpdate(timeSinceLastUpdate)
-        
-    }
-    
     func scoreLabelUpdate(_ newscore: Int) {
         scoreLabel.text = "\(newscore)"
         newscore > 25 && newscore < 50 ? self.setupRock(self.assets.rockOne, score: newscore) : nil
@@ -128,28 +143,5 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         livesLabel.text = "\(numberOfLives)"
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else { return }
-        let location = touch.location(in: self)
-        
-        if exitButton.contains(location) {
-            exitGame()
-        } else {
-            gameSceneActions.handleTouchEnded(at: location)
-        }
-    }
 
-    func didBegin(_ contact: SKPhysicsContact) {
-        gameSceneActions.didBegin(contact)
-    }
-    
-    func exitGame() {
-        guard let view = self.view else { return }
-        _ = SKTransition.flipHorizontal(withDuration: 0.5)
-        
-        if let mainVC = view.window?.rootViewController as? MainViewController {
-            view.window?.rootViewController = mainVC
-            mainVC.dismiss(animated: true, completion: nil)
-        }
-    }
 }

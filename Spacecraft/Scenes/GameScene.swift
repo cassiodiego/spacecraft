@@ -12,6 +12,7 @@ import AVFoundation
 
 class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
 
+    let acelerometerValues = Constants.GameAcelerometerValues.self
     var motionManager = CMMotionManager()
     var lastYieldTimeIntervalRock: TimeInterval = TimeInterval()
     var lastUpdateTimerIntervalRock: TimeInterval = TimeInterval()
@@ -104,12 +105,16 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
 
     func setupAcelerometer() {
         if motionManager.isAccelerometerAvailable == true {
-            motionManager.accelerometerUpdateInterval = 0.1
+            motionManager.accelerometerUpdateInterval = acelerometerValues.accelerometerUpdateInterval
             motionManager.startAccelerometerUpdates(to: OperationQueue.current!, withHandler: { data, _ in
 
                 let currentX = self.player.position.x
 
-                if (data!.acceleration.x < 0) { self.xAcceleration = currentX + CGFloat((data?.acceleration.x)! * 500) } else if (data!.acceleration.x > 0) { self.xAcceleration = currentX + CGFloat((data?.acceleration.x)! * 500) }
+                if (data!.acceleration.x < 0) {
+                    self.xAcceleration = currentX + CGFloat((data?.acceleration.x)! * self.acelerometerValues.accelerationXMult)
+                } else if (data!.acceleration.x > 0) {
+                    self.xAcceleration = currentX + CGFloat((data?.acceleration.x)! * self.acelerometerValues.accelerationXMult)
+                }
             })
         }
     }

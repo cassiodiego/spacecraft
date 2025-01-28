@@ -81,6 +81,11 @@ struct Constants {
         static let velocity = 200/1
     }
     
+    struct GameAcelerometerValues {
+        static let accelerometerUpdateInterval: Double = 0.1
+        static let accelerationXMult: Double = 500
+    }
+    
     struct Author {
         static let email: String = "hello@cassiodiego.com"
         static let site: String = "cassiodiego.com"

@@ -122,7 +122,7 @@ class GameSceneObjects: BaseSceneObjects {
         
         let minX = rock.size.width / 2
         let maxX = frame.size.width - rock.size.width / 2
-        let positionX = CGFloat(arc4random_uniform(UInt32(maxX - minX))) + minX
+        let positionX = CGFloat.random(in: minX...maxX)
         
         rock.physicsBody = SKPhysicsBody(rectangleOf: rock.size)
         rock.physicsBody?.isDynamic = true
@@ -134,11 +134,29 @@ class GameSceneObjects: BaseSceneObjects {
         addChild(rock)
         
         let (minDuration, maxDuration) = getDurations(for: score)
-        let duration = TimeInterval(Int(arc4random_uniform(UInt32(maxDuration - minDuration))) + minDuration)
+        let duration = TimeInterval(Int.random(in: minDuration...maxDuration))
         
         let moveAction = SKAction.move(to: CGPoint(x: positionX, y: -rock.size.height), duration: duration)
         let removeAction = SKAction.removeFromParent()
         rock.run(SKAction.sequence([moveAction, removeAction]))
+    }
+    
+    func setupLife() {
+        let life = SKSpriteNode(imageNamed: Constants.Assets.life)
+        let randomXPosition = CGFloat.random(in: 0...self.size.width)
+        life.position = CGPoint(x: randomXPosition, y: self.size.height + life.size.height)
+        life.zPosition = Constants.GameSceneConstants.lifeZPosition
+        life.physicsBody = SKPhysicsBody(rectangleOf: life.size)
+        life.physicsBody?.isDynamic = true
+        life.physicsBody?.categoryBitMask = Constants.CollisionCategories.life
+        life.physicsBody?.contactTestBitMask = Constants.CollisionCategories.playerCategory | Constants.CollisionCategories.shotCategory
+        life.physicsBody?.collisionBitMask = 0
+
+        let moveAction = SKAction.move(to: CGPoint(x: randomXPosition, y: -life.size.height), duration: Constants.GameSceneConstants.lifeFallDuration)
+        let removeAction = SKAction.removeFromParent()
+        life.run(SKAction.sequence([moveAction, removeAction]))
+
+        self.addChild(life)
     }
     
     private func getDurations(for score: Int) -> (Int, Int) {

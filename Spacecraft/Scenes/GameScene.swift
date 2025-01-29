@@ -162,24 +162,6 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         }
     }
 
-    private func setupLife() {
-        let life = SKSpriteNode(imageNamed: Constants.Assets.life)
-        let randomXPosition = CGFloat.random(in: 0...self.size.width)
-        life.position = CGPoint(x: randomXPosition, y: self.size.height + life.size.height)
-        life.zPosition = Constants.GameSceneConstants.lifeZPosition
-        life.physicsBody = SKPhysicsBody(rectangleOf: life.size)
-        life.physicsBody?.isDynamic = true
-        life.physicsBody?.categoryBitMask = Constants.CollisionCategories.life
-        life.physicsBody?.contactTestBitMask = Constants.CollisionCategories.playerCategory | Constants.CollisionCategories.shotCategory
-        life.physicsBody?.collisionBitMask = 0
-
-        let moveAction = SKAction.move(to: CGPoint(x: randomXPosition, y: -life.size.height), duration: Constants.GameSceneConstants.lifeFallDuration)
-        let removeAction = SKAction.removeFromParent()
-        life.run(SKAction.sequence([moveAction, removeAction]))
-
-        self.addChild(life)
-    }
-
     func updateScoreLabel(_ newScore: Int) {
         scoreLabel.text = "\(newScore)"
         updateRockAssets(for: newScore)

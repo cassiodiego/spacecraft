@@ -16,26 +16,28 @@ class GameOverSceneObjects: BaseSceneObjects {
     var message: String = String()
     var scoreMessage: String = String()
     
+    let gameOverSceneObjects = Constants.GameOverSceneObjects.self
+    
     func setupBackground() {
         self.backgroundColor = SKColor.black
-        background = SKSpriteNode(imageNamed: assets.firstBackground)
-        background.position = CGPoint(x: (screenSize.width * 0.40), y: (screenSize.height * 0.500))
+        background = SKSpriteNode(imageNamed: Constants.Assets.firstBackground)
+        background.position = CGPoint(x: (screenSize.width * gameOverSceneObjects.backgroundXProportion), y: (screenSize.height * gameOverSceneObjects.backgroundYProportion))
         self.addChild(background)
     }
     
     func setupScoreBackground() {
         let scoreBackground: SKSpriteNode = SKSpriteNode(imageNamed: Constants.Assets.scoreBackgroundTwo)
-        scoreBackground.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.834))
-        scoreBackground.setScale(0.76)
-        scoreBackground.zPosition = 3
+        scoreBackground.position = CGPoint(x: (screenSize.width * gameOverSceneObjects.scoreBackgroundXProportion), y: (screenSize.height * gameOverSceneObjects.scoreBackgroundYProportion))
+        scoreBackground.setScale(gameOverSceneObjects.scoreBackgroundScale)
+        scoreBackground.zPosition = gameOverSceneObjects.scoreBackgroundZPosition
         self.addChild(scoreBackground)
     }
     
     func setupSpacecraftLogo() {
         let spacecraftLogo: SKSpriteNode = SKSpriteNode(imageNamed: Constants.Assets.spacecraftLogo)
-        spacecraftLogo.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.690))
-        spacecraftLogo.zPosition = 3
-        spacecraftLogo.setScale(0.22)
+        spacecraftLogo.position = CGPoint(x: (screenSize.width * gameOverSceneObjects.spacecraftLogoXProportion), y: (screenSize.height * gameOverSceneObjects.spacecraftLogoYProportion))
+        spacecraftLogo.zPosition = gameOverSceneObjects.spacecraftLogoZPosition
+        spacecraftLogo.setScale(gameOverSceneObjects.spacecraftLogoScale)
         self.addChild(spacecraftLogo)
     }
     
@@ -43,10 +45,10 @@ class GameOverSceneObjects: BaseSceneObjects {
         let scoreLabelText: String = NSLocalizedString("SCORE_LABEL", comment: "Last Score")
         let scoreLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
         scoreLabel.text = scoreLabelText + score
-        scoreLabel.fontSize = 20
+        scoreLabel.fontSize = gameOverSceneObjects.scoreLabelFontSize
         scoreLabel.fontColor = SKColor.white
-        scoreLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.465))
-        scoreLabel.zPosition = 4
+        scoreLabel.position = CGPoint(x: (screenSize.width * gameOverSceneObjects.scoreLabelXProportion), y: (screenSize.height * gameOverSceneObjects.scoreLabelYProportion))
+        scoreLabel.zPosition = gameOverSceneObjects.scoreLabelZPosition
         self.addChild(scoreLabel)
     }
     
@@ -54,49 +56,49 @@ class GameOverSceneObjects: BaseSceneObjects {
         let messageLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
         won ? (messageLabel.text = NSLocalizedString("WINNER_MESSAGE", comment: "Winner Message")) : (messageLabel.text = NSLocalizedString("GAME_OVER_LABEL", comment: "Loser Message"))
         messageLabel.fontColor = SKColor.white
-        messageLabel.fontSize = 33
-        messageLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.540))
-        messageLabel.zPosition = 3
+        messageLabel.fontSize = gameOverSceneObjects.messageLabelFontSize
+        messageLabel.position = CGPoint(x: (screenSize.width * gameOverSceneObjects.messageLabelXProportion), y: (screenSize.height * gameOverSceneObjects.messageLabelYProportion))
+        messageLabel.zPosition = gameOverSceneObjects.messageLabelZPosition
         self.addChild(messageLabel)
     }
     
     func setupScoreTextLabel(highscore: String, score: String) {
         let scoreTextLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
         (Int(score)! < Int(highscore)!) ? (scoreTextLabel.text = "\(highscore)") : (scoreTextLabel.text = "\(score)")
-        scoreTextLabel.fontSize = 35
+        scoreTextLabel.fontSize = gameOverSceneObjects.scoreTextLabelFontSize
         scoreTextLabel.fontColor = SKColor.white
-        scoreTextLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.830))
-        scoreTextLabel.zPosition = 2
+        scoreTextLabel.position = CGPoint(x: (screenSize.width * gameOverSceneObjects.scoreTextLabelXProportion), y: (screenSize.height * gameOverSceneObjects.scoreTextLabelYProportion))
+        scoreTextLabel.zPosition = gameOverSceneObjects.scoreTextLabelZPosition
         self.addChild(scoreTextLabel)
     }
     
     func setupEmailLabel() {
         let emailLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
         emailLabel.text = Constants.Author.email
-        emailLabel.fontSize = 14
+        emailLabel.fontSize = gameOverSceneObjects.emailLabelFontSize
         emailLabel.fontColor = SKColor.yellow
-        emailLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.070))
-        emailLabel.zPosition = 1
+        emailLabel.position = CGPoint(x: (screenSize.width * gameOverSceneObjects.emailLabelXProportion), y: (screenSize.height * gameOverSceneObjects.emailLabelYProportion))
+        emailLabel.zPosition = gameOverSceneObjects.emailLabelZPosition
         self.addChild(emailLabel)
     }
     
     func setupSpacecraftWebsiteLabel() {
         let spacecraftWebsiteLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
         spacecraftWebsiteLabel.text = Constants.Author.site
-        spacecraftWebsiteLabel.fontSize = 18
+        spacecraftWebsiteLabel.fontSize = gameOverSceneObjects.spacecraftWebsiteLabelFontSize
         spacecraftWebsiteLabel.fontColor = SKColor.yellow
-        spacecraftWebsiteLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.100))
-        spacecraftWebsiteLabel.zPosition = 1
+        spacecraftWebsiteLabel.position = CGPoint(x: (screenSize.width * gameOverSceneObjects.spacecraftWebsiteLabelXProportion), y: (screenSize.height * gameOverSceneObjects.spacecraftWebsiteLabelYProportion))
+        spacecraftWebsiteLabel.zPosition = gameOverSceneObjects.spacecraftWebsiteLabelZPosition
         self.addChild(spacecraftWebsiteLabel)
     }
     
     func setupTouchToRestartLabel() {
         let touchToRestartLabel = SKLabelNode(fontNamed: Constants.Fonts.main)
         touchToRestartLabel.text = NSLocalizedString("RESTART_LABEL", comment: "Restart game")
-        touchToRestartLabel.fontSize = 10
+        touchToRestartLabel.fontSize = gameOverSceneObjects.touchToRestartLabelFontSize
         touchToRestartLabel.fontColor = SKColor.white
-        touchToRestartLabel.position = CGPoint(x: (screenSize.width * 0.50), y: (screenSize.height * 0.360))
-        touchToRestartLabel.zPosition = 1
+        touchToRestartLabel.position = CGPoint(x: (screenSize.width * gameOverSceneObjects.touchToRestartLabelXProportion), y: (screenSize.height * gameOverSceneObjects.touchToRestartLabelYProportion))
+        touchToRestartLabel.zPosition = gameOverSceneObjects.touchToRestartLabelZPosition
         self.addChild(touchToRestartLabel)
     }
 }

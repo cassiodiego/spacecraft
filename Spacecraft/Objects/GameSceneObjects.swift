@@ -5,6 +5,13 @@
 //  Created by Cassio Diego Tavares Campos on 16/05/20.
 //  Copyright (c) 2020 Cassio Diego Tavares Campos. All rights reserved.
 //
+//
+//  GameSceneObjects.swift
+//  Spacecraft
+//
+//  Created by Cassio Diego Tavares Campos on 16/05/20.
+//  Copyright (c) 2020 Cassio Diego Tavares Campos. All rights reserved.
+//
 
 import Foundation
 import SpriteKit
@@ -29,6 +36,7 @@ class GameSceneObjects: BaseSceneObjects {
 
     let dataConfigKeys = Constants.DataConfigKeys.self
     let gameConfigInitialValues = Constants.GameConfigInitialValues.self
+    let gameSceneObjects = Constants.GameSceneObjects.self
         
     func alreadyExist(key: String) -> Bool { return UserDefaults.standard.object(forKey: key) != nil }
     
@@ -42,7 +50,7 @@ class GameSceneObjects: BaseSceneObjects {
         var spritePlayer: String = ""
         self.getKindShip() == assets.armory ? (spritePlayer = assets.armory) : (spritePlayer = assets.rinzler)
         player = SKSpriteNode(imageNamed: spritePlayer)
-        player.position = CGPoint(x: self.frame.size.width / 2, y: player.size.height / 2 + 30)
+        player.position = CGPoint(x: self.frame.size.width / 2, y: player.size.height / 2 + gameSceneObjects.playerInitialYPosition)
         player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width / 2)
         player.physicsBody!.isDynamic = true
         player.physicsBody!.categoryBitMask = collisions.playerCategory
@@ -50,18 +58,18 @@ class GameSceneObjects: BaseSceneObjects {
         player.physicsBody!.categoryBitMask = collisions.EdgeBody
         player.physicsBody!.collisionBitMask = 0
         player.physicsBody!.usesPreciseCollisionDetection = true
-        player.physicsBody?.velocity = CGVector(dx: xAcceleration * 900, dy: 0)
-        player.zPosition = 5
+        player.physicsBody?.velocity = CGVector(dx: xAcceleration * gameSceneObjects.velocityMultiplier, dy: 0)
+        player.zPosition = gameSceneObjects.playerZPosition
         
         self.addChild(player)
         
-        setupJet(x: self.player.position.x - 10, y: self.player.position.y - 30, side: self.directions.left)
-        setupJet(x: self.player.position.x + 10, y: self.player.position.y - 30, side: self.directions.right)
+        setupJet(x: self.player.position.x - gameSceneObjects.jetXOffset, y: self.player.position.y - gameSceneObjects.jetYOffset, side: self.directions.left)
+        setupJet(x: self.player.position.x + gameSceneObjects.jetXOffset, y: self.player.position.y - gameSceneObjects.jetYOffset, side: self.directions.right)
     }
     
     func setupAurora() {
         let aurora = SKSpriteNode(imageNamed: assets.auroraOne)
-        aurora.zPosition = 2
+        aurora.zPosition = gameSceneObjects.auroraZPosition
         
         let minX = aurora.size.width / 2
         let maxX = self.frame.size.width - aurora.size.width / 2
@@ -70,7 +78,7 @@ class GameSceneObjects: BaseSceneObjects {
         aurora.position = CGPoint(x: positionX, y: self.frame.size.height + aurora.size.height)
         self.addChild(aurora)
         
-        let moveDuration = 25.0
+        let moveDuration = gameSceneObjects.auroraMoveDuration
         let moveAction = SKAction.move(to: CGPoint(x: positionX, y: -aurora.size.height), duration: moveDuration)
         let removeAction = SKAction.removeFromParent()
         aurora.run(SKAction.sequence([moveAction, removeAction]))
@@ -78,23 +86,23 @@ class GameSceneObjects: BaseSceneObjects {
     
     func setupExplosion(x: CGFloat, y: CGFloat) {
         let textures = (1...9).map { SKTexture(imageNamed: "e-\($0)") }
-        let boom = SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: 0.09))
+        let boom = SKAction.repeatForever(SKAction.animate(with: textures, timePerFrame: gameSceneObjects.explosionFrameTime))
         
         explosion = SKSpriteNode(texture: textures.first)
-        explosion.setScale(0.6)
+        explosion.setScale(gameSceneObjects.explosionScale)
         explosion.position = CGPoint(x: x, y: y)
-        explosion.zPosition = 6
+        explosion.zPosition = gameSceneObjects.explosionZPosition
         explosion.run(boom)
         self.addChild(explosion)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + gameSceneObjects.explosionRemovalDelay) {
             self.explosion.removeFromParent()
         }
     }
     
     func jetAnimation() -> SKAction {
         let textures = (1...39).map { SKTexture(imageNamed: "f-\($0)") }
-        let anim = SKAction.animate(with: textures, timePerFrame: 0.09)
+        let anim = SKAction.animate(with: textures, timePerFrame: gameSceneObjects.jetFrameTime)
         return anim
     }
     
@@ -102,9 +110,9 @@ class GameSceneObjects: BaseSceneObjects {
         let anim = self.jetAnimation()
         let boom = SKAction.repeatForever(anim)
         let fire = SKSpriteNode(texture: SKTexture(imageNamed: "f-1"))
-        fire.setScale(0.05)
+        fire.setScale(gameSceneObjects.jetScale)
         fire.position = CGPoint(x: x, y: y)
-        fire.zPosition = 4
+        fire.zPosition = gameSceneObjects.jetZPosition
         fire.run(boom)
         
         if (side == directions.left) {
@@ -128,7 +136,7 @@ class GameSceneObjects: BaseSceneObjects {
         rock.physicsBody?.categoryBitMask = collisions.rockCategory
         rock.physicsBody?.contactTestBitMask = collisions.shotCategory | collisions.playerCategory
         rock.physicsBody?.collisionBitMask = 0
-        rock.zPosition = 4
+        rock.zPosition = gameSceneObjects.rockZPosition
         rock.position = CGPoint(x: positionX, y: frame.size.height + rock.size.height)
         addChild(rock)
         
@@ -143,11 +151,11 @@ class GameSceneObjects: BaseSceneObjects {
     private func getDurations(for score: Int) -> (Int, Int) {
         switch score {
         case let x where x > 100:
-            return (1, 1)
+            return (gameSceneObjects.rockHighScoreMinDuration, gameSceneObjects.rockHighScoreMaxDuration)
         case let x where x > 50:
-            return (1, 4)
+            return (gameSceneObjects.rockMidScoreMinDuration, gameSceneObjects.rockMidScoreMaxDuration)
         default:
-            return (2, 4)
+            return (gameSceneObjects.rockLowScoreMinDuration, gameSceneObjects.rockLowScoreMaxDuration)
         }
     }
     

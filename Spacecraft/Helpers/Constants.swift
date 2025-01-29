@@ -96,5 +96,65 @@ struct Constants {
         static let email: String = "hello@cassiodiego.com"
         static let site: String = "cassiodiego.com"
     }
-
+    
+    struct GameSceneObjects {
+        static let playerInitialYPosition: CGFloat = 30.0
+        static let playerZPosition: CGFloat = 5.0
+        static let velocityMultiplier: CGFloat = 900.0
+        static let jetXOffset: CGFloat = 10.0
+        static let jetYOffset: CGFloat = 30.0
+        static let auroraZPosition: CGFloat = 2.0
+        static let auroraMoveDuration: TimeInterval = 25.0
+        static let explosionFrameTime: TimeInterval = 0.09
+        static let explosionScale: CGFloat = 0.6
+        static let explosionZPosition: CGFloat = 6.0
+        static let explosionRemovalDelay: TimeInterval = 0.1
+        static let jetFrameTime: TimeInterval = 0.09
+        static let jetScale: CGFloat = 0.05
+        static let jetZPosition: CGFloat = 4.0
+        static let rockZPosition: CGFloat = 4.0
+        static let rockHighScoreMinDuration: Int = 1
+        static let rockHighScoreMaxDuration: Int = 1
+        static let rockMidScoreMinDuration: Int = 1
+        static let rockMidScoreMaxDuration: Int = 4
+        static let rockLowScoreMinDuration: Int = 2
+        static let rockLowScoreMaxDuration: Int = 4
+    }
+    
+    struct GameOverSceneObjects {
+        static let backgroundXProportion: CGFloat = 0.40
+        static let backgroundYProportion: CGFloat = 0.500
+        static let scoreBackgroundXProportion: CGFloat = 0.50
+        static let scoreBackgroundYProportion: CGFloat = 0.834
+        static let scoreBackgroundScale: CGFloat = 0.76
+        static let scoreBackgroundZPosition: CGFloat = 3.0
+        static let spacecraftLogoXProportion: CGFloat = 0.50
+        static let spacecraftLogoYProportion: CGFloat = 0.690
+        static let spacecraftLogoScale: CGFloat = 0.22
+        static let spacecraftLogoZPosition: CGFloat = 3.0
+        static let scoreLabelFontSize: CGFloat = 20
+        static let scoreLabelXProportion: CGFloat = 0.50
+        static let scoreLabelYProportion: CGFloat = 0.465
+        static let scoreLabelZPosition: CGFloat = 4.0
+        static let messageLabelFontSize: CGFloat = 33
+        static let messageLabelXProportion: CGFloat = 0.50
+        static let messageLabelYProportion: CGFloat = 0.540
+        static let messageLabelZPosition: CGFloat = 3.0
+        static let scoreTextLabelFontSize: CGFloat = 35
+        static let scoreTextLabelXProportion: CGFloat = 0.50
+        static let scoreTextLabelYProportion: CGFloat = 0.830
+        static let scoreTextLabelZPosition: CGFloat = 2.0
+        static let emailLabelFontSize: CGFloat = 14
+        static let emailLabelXProportion: CGFloat = 0.50
+        static let emailLabelYProportion: CGFloat = 0.070
+        static let emailLabelZPosition: CGFloat = 1.0
+        static let spacecraftWebsiteLabelFontSize: CGFloat = 18
+        static let spacecraftWebsiteLabelXProportion: CGFloat = 0.50
+        static let spacecraftWebsiteLabelYProportion: CGFloat = 0.100
+        static let spacecraftWebsiteLabelZPosition: CGFloat = 1.0
+        static let touchToRestartLabelFontSize: CGFloat = 10
+        static let touchToRestartLabelXProportion: CGFloat = 0.50
+        static let touchToRestartLabelYProportion: CGFloat = 0.360
+        static let touchToRestartLabelZPosition: CGFloat = 1.0
+    }
 }

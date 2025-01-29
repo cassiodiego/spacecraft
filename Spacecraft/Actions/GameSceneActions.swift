@@ -23,6 +23,14 @@ class GameSceneActions {
         let aurora = SKSpriteNode(imageNamed: scene.assets.auroraOne)
         aurora.zPosition = 2
 
+        let sceneWidth = scene.frame.size.width
+        let auroraWidth = aurora.size.width
+
+        if auroraWidth > sceneWidth {
+            let scale = sceneWidth / auroraWidth
+            aurora.setScale(scale)
+        }
+
         let minX = aurora.size.width / 2
         let maxX = scene.frame.size.width - aurora.size.width / 2
         let positionX = CGFloat.random(in: minX...maxX)

@@ -33,6 +33,7 @@ struct Constants {
         static let scoreIcon: String = "scoreIcon"
         static let heartIcon: String = "heartIcon"
         static let exitButton: String = "x"
+        static let life: String = "heartIcon"  // Adicionada constante para a imagem da vida
     }
 
     struct Directions {
@@ -53,6 +54,7 @@ struct Constants {
         static let rockCategory: UInt32 = 0x1 << 1
         static let shotCategory: UInt32 = 0x1 << 0
         static let playerCategory: UInt32 = 0x1 << 0
+        static let life: UInt32 = 0x1 << 2  // Adicionada constante para a categoria de colisão da vida
         static let EdgeBody: UInt32 = 0x1 << 4
     }
     
@@ -174,5 +176,8 @@ struct Constants {
         static let jetXOffset: CGFloat = 10.0
         static let rockYieldInterval: TimeInterval = 1.0
         static let auroraYieldInterval: TimeInterval = 5.0
+        static let lifeYieldInterval: TimeInterval = 10.0
+        static let lifeZPosition: CGFloat = 5.0
+        static let lifeFallDuration: TimeInterval = 6.0
     }
 }

@@ -20,6 +20,7 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
     var lastYieldTimeIntervalRock: TimeInterval = 0
     var lastUpdateTimeInterval: TimeInterval = 0
     var lastYieldTimeIntervalAurora: TimeInterval = 0
+    var lastYieldTimeIntervalLife: TimeInterval = 0
     var rocksDestroyed: Int = 0
     var spacecraftColisions: Int = Constants.GameSceneConstants.initialSpacecraftCollisions
     var scoreLabel: SKLabelNode = SKLabelNode()
@@ -105,6 +106,29 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
     }
 
     func didBegin(_ contact: SKPhysicsContact) {
+        let firstBody = contact.bodyA
+        let secondBody = contact.bodyB
+
+        if (firstBody.categoryBitMask == Constants.CollisionCategories.playerCategory && secondBody.categoryBitMask == Constants.CollisionCategories.life) ||
+           (secondBody.categoryBitMask == Constants.CollisionCategories.playerCategory && firstBody.categoryBitMask == Constants.CollisionCategories.life) {
+            if firstBody.categoryBitMask == Constants.CollisionCategories.life {
+                firstBody.node?.removeFromParent()
+            } else {
+                secondBody.node?.removeFromParent()
+            }
+            spacecraftColisions += 1
+            updateLivesLabel(spacecraftColisions)
+        }
+
+        if (firstBody.categoryBitMask == Constants.CollisionCategories.shotCategory && secondBody.categoryBitMask == Constants.CollisionCategories.life) ||
+           (secondBody.categoryBitMask == Constants.CollisionCategories.shotCategory && firstBody.categoryBitMask == Constants.CollisionCategories.life) {
+            if firstBody.categoryBitMask == Constants.CollisionCategories.life {
+                firstBody.node?.removeFromParent()
+            } else {
+                secondBody.node?.removeFromParent()
+            }
+        }
+
         gameSceneActions.didBegin(contact)
     }
 
@@ -120,6 +144,7 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
     private func updateWithTimeSinceLastUpdate(_ timeSinceLastUpdate: TimeInterval) {
         lastYieldTimeIntervalRock += timeSinceLastUpdate
         lastYieldTimeIntervalAurora += timeSinceLastUpdate
+        lastYieldTimeIntervalLife += timeSinceLastUpdate
 
         if lastYieldTimeIntervalRock > Constants.GameSceneConstants.rockYieldInterval {
             lastYieldTimeIntervalRock = 0
@@ -130,6 +155,29 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
             lastYieldTimeIntervalAurora = 0
             gameSceneActions.setupAurora()
         }
+
+        if lastYieldTimeIntervalLife > Constants.GameSceneConstants.lifeYieldInterval {
+            lastYieldTimeIntervalLife = 0
+            setupLife()
+        }
+    }
+
+    private func setupLife() {
+        let life = SKSpriteNode(imageNamed: Constants.Assets.life)
+        let randomXPosition = CGFloat.random(in: 0...self.size.width)
+        life.position = CGPoint(x: randomXPosition, y: self.size.height + life.size.height)
+        life.zPosition = Constants.GameSceneConstants.lifeZPosition
+        life.physicsBody = SKPhysicsBody(rectangleOf: life.size)
+        life.physicsBody?.isDynamic = true
+        life.physicsBody?.categoryBitMask = Constants.CollisionCategories.life
+        life.physicsBody?.contactTestBitMask = Constants.CollisionCategories.playerCategory | Constants.CollisionCategories.shotCategory
+        life.physicsBody?.collisionBitMask = 0
+
+        let moveAction = SKAction.move(to: CGPoint(x: randomXPosition, y: -life.size.height), duration: Constants.GameSceneConstants.lifeFallDuration)
+        let removeAction = SKAction.removeFromParent()
+        life.run(SKAction.sequence([moveAction, removeAction]))
+
+        self.addChild(life)
     }
 
     func updateScoreLabel(_ newScore: Int) {

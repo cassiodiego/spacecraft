@@ -12,7 +12,8 @@ import AVFoundation
 
 class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
 
-    let acelerometerValues = Constants.GameAcelerometerValues.self
+    let acelerometerValues = Constants.AcelerometerValues.self
+    let rockAssetValues = Constants.RockAssetsValues.self
     var motionManager = CMMotionManager()
     var lastYieldTimeIntervalRock: TimeInterval = TimeInterval()
     var lastUpdateTimerIntervalRock: TimeInterval = TimeInterval()
@@ -38,7 +39,7 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         _ = screenSize.width
         _ = screenSize.height
 
-        background = SKSpriteNode(imageNamed: self.assets.firstBackground)
+        background = SKSpriteNode(imageNamed: assets.firstBackground)
         background.position = CGPoint(x: (screenSize.width * 0.40), y: (screenSize.height * 0.500))
         background.zPosition = 1
 
@@ -65,9 +66,9 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
         let action = SKAction.moveTo(x: xAcceleration, duration: 1)
         let actionJetLeft = SKAction.moveTo(x: xAcceleration-10, duration: 1)
         let actionJetRight = SKAction.moveTo(x: xAcceleration+10, duration: 1)
-        self.player.run(action)
-        self.fireLeft.run(actionJetLeft)
-        self.fireRight.run(actionJetRight)
+        player.run(action)
+        fireLeft.run(actionJetLeft)
+        fireRight.run(actionJetRight)
         var timeSinceLastUpdate = currentTime - lastUpdateTimerIntervalRock
         lastUpdateTimerIntervalRock = currentTime
         if (timeSinceLastUpdate > 1) {
@@ -127,7 +128,7 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
 
         if (lastYieldTimeIntervalRock > 1) {
             lastYieldTimeIntervalRock = 0
-            self.setupRock(self.assets.rockOne, score: 1)
+            setupRock(assets.rockOne, score: 1)
         }
 
         if (lastYieldTimeIntervalAurora > 5) {
@@ -139,9 +140,16 @@ class GameScene: GameSceneObjects, SKPhysicsContactDelegate {
 
     func scoreLabelUpdate(_ newscore: Int) {
         scoreLabel.text = "\(newscore)"
-        newscore > 25 && newscore < 50 ? self.setupRock(self.assets.rockOne, score: newscore) : nil
-        newscore > 50 ? self.setupRock(self.assets.rockTwo, score: newscore) : nil
-        newscore > 200 ? self.setupRock(self.assets.rockThree, score: newscore) : nil
+        rockAssetsUpdate(newscore)
+    }
+    
+    func rockAssetsUpdate(_ newscore: Int){
+        newscore > rockAssetValues.firstLevelValue && newscore < rockAssetValues.secondLevelValue ?
+            setupRock(assets.rockOne, score: newscore) : nil
+        newscore > rockAssetValues.secondLevelValue ?
+            setupRock(assets.rockTwo, score: newscore) : nil
+        newscore > rockAssetValues.thirdLevelvalue ?
+            setupRock(assets.rockThree, score: newscore) : nil
     }
     
     func livesLabelUpdate(_ numberOfLives: Int) {

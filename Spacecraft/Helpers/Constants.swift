@@ -81,9 +81,15 @@ struct Constants {
         static let velocity = 200/1
     }
     
-    struct GameAcelerometerValues {
+    struct AcelerometerValues {
         static let accelerometerUpdateInterval: Double = 0.1
         static let accelerationXMult: Double = 500
+    }
+    
+    struct RockAssetsValues {
+        static let firstLevelValue: Int = 25
+        static let secondLevelValue: Int = 50
+        static let thirdLevelvalue: Int = 200
     }
     
     struct Author {

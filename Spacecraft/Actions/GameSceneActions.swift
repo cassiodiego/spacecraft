@@ -30,7 +30,7 @@ class GameSceneActions {
         aurora.position = CGPoint(x: positionX, y: scene.frame.size.height + aurora.size.height)
         scene.addChild(aurora)
 
-        let moveDuration = 25.0
+        let moveDuration = Constants.GameSceneObjects.auroraMoveDuration
         let moveAction = SKAction.move(to: CGPoint(x: positionX, y: -aurora.size.height), duration: moveDuration)
         let removeAction = SKAction.removeFromParent()
         aurora.run(SKAction.sequence([moveAction, removeAction]))
@@ -105,27 +105,20 @@ class GameSceneActions {
     func didBegin(_ contact: SKPhysicsContact) {
         guard let scene = scene else { return }
         
-        let firstBody: SKPhysicsBody
-        let secondBody: SKPhysicsBody
-        let thirdBody: SKPhysicsBody
-        let width = UIScreen.main.bounds.size.width
-        let score = scene.scoreLabel.text
+        let (firstBody, secondBody) = initializeBodies(contact: contact)
+        let score = scene.scoreLabel.text ?? "0"
         let transition: SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
         
-        (firstBody, secondBody, thirdBody) = initializeBodies(contact: contact)
-        
         handleShotCollision(firstBody: firstBody, secondBody: secondBody)
-        
-        checkPlayerPositionAndCollisions(firstBody: firstBody, thirdBody: thirdBody, width: width, score: score, transition: transition)
-        
+        checkPlayerPositionAndCollisions(firstBody: firstBody, secondBody: secondBody, score: score, transition: transition)
         checkForGameOver(score: score, transition: transition)
     }
 
-    func initializeBodies(contact: SKPhysicsContact) -> (SKPhysicsBody, SKPhysicsBody, SKPhysicsBody) {
+    func initializeBodies(contact: SKPhysicsContact) -> (SKPhysicsBody, SKPhysicsBody) {
         if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
-            return (contact.bodyA, contact.bodyB, contact.bodyB)
+            return (contact.bodyA, contact.bodyB)
         } else {
-            return (contact.bodyB, contact.bodyA, contact.bodyB)
+            return (contact.bodyB, contact.bodyA)
         }
     }
 
@@ -142,22 +135,22 @@ class GameSceneActions {
         guard let scene = scene else { return }
         rock.removeFromParent()
         scene.rocksDestroyed += 1
-        scene.scoreLabelUpdate(scene.rocksDestroyed)
+        scene.updateScoreLabel(scene.rocksDestroyed)
     }
 
-    func checkPlayerPositionAndCollisions(firstBody: SKPhysicsBody, thirdBody: SKPhysicsBody, width: CGFloat, score: String?, transition: SKTransition) {
+    func checkPlayerPositionAndCollisions(firstBody: SKPhysicsBody, secondBody: SKPhysicsBody, score: String, transition: SKTransition) {
         guard let scene = scene else { return }
         
-        if isColliding(with: firstBody) || isColliding(with: thirdBody) || isOutOfBounds(width: width) {
+        if isColliding(with: firstBody) || isColliding(with: secondBody) || isOutOfBounds() {
             scene.setupExplosion(x: scene.player.position.x, y: scene.player.position.y)
             AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
             
             scene.spacecraftColisions -= 1
-            scene.livesLabelUpdate(scene.spacecraftColisions)
+            scene.updateLivesLabel(scene.spacecraftColisions)
             
             if scene.spacecraftColisions == 0 {
-                scene.view!.presentScene(GameOverScene(size: scene.size, won: false, score: score ?? ""), transition: transition)
+                scene.view?.presentScene(GameOverScene(size: scene.size, won: false, score: score), transition: transition)
             }
         }
     }
@@ -167,17 +160,17 @@ class GameSceneActions {
         return scene.player.position == body.node?.position
     }
 
-    private func isOutOfBounds(width: CGFloat) -> Bool {
+    private func isOutOfBounds() -> Bool {
         guard let scene = scene else { return false }
         let playerX = scene.player.position.x
         let halfPlayerWidth = scene.player.size.width / 2
-        return playerX < halfPlayerWidth || playerX > (width - halfPlayerWidth)
+        return playerX < halfPlayerWidth || playerX > (scene.frame.size.width - halfPlayerWidth)
     }
 
-    func checkForGameOver(score: String?, transition: SKTransition) {
+    func checkForGameOver(score: String, transition: SKTransition) {
         guard let scene = scene else { return }
         if scene.scoreLabel.text == "9999" {
-            scene.view!.presentScene(GameOverScene(size: scene.size, won: true, score: score!), transition: transition)
+            scene.view?.presentScene(GameOverScene(size: scene.size, won: true, score: score), transition: transition)
         }
     }
 }

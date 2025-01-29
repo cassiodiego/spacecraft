@@ -157,4 +157,22 @@ struct Constants {
         static let touchToRestartLabelYProportion: CGFloat = 0.360
         static let touchToRestartLabelZPosition: CGFloat = 1.0
     }
+
+    struct GameSceneConstants {
+        static let initialSpacecraftCollisions: Int = 4
+        static let backgroundXProportion: CGFloat = 0.40
+        static let backgroundYProportion: CGFloat = 0.50
+        static let backgroundZPosition: CGFloat = 1
+        static let scoreLabelXProportion: CGFloat = 0.24
+        static let scoreLabelYProportion: CGFloat = 0.88
+        static let scoreLabelZPosition: CGFloat = 2
+        static let livesLabelXProportion: CGFloat = 0.57
+        static let livesLabelYProportion: CGFloat = 0.88
+        static let livesLabelZPosition: CGFloat = 2
+        static let maxUpdateInterval: TimeInterval = 1.0 / 60.0
+        static let playerMoveDuration: TimeInterval = 1.0
+        static let jetXOffset: CGFloat = 10.0
+        static let rockYieldInterval: TimeInterval = 1.0
+        static let auroraYieldInterval: TimeInterval = 5.0
+    }
 }

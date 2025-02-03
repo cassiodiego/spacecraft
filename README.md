@@ -1,5 +1,5 @@
 # ![Spacecraft](.github/assets/spacecraft-banner.png)
-A classic and simple spaceship game exclusively for iPhone, localized in three languages: Portuguese, English, and Spanish. The project began in Belém, Brazil, in December 2016 and is licensed under the [MIT License](LICENSE). Since then, Spacecraft has been downloaded nearly a thousand times. The game was available on the App Store between 2016 and 2023. Initially published on my old GitHub account, it has been refactored with minor adjustments and is now a public and archived project on GitHub and should be used only as a reference for studying the use of GameKit.
+A classic and simple spaceship game exclusively for iPhone, localized in three languages: Portuguese, English, and Spanish. The project began in Belém, Brazil, in December 2016 and is licensed under the [MIT License](LICENSE). Since then, Spacecraft has been downloaded nearly a thousand times. The game was available on the App Store between 2016 and 2023. Initially published on my old GitHub account, it has been refactored with minor adjustments and is now a public and archived project on GitHub and should be used only as a GameKit reference.
  
  ![Screenshots](.github/assets/spacecraft-screenshot.png)
  
